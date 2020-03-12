@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PierwszaComponent } from './pierwsza/pierwsza.component';
+import { DrugaComponent } from './druga/druga.component';
 
 const routes: Routes = [
   { path: 'pierwsza', component: PierwszaComponent },
+  { path: 'druga', component: DrugaComponent },
   { path: '', redirectTo: 'pierwsza', pathMatch: 'full' }
 ];
 
@@ -19,6 +21,6 @@ const routes: Routes = [
 
 export class RoutingModule { }
 
-export const routingComponents = [PierwszaComponent]
+export const routingComponents = [PierwszaComponent, DrugaComponent]
 
 //--module app
