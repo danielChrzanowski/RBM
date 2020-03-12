@@ -1,17 +1,39 @@
 .colorBar{
     background-color: #38006b;
+}
+
+.banner{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     padding-top: 5px;
+    padding-bottom: 5px;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+
+    position: relative;
+    text-align: center;
+}
+
+.name{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .navbar{
     background-color: #6a1b9a;
-    color: white;
     text-align: center;
 }
 
 .footer{
-    background-color: #9c4dcc;
-    color: white;
+    background-color: #6a1b9a;
     text-align: center;
     padding-bottom: 5px;
     padding-top: 5px;
