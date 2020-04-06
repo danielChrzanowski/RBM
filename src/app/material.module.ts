@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -35,36 +35,35 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 const materialModules = [
   BrowserAnimationsModule,
   MatCheckboxModule,
-  MatCheckboxModule,
   MatButtonModule,
   MatInputModule,
-  MatAutocompleteModule,
+  //MatAutocompleteModule,
   MatDatepickerModule,
   MatFormFieldModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSliderModule,
-  MatSlideToggleModule,
+  //MatRadioModule,
+  //MatSelectModule,
+  //MatSliderModule,
+  //MatSlideToggleModule,
   MatMenuModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatGridListModule,
+  //MatSidenavModule,
+  //MatToolbarModule,
+  //MatListModule,
+  //MatGridListModule,
   MatCardModule,
-  MatStepperModule,
-  MatTabsModule,
-  MatExpansionModule,
-  MatButtonToggleModule,
-  MatChipsModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
-  MatProgressBarModule,
-  MatDialogModule,
-  MatTooltipModule,
-  MatSnackBarModule,
+  //MatStepperModule,
+  //MatTabsModule,
+  //MatExpansionModule,
+  //MatButtonToggleModule,
+  //MatChipsModule,
+  //MatIconModule,
+  //MatProgressSpinnerModule,
+  //MatProgressBarModule,
+  //MatDialogModule,
+  //MatTooltipModule,
+  //MatSnackBarModule,
   MatTableModule,
-  MatSortModule,
-  MatPaginatorModule
+  //MatSortModule,
+  //MatPaginatorModule
 ];
 
 @NgModule({
