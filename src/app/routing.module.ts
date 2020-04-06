@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PierwszaComponent } from './pierwsza/pierwsza.component';
-import { DrugaComponent } from './druga/druga.component';
+import { PierwszaComponent } from './pages/pierwsza/pierwsza.component';
+import { DrugaComponent } from './pages/druga/druga.component';
 
 const routes: Routes = [
   { path: 'pierwsza', component: PierwszaComponent },

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RoutingModule, routingComponents } from './routing.module';
 import { MaterialModule } from './material.module';
-import { DrugaComponent } from './druga/druga.component';
+import { DrugaComponent } from './pages/druga/druga.component';
 
 
 @NgModule({
