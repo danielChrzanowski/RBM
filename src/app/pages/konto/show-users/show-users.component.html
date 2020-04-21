@@ -1,14 +1,35 @@
 <div class="content">
     <h1>Użytkownicy w bazie:</h1>
 
-    <div class="user" *ngFor="let uzytkownik of uzytkownicy">
-        ID: {{uzytkownik.uzytkownik_id}} <br>
-        Login, hasło: {{uzytkownik.login}}
-        {{uzytkownik.haslo}} <br>
-        Imię, nazwisko: {{uzytkownik.imie}}
-        {{uzytkownik.nazwisko}} <br>
-        E-mail: {{uzytkownik.email}} <br>
-        Czy pracownik: {{uzytkownik.czy_pracownik}}
-    </div>
-    
+    <table mat-table [dataSource]="uzytkownicy" multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="example-element-diagram">
+                        <div class="example-element-symbol">
+                            ID: {{element.uzytkownik_id}}<br>
+                            Login: {{element.login}} <br>
+                            Hasło: {{element.haslo}} <br>
+                            E-mail: {{element.email}} <br>
+                            Czy pracownik: {{element.czy_pracownik}} <br>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
 </div>
