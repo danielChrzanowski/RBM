@@ -19,4 +19,13 @@ export class AppComponent {
     this.router.navigate(["/druga"]);
   }
 
+ showUsers() {
+    this.router.navigate(["/showUsers"]);
+  }
+
+  createUser() {
+    this.router.navigate(["/createUser"]);
+  }
+
+
 }

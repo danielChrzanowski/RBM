@@ -1,0 +1,14 @@
+<div class="content">
+    <h1>Użytkownicy w bazie:</h1>
+
+    <div class="user" *ngFor="let uzytkownik of uzytkownicy">
+        ID: {{uzytkownik.uzytkownik_id}} <br>
+        Login, hasło: {{uzytkownik.login}}
+        {{uzytkownik.haslo}} <br>
+        Imię, nazwisko: {{uzytkownik.imie}}
+        {{uzytkownik.nazwisko}} <br>
+        E-mail: {{uzytkownik.email}} <br>
+        Czy pracownik: {{uzytkownik.czy_pracownik}}
+    </div>
+    
+</div>

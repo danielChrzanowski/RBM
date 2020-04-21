@@ -3,18 +3,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RoutingModule, routingComponents } from './routing.module';
 import { MaterialModule } from './material.module';
-import { DrugaComponent } from './pages/druga/druga.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    DrugaComponent,
   ],
   imports: [
     RoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

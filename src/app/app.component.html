@@ -14,10 +14,10 @@
       <button mat-menu-item (click)="druga()">Druga</button>
     </mat-menu>
     
-    <button mat-button [matMenuTriggerFor]="menu2">Lista</button>
+    <button mat-button [matMenuTriggerFor]="menu2">Konto</button>
     <mat-menu #menu2="matMenu">
-      <button mat-menu-item>Trzecia</button>
-      <button mat-menu-item>Czwarta</button>
+      <button mat-menu-item (click)="showUsers()">Wyświetl użytkowników</button>
+      <button mat-menu-item (click)="createUser()">Dodaj użytkownika</button>
     </mat-menu>
   </div>
 </div>
