@@ -67,7 +67,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Paw:build"
+            "browserTarget": "Paw:build",
+            "ssl": true,
+            "sslKey": "src/assets/ssl/key.pem",
+            "sslCert": "src/assets/ssl/certificate.pem"
           },
           "configurations": {
             "production": {
