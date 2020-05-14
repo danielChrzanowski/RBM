@@ -1,5 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-html { background-color: rgb(38, 38, 38); color:white }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+    background-color: rgb(38, 38, 38);
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    background-color: #3a3939;
+    width: 1000px;
+    padding: 20px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+}
