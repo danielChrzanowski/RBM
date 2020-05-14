@@ -18,7 +18,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
 })
 
-export class ShowUsersComponent implements OnInit {
+export class ShowUsersComponent {
   uzytkownicy: Array<Uzytkownik>;
 
   columnsToDisplay = ['imie', 'nazwisko'];
@@ -34,9 +34,7 @@ export class ShowUsersComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.getAll();
-  }
+
 
   getAll() {
     this.uzytkownikService.getAll()
