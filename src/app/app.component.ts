@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './authentication/auth.service';
 import { Uzytkownik } from './pages/uzytkownik/uzytkownik';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { UzytkownikServiceService } from './pages/konto/uzytkownik-service/uzytkownik-service.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,13 @@ export class AppComponent {
 
   uzytkownik: Uzytkownik;
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {  }
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService, private uzytkownikService: UzytkownikServiceService) { }
+
 
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
+    this.uzytkownik = null;
 
     console.log(sessionStorage.getItem('userId'));
     this.home();
@@ -29,6 +32,7 @@ export class AppComponent {
   }
 
   home() {
+    this.refreshUser();
     this.router.navigate(["/home"]);
   }
 
@@ -42,6 +46,25 @@ export class AppComponent {
 
   createUser() {
     this.router.navigate(["/createUser"]);
+  }
+
+  refreshUser() {
+    if (sessionStorage.length > 1) {
+      console.log("wieksza");
+
+      let key = "userId";
+      let value = sessionStorage.getItem(key);
+
+      this.uzytkownikService.userById(value)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.uzytkownik = data;
+          },
+          error => console.log(error));
+    } else {
+      console.log("mniejsza");
+    }
   }
 
 }

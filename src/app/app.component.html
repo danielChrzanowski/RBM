@@ -27,6 +27,20 @@
   </div>
 </div>
 
+<button mat-button (click)="refreshUser()">Konto</button>
+
+
+<div *ngIf="uzytkownik!=null; else templateName">
+  {{uzytkownik.imie}}
+</div>
+
+<ng-template #templateName>
+  nie ma uzytk
+</ng-template>
+
+
+
+
 <router-outlet></router-outlet>
 
 <div class="footer">

@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginForm } from './loginForm/loginForm';
+import { LoginServiceService } from './loginService/loginService.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-log-in',
@@ -21,7 +23,7 @@ export class LogInComponent implements OnInit {
   private baseUrl = "https://localhost:8443";
   loginForm: LoginForm = new LoginForm();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private loginService: LoginServiceService) { }
 
   ngOnInit(): void {
     sessionStorage.setItem('token', null);
@@ -35,8 +37,13 @@ export class LogInComponent implements OnInit {
         if (data) {
           sessionStorage.setItem('token', btoa(this.loginForm.username + ':' + this.loginForm.password))
           console.log(sessionStorage.getItem('token'));
-
+          
           this.getUserData();
+
+          setTimeout(() => {
+            this.appComponent.home();
+          }, 100);
+
 
           this.router.navigate(['home']);
         } else {
@@ -54,20 +61,7 @@ export class LogInComponent implements OnInit {
   }
 
   getUserData() {
-    let headers: HttpHeaders = new HttpHeaders(
-      { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
-    );
-
-    let options = { headers: headers };
-
-    this.http.get(`${this.baseUrl}/user`, options)
-      .subscribe(data => {
-        console.log(data);
-        sessionStorage.setItem('userId', data['id']);
-        console.log(sessionStorage.getItem('userId'));
-
-      },
-        error => console.log(error));
+    this.loginService.getUserData();
   }
 
 

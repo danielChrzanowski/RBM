@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Uzytkownik } from '../uzytkownik-model/uzytkownik.model';
+
 import { UzytkownikServiceService } from '../uzytkownik-service/uzytkownik-service.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Uzytkownik } from '../../uzytkownik/uzytkownik';
 
 
 @Component({
@@ -33,8 +34,6 @@ export class ShowUsersComponent {
       }
     );
   }
-
-
 
   getAll() {
     this.uzytkownikService.getAll()
