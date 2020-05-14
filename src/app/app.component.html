@@ -16,11 +16,7 @@
   </div>
 
   <div class="navbar">
-    <button mat-button [matMenuTriggerFor]="menu1">Menu</button>
-    <mat-menu #menu1="matMenu">
-      <button mat-menu-item (click)="home()">Home</button>
-      <button mat-menu-item (click)="druga()">Druga</button>
-    </mat-menu>
+    <button mat-button (click)="home()">Home</button>
 
     <button mat-button [matMenuTriggerFor]="menu2">Konto</button>
     <mat-menu #menu2="matMenu">
