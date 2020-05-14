@@ -1,5 +1,13 @@
 <div class="colorBar">
 
+  <div class="loginBarLeft">
+    Restauracja z Bierunia
+  </div>
+
+  <div class="loginBarRight">
+    Zalogowany użytkownik: imię nazwisko | konto | wyloguj
+  </div>
+
   <div class="banner">
     <img class="bannerImage" src="assets\images\banner.jpg">
     <div class="name">
@@ -10,10 +18,10 @@
   <div class="navbar">
     <button mat-button [matMenuTriggerFor]="menu1">Menu</button>
     <mat-menu #menu1="matMenu">
-      <button mat-menu-item (click)="pierwsza()">Pierwsza</button>
+      <button mat-menu-item (click)="home()">Home</button>
       <button mat-menu-item (click)="druga()">Druga</button>
     </mat-menu>
-    
+
     <button mat-button [matMenuTriggerFor]="menu2">Konto</button>
     <mat-menu #menu2="matMenu">
       <button mat-menu-item (click)="showUsers()">Wyświetl użytkowników</button>

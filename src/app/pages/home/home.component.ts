@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'app-pierwsza',
-  templateUrl: './pierwsza.component.html',
-  styleUrls: ['./pierwsza.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -13,7 +13,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ]),
   ],
 })
-export class PierwszaComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor() { }
 
