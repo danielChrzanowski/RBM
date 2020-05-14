@@ -1,59 +1,54 @@
-.colorBar{
+.colorBar {
     background-color: #38006b;
 }
 
-.banner{
-    display: block;
-   // margin-left: auto;
-  //  margin-right: auto;
- // float:center;
+.banner {
     padding-top: 5px;
     padding-bottom: 5px;
 
     position: relative;
-   text-align: center;
+    text-align: center;
 }
 
-.bannerImage{
+.bannerImage {
     border-radius: 20px;
     width: 50%;
-    height: auto;
 
     max-width: 600px;
     min-width: 500px;
 }
 
-.name{
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+.name {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.navbar{
+.navbar {
     background-color: #6a1b9a;
     text-align: center;
 }
 
-.footer{
+.footer {
     background-color: #6a1b9a;
     text-align: center;
     padding-bottom: 5px;
     padding-top: 5px;
 }
 
-.loginBarLeft{
+.loginBarLeft {
     display: inline-block;
     //float:left;
     margin-top: 8px;
     margin-left: 8px;
 }
 
-.loginBarRight{
+.loginBarRight {
     float: right;
     margin-top: 8px;
     margin-right: 8px;
- }
+}
