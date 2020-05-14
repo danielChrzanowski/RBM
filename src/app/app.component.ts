@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './authentication/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,19 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Paw';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
+
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+
+    console.log("Wylogowano: " + sessionStorage.getItem('userId'));
+    this.home();
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 
   home() {
     this.router.navigate(["/home"]);
@@ -19,7 +32,7 @@ export class AppComponent {
     this.router.navigate(["/log-in"]);
   }
 
- showUsers() {
+  showUsers() {
     this.router.navigate(["/showUsers"]);
   }
 

@@ -43,7 +43,7 @@ export class LogInComponent implements OnInit {
         console.log(data);
         if (data) {
           sessionStorage.setItem('token', btoa(this.loginForm.username + ':' + this.loginForm.password))
-          console.log(sessionStorage.getItem('token'));
+          console.log("Zalogowano: " + sessionStorage.getItem('token'));
           this.getUserData();
           this.router.navigate(['home']);
         } else {
@@ -60,7 +60,6 @@ export class LogInComponent implements OnInit {
   }
 
   getUserData() {
-
     let headers: HttpHeaders = new HttpHeaders(
       { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
     );
