@@ -1,30 +1,29 @@
 <div class="content">
   <h1>Logowanie:</h1>
 
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Login</mat-label>
-      <input matInput [formControl]="loginFormControl">
-      <mat-error *ngIf="loginFormControl.hasError('required')">
-        Login nie może być pusty
-      </mat-error>
-    </mat-form-field>
-  </form>
+  <mat-card class="my-card">
+    <mat-card-content>
+        <form class="my-form">
+            <mat-form-field class="full-width">
+                <mat-label>Nazwa użytkownika</mat-label>
+                <input matInput placeholder="Nazwa użytkownika" name="login" [(ngModel)]="loginForm.username" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Hasło</mat-label>
+                <input type="password" matInput placeholder="Hasło" name="password" [(ngModel)]="loginForm.password" required>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
 
+    <mat-card-actions>
+        <button mat-raised-button (click)="login()" color="warn">Zaloguj się</button>
+    </mat-card-actions>
+</mat-card>
+
+
+  
   <br>
 
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Hasło</mat-label>
-      <input matInput [formControl]="passwordFormControl">
-      <mat-error *ngIf="passwordFormControl.hasError('required')">
-        Hasło nie może być puste
-      </mat-error>
-    </mat-form-field>
-  </form>
-
-  <br>
-
-  <button mat-stroked-button>Zaloguj</button>
+  <button mat-stroked-button (click)="login()">Zaloguj</button>
 
 </div>
