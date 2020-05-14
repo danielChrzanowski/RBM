@@ -29,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
 //import { MatTooltipModule } from '@angular/material/tooltip';
 //import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
 //import { MatSortModule } from '@angular/material/sort';
 //import { MatPaginatorModule } from '@angular/material/paginator';
 
@@ -63,7 +64,8 @@ const materialModules = [
   //MatSnackBarModule,
   MatTableModule,
   //MatSortModule,
-  //MatPaginatorModule
+  //MatPaginatorModule,
+  ReactiveFormsModule
 ];
 
 @NgModule({

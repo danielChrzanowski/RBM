@@ -5,6 +5,8 @@ import { RoutingModule, routingComponents } from './routing.module';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './authentication/auth.guard';
+import { AuthService } from './authentication/auth.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

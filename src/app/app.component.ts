@@ -15,6 +15,10 @@ export class AppComponent {
     this.router.navigate(["/home"]);
   }
 
+  logIn() {
+    this.router.navigate(["/log-in"]);
+  }
+
  showUsers() {
     this.router.navigate(["/showUsers"]);
   }
