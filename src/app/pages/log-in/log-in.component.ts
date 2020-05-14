@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -28,25 +28,19 @@ export class LogInComponent implements OnInit {
     sessionStorage.setItem('userId', null);
   }
 
-  //@ViewChild('login') loginInput: ElementRef;
-  //@ViewChild('password') passwordInput: ElementRef;
-
   login() {
-    //let login = this.loginInput.nativeElement.value;
-    //let password = this.passwordInput.nativeElement.value;
-
-    //this.loginForm.username = login;
-    //this.loginForm.password = password;
-
     this.http.post(`${this.baseUrl}/login`, this.loginForm)
       .subscribe(data => {
         console.log(data);
         if (data) {
           sessionStorage.setItem('token', btoa(this.loginForm.username + ':' + this.loginForm.password))
-          console.log("Zalogowano: " + sessionStorage.getItem('token'));
+          console.log(sessionStorage.getItem('token'));
+
           this.getUserData();
+
           this.router.navigate(['home']);
         } else {
+
           //modal zły login lub hasło
           alert("Błąd autentykacji.");
         }
@@ -71,6 +65,7 @@ export class LogInComponent implements OnInit {
         console.log(data);
         sessionStorage.setItem('userId', data['id']);
         console.log(sessionStorage.getItem('userId'));
+
       },
         error => console.log(error));
   }

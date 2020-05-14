@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './authentication/auth.service';
+import { Uzytkownik } from './pages/uzytkownik/uzytkownik';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,15 @@ import { AuthService } from './authentication/auth.service';
 export class AppComponent {
   title = 'Paw';
 
-  constructor(private router: Router, private authService: AuthService) { }
+  uzytkownik: Uzytkownik;
+
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {  }
 
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
 
-    console.log("Wylogowano: " + sessionStorage.getItem('userId'));
+    console.log(sessionStorage.getItem('userId'));
     this.home();
   }
 
@@ -39,6 +43,5 @@ export class AppComponent {
   createUser() {
     this.router.navigate(["/createUser"]);
   }
-
 
 }
