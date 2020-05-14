@@ -52,6 +52,14 @@
     margin-right: 8px;
 }
 
+#loginBarUserInfo {
+    display: inline-block;
+}
+
+#loginBarInline {
+    display: inline-block;
+}
+
 #loginBarText {
     display: inline-block;
     cursor: pointer;
@@ -62,5 +70,5 @@
 }
 
 #loginBarText:active {
-    font-size: 90%;
+    font-size: 95%;
 }

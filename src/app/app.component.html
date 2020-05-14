@@ -5,8 +5,21 @@
   </div>
 
   <div class="loginBarRight">
-    <div (click)="logIn()" id="loginBarText">zaloguj</div> |
-    <div (click)="logout()" id="loginBarText">wyloguj</div>
+    <div *ngIf="uzytkownik!=null; else brakUzytkownika" id='loginBarUserInfo'>
+      {{uzytkownik.imie}} {{uzytkownik.nazwisko}}
+    </div>
+
+    <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="logIn()" id="loginBarText">zaloguj</div>
+    <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="createUser()" id="loginBarInline">
+      &nbsp;|
+      <div id="loginBarText">utwórz konto</div>
+    </div>
+    <div *ngIf="uzytkownik!=null; else brakUzytkownika" (click)="logout()" id="loginBarInline">
+      &nbsp;|
+      <div id="loginBarText">wyloguj</div>
+    </div>
+
+    <ng-template #brakUzytkownika></ng-template>
   </div>
 
   <div class="banner">
@@ -26,20 +39,6 @@
     </mat-menu>
   </div>
 </div>
-
-<button mat-button (click)="refreshUser()">Konto</button>
-
-
-<div *ngIf="uzytkownik!=null; else templateName">
-  {{uzytkownik.imie}}
-</div>
-
-<ng-template #templateName>
-  nie ma uzytk
-</ng-template>
-
-
-
 
 <router-outlet></router-outlet>
 

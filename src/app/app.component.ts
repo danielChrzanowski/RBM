@@ -15,8 +15,12 @@ export class AppComponent {
 
   uzytkownik: Uzytkownik;
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService, private uzytkownikService: UzytkownikServiceService) { }
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService, private uzytkownikService: UzytkownikServiceService) {
+    if (this.uzytkownik == null) {
+      this.refreshUser();
+    }
 
+  }
 
   logout() {
     sessionStorage.removeItem('token');

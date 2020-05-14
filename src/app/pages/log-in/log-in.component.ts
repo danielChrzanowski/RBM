@@ -3,7 +3,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginForm } from './loginForm/loginForm';
-import { LoginServiceService } from './loginService/loginService.service';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -23,7 +22,7 @@ export class LogInComponent implements OnInit {
   private baseUrl = "https://localhost:8443";
   loginForm: LoginForm = new LoginForm();
 
-  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private loginService: LoginServiceService) { }
+  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     sessionStorage.setItem('token', null);
@@ -37,15 +36,10 @@ export class LogInComponent implements OnInit {
         if (data) {
           sessionStorage.setItem('token', btoa(this.loginForm.username + ':' + this.loginForm.password))
           console.log(sessionStorage.getItem('token'));
-          
+
           this.getUserData();
 
-          setTimeout(() => {
-            this.appComponent.home();
-          }, 100);
-
-
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
         } else {
 
           //modal zły login lub hasło
@@ -55,14 +49,29 @@ export class LogInComponent implements OnInit {
         error => {
           console.log(error);
           if (error.status == 401) {
-            alert("Odmowa dostępu.");
+            alert("Odmowa dostępu");
           }
         });
   }
-
   getUserData() {
-    this.loginService.getUserData();
+    let headers: HttpHeaders = new HttpHeaders(
+      { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
+    );
+
+    let options = { headers: headers };
+
+    this.http.get(`${this.baseUrl}/user`, options)
+      .subscribe(data => {
+        console.log(data);
+        sessionStorage.setItem('userId', data['uzytkownik_id']);
+        console.log(sessionStorage.getItem('userId'));
+
+        this.appComponent.refreshUser();
+      },
+        error => console.log(error));
+
+
   }
 
-
 }
+
