@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 
-import { ShowUsersComponent } from './pages/konto/show-users/show-users.component';
-import { CreateUserComponent } from './pages/konto/create-user/create-user.component';
+import { ShowUsersComponent } from './pages/show-users/show-users.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 
 const routes: Routes = [

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './authentication/auth.service';
-import { Uzytkownik } from './pages/uzytkownik/uzytkownik';
+import { Uzytkownik } from './konto/uzytkownik/uzytkownik';
 import { HttpClient } from '@angular/common/http';
-import { UzytkownikServiceService } from './pages/konto/uzytkownik-service/uzytkownik-service.service';
+import { UzytkownikServiceService } from './konto/uzytkownik-service/uzytkownik-service.service';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +36,6 @@ export class AppComponent {
   }
 
   home() {
-    this.refreshUser();
     this.router.navigate(["/home"]);
   }
 
