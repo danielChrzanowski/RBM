@@ -5,13 +5,14 @@
   </div>
 
   <div class="loginBarRight">
-    Zalogowany użytkownik: imię nazwisko | konto | wyloguj
+    Imię Nazwisko | <div (click)="createUser()" id="loginBarText">konto</div> |
+    <div (click)="showUsers()" id="loginBarText">wyloguj</div>
   </div>
 
   <div class="banner">
     <img class="bannerImage" src="assets\images\banner.jpg">
     <div class="name">
-      <h1>Buongiorno moltissimo</h1>
+      <h1>Buongiorno Moltissimo</h1>
     </div>
   </div>
 

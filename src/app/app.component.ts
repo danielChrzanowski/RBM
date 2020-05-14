@@ -15,10 +15,6 @@ export class AppComponent {
     this.router.navigate(["/home"]);
   }
 
-  druga() {
-    this.router.navigate(["/druga"]);
-  }
-
  showUsers() {
     this.router.navigate(["/showUsers"]);
   }

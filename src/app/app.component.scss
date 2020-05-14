@@ -51,3 +51,16 @@
     margin-top: 8px;
     margin-right: 8px;
 }
+
+#loginBarText {
+    display: inline-block;
+    cursor: pointer;
+}
+
+#loginBarText:hover {
+    text-decoration: underline;
+}
+
+#loginBarText:active {
+    font-size: 90%;
+}
