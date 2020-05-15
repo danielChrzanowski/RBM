@@ -6,12 +6,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { ShowUsersComponent } from './pages/show-users/show-users.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
+import { AuthGuard } from './authentication/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'log-in', component: LogInComponent },
-  { path: 'showUsers', component: ShowUsersComponent },
+  { path: 'showUsers',canActivate:[AuthGuard], component: ShowUsersComponent },
   { path: 'createUser', component: CreateUserComponent }
 ];
 

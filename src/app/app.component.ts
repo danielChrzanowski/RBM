@@ -20,7 +20,6 @@ export class AppComponent {
     private uzytkownikService: UzytkownikServiceService,
     private encryptionService: EncryptionService) {
 
-
     if (this.uzytkownik != null) {
       this.refreshUser();
     }

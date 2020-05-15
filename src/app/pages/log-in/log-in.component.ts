@@ -42,7 +42,7 @@ export class LogInComponent implements OnInit {
           this.getUserData();
 
           
-          this.router.navigate(['/home']);
+         // this.router.navigate(['/home']);
         } else {
           this.openModal('loginErrorModal');
           //alert("Błąd autentykacji.");

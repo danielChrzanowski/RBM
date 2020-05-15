@@ -15,12 +15,6 @@ export class UzytkownikServiceService {
     return this.http.get(`${this.baseUrl}/users`);
   }
 
-  /*
-  public userById(id: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/userById/` + id);
-  }
-  */
-
   public loggedUserById(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id);
   }
