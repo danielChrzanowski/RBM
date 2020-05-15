@@ -16,4 +16,10 @@
 
   <button mat-stroked-button (click)="login()">Zaloguj</button>
 
+  <jw-modal id="loginErrorModal">
+    <h2>Zły login lub hasło</h2>
+    <p>Wprowadź ponownie dane</p>
+    <button mat-stroked-button (click)="closeModal('loginErrorModal');">Zamknij</button>
+  </jw-modal>
+
 </div>

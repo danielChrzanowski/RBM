@@ -58,7 +58,7 @@ export class AppComponent {
       let key = "userId";
       let value = sessionStorage.getItem(key);
 
-      this.uzytkownikService.userById(value)
+      this.uzytkownikService.loggedUserById(value)
         .subscribe(
           data => {
             console.log(data);

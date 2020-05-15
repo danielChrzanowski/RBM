@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginForm } from './loginForm/loginForm';
 import { AppComponent } from 'src/app/app.component';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-log-in',
@@ -22,7 +23,7 @@ export class LogInComponent implements OnInit {
   private baseUrl = "https://localhost:8443";
   loginForm: LoginForm = new LoginForm();
 
-  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router) { }
+  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private modalService: ModalService) { }
 
   ngOnInit(): void {
     sessionStorage.setItem('token', null);
@@ -41,18 +42,19 @@ export class LogInComponent implements OnInit {
 
           this.router.navigate(['/home']);
         } else {
-
-          //modal zły login lub hasło
-          alert("Błąd autentykacji.");
+          this.openModal('loginErrorModal');
+          //alert("Błąd autentykacji.");
         }
       },
         error => {
           console.log(error);
           if (error.status == 401) {
-            alert("Odmowa dostępu");
+            this.openModal('loginErrorModal');
+            //alert("Odmowa dostępu");
           }
         });
   }
+
   getUserData() {
     let headers: HttpHeaders = new HttpHeaders(
       { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
@@ -69,8 +71,14 @@ export class LogInComponent implements OnInit {
         this.appComponent.refreshUser();
       },
         error => console.log(error));
+  }
 
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
 
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
 }
