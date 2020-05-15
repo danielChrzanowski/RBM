@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Uzytkownik } from './konto/uzytkownik/uzytkownik';
+import { Uzytkownik } from './user/uzytkownik/uzytkownik';
 import { HttpClient } from '@angular/common/http';
-import { UzytkownikServiceService } from './konto/uzytkownik-service/uzytkownik-service.service';
+import { UzytkownikServiceService } from './user/uzytkownik-service/uzytkownik-service.service';
 import { EncryptionService } from './encryption/encryption.service';
 
 @Component({
@@ -20,9 +20,13 @@ export class AppComponent {
     private uzytkownikService: UzytkownikServiceService,
     private encryptionService: EncryptionService) {
 
-    if (this.uzytkownik != null) {
-      this.refreshUser();
-    }
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+    this.uzytkownik = null;
+
+    // if (this.uzytkownik != null) {
+    this.refreshUser();
+    //}
 
   }
 
@@ -69,9 +73,11 @@ export class AppComponent {
 }
 
 window.onload = function () {
-  sessionStorage.removeItem('token');
-  sessionStorage.removeItem('userId');
-  this.uzytkownik = null;
+  //sessionStorage.removeItem('token');
+  //sessionStorage.removeItem('userId');
+  //this.uzytkownik = null;
+
+  //window.location.href  = "https://localhost:4200";
 
   console.log("RELOADED");
 }

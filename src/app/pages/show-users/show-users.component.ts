@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UzytkownikServiceService } from '../../konto/uzytkownik-service/uzytkownik-service.service';
+import { UzytkownikServiceService } from '../../user/uzytkownik-service/uzytkownik-service.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Uzytkownik } from '../../konto/uzytkownik/uzytkownik';
+import { Uzytkownik } from '../../user/uzytkownik/uzytkownik';
 
 
 @Component({
