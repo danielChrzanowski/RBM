@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EncryptionService {
 
-  constructor() { }
+  private baseUrl = "https://localhost:8443";
 
-  encryptSecretKey = "qazwsx";
+  //observable: Observable<String>;
+
+  constructor(private http: HttpClient) {
+    this.http.get(`${this.baseUrl}/getKey`, { responseType: 'text' })
+      .subscribe(results => this.encryptSecretKey = results);
+  }
+
+  encryptSecretKey: string;
 
   encryptData(data) {
     try {

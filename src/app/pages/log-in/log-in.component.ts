@@ -28,8 +28,7 @@ export class LogInComponent implements OnInit {
   constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private modalService: ModalService, private encryptionService: EncryptionService) { }
 
   ngOnInit(): void {
-    sessionStorage.setItem('token', null);
-    sessionStorage.setItem('userId', null);
+    
   }
 
   login() {
@@ -42,6 +41,7 @@ export class LogInComponent implements OnInit {
 
           this.getUserData();
 
+          
           this.router.navigate(['/home']);
         } else {
           this.openModal('loginErrorModal');

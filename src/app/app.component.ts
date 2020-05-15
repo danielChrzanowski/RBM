@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './authentication/auth.service';
 import { Uzytkownik } from './konto/uzytkownik/uzytkownik';
 import { HttpClient } from '@angular/common/http';
 import { UzytkownikServiceService } from './konto/uzytkownik-service/uzytkownik-service.service';
@@ -18,10 +17,11 @@ export class AppComponent {
 
   constructor(private http: HttpClient,
     private router: Router,
-    private authService: AuthService,
     private uzytkownikService: UzytkownikServiceService,
     private encryptionService: EncryptionService) {
-    if (this.uzytkownik == null) {
+
+
+    if (this.uzytkownik != null) {
       this.refreshUser();
     }
 
@@ -32,12 +32,7 @@ export class AppComponent {
     sessionStorage.removeItem('userId');
     this.uzytkownik = null;
 
-    //console.log(sessionStorage.getItem('userId'));
     this.home();
-  }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
   }
 
   home() {
@@ -57,11 +52,10 @@ export class AppComponent {
   }
 
   refreshUser() {
-    if (sessionStorage.length > 1) {
-      console.log("wieksza");
+    if (sessionStorage.length > 0) {
 
-      let key = "userId";
-      let value = this.encryptionService.decryptData(sessionStorage.getItem(key));
+      let value = this.encryptionService.decryptData(sessionStorage.getItem("userId"));
+      console.log("wartosc: " + value);
 
       this.uzytkownikService.loggedUserById(value)
         .subscribe(
@@ -70,9 +64,16 @@ export class AppComponent {
             this.uzytkownik = data;
           },
           error => console.log(error));
-    } else {
-      console.log("mniejsza");
     }
   }
 
 }
+
+window.onload = function () {
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('userId');
+  this.uzytkownik = null;
+
+  console.log("RELOADED");
+}
+
