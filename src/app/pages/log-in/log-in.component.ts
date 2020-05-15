@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { LoginForm } from './loginForm/loginForm';
 import { AppComponent } from 'src/app/app.component';
 import { ModalService } from 'src/app/_modal';
+import { EncryptionService } from 'src/app/encryption/encryption.service';
+
 
 @Component({
   selector: 'app-log-in',
@@ -23,7 +25,7 @@ export class LogInComponent implements OnInit {
   private baseUrl = "https://localhost:8443";
   loginForm: LoginForm = new LoginForm();
 
-  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private modalService: ModalService) { }
+  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private modalService: ModalService, private encryptionService: EncryptionService) { }
 
   ngOnInit(): void {
     sessionStorage.setItem('token', null);
@@ -65,7 +67,7 @@ export class LogInComponent implements OnInit {
     this.http.get(`${this.baseUrl}/user`, options)
       .subscribe(data => {
         console.log(data);
-        sessionStorage.setItem('userId', data['uzytkownik_id']);
+        sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
         console.log(sessionStorage.getItem('userId'));
 
         this.appComponent.refreshUser();

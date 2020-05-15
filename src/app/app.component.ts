@@ -4,6 +4,7 @@ import { AuthService } from './authentication/auth.service';
 import { Uzytkownik } from './konto/uzytkownik/uzytkownik';
 import { HttpClient } from '@angular/common/http';
 import { UzytkownikServiceService } from './konto/uzytkownik-service/uzytkownik-service.service';
+import { EncryptionService } from './encryption/encryption.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,11 @@ export class AppComponent {
 
   uzytkownik: Uzytkownik;
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService, private uzytkownikService: UzytkownikServiceService) {
+  constructor(private http: HttpClient,
+    private router: Router,
+    private authService: AuthService,
+    private uzytkownikService: UzytkownikServiceService,
+    private encryptionService: EncryptionService) {
     if (this.uzytkownik == null) {
       this.refreshUser();
     }
@@ -27,7 +32,7 @@ export class AppComponent {
     sessionStorage.removeItem('userId');
     this.uzytkownik = null;
 
-    console.log(sessionStorage.getItem('userId'));
+    //console.log(sessionStorage.getItem('userId'));
     this.home();
   }
 
@@ -56,7 +61,7 @@ export class AppComponent {
       console.log("wieksza");
 
       let key = "userId";
-      let value = sessionStorage.getItem(key);
+      let value = this.encryptionService.decryptData(sessionStorage.getItem(key));
 
       this.uzytkownikService.loggedUserById(value)
         .subscribe(
