@@ -11,10 +11,6 @@ export class UzytkownikServiceService {
 
   constructor(private http: HttpClient) { }
 
-  public getAll(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users`);
-  }
-
   public loggedUserById(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id);
   }

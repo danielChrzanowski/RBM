@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UzytkownikServiceService } from '../../user/uzytkownik-service/uzytkownik-service.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Uzytkownik } from '../../user/uzytkownik/uzytkownik';
+import { OrderService } from 'src/app/models/order/order-service/order.service';
+import { Zamowienie } from 'src/app/models/order/order-model/order-model';
 
 
 @Component({
-  selector: 'app-show-users',
-  templateUrl: './show-users.component.html',
-  styleUrls: ['./show-users.component.scss'],
+  selector: 'app-show-orders',
+  templateUrl: './show-orders.component.html',
+  styleUrls: ['./show-orders.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -19,28 +19,28 @@ import { Uzytkownik } from '../../user/uzytkownik/uzytkownik';
   ],
 })
 
-export class ShowUsersComponent {
-  uzytkownicy: Array<Uzytkownik>;
+export class ShowOrdersComponent {
+  orders: Array<Zamowienie>;
 
-  columnsToDisplay = ['imie', 'nazwisko'];
-  expandedElement: Uzytkownik | null;
+  columnsToDisplay = ['zamowienie_id', 'data'];
+  expandedElement: Zamowienie | null;
 
-  constructor(private uzytkownikService: UzytkownikServiceService, private router: Router) {
+  constructor(private orderService: OrderService, private router: Router) {
     this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd) {
-          this.getAll();
+          this.getAllOrders();
         }
       }
     );
   }
 
-  getAll() {
-    this.uzytkownikService.getAll()
+  getAllOrders() {
+    this.orderService.getAllOrders()
       .subscribe(
         data => {
           console.log(data);
-          this.uzytkownicy = data;
+          this.orders = data;
         },
         error => console.log(error));
   }

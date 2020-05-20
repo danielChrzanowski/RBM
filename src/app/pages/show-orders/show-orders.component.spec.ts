@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowUsersComponent } from './show-users.component';
+import { ShowUsersComponent } from './show-orders.component';
 
 describe('ShowUsersComponent', () => {
   let component: ShowUsersComponent;

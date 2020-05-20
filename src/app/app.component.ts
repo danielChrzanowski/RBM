@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Uzytkownik } from './user/uzytkownik/uzytkownik';
+import { Uzytkownik } from './models/user/uzytkownik/uzytkownik';
 import { HttpClient } from '@angular/common/http';
-import { UzytkownikServiceService } from './user/uzytkownik-service/uzytkownik-service.service';
+import { UzytkownikServiceService } from './models/user/uzytkownik-service/uzytkownik-service.service';
 import { EncryptionService } from './encryption/encryption.service';
 
 @Component({
@@ -46,8 +46,8 @@ export class AppComponent {
     this.router.navigate(["/log-in"]);
   }
 
-  showUsers() {
-    this.router.navigate(["/showUsers"]);
+  showOrders() {
+    this.router.navigate(["/showOrders"]);
   }
 
   createUser() {
