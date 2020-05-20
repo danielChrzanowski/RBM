@@ -10,11 +10,14 @@
       <mat-label>Hasło</mat-label>
       <input type="password" matInput name="password" [(ngModel)]="loginForm.password" required>
     </mat-form-field>
+    
+    <br>
+    <button mat-stroked-button (keyup.enter)="login()" (click)="login()">Zaloguj</button>
   </form>
 
   <br>
 
-  <button mat-stroked-button (click)="login()">Zaloguj</button>
+
 
   <jw-modal id="loginErrorModal">
     <h2>Zły login lub hasło</h2>
