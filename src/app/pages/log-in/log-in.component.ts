@@ -6,6 +6,8 @@ import { LoginForm } from './loginForm/loginForm';
 import { AppComponent } from 'src/app/app.component';
 import { ModalService } from 'src/app/_modal';
 import { EncryptionService } from 'src/app/encryption/encryption.service';
+import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
+import { UzytkownikServiceService } from 'src/app/models/user/uzytkownik-service/uzytkownik-service.service';
 
 
 @Component({
@@ -25,10 +27,16 @@ export class LogInComponent implements OnInit {
   private baseUrl = "https://localhost:8443";
   loginForm: LoginForm = new LoginForm();
 
-  constructor(private appComponent: AppComponent, private http: HttpClient, private router: Router, private modalService: ModalService, private encryptionService: EncryptionService) { }
+  constructor(private appComponent: AppComponent,
+    private http: HttpClient,
+    private router: Router,
+    private modalService: ModalService,
+    private encryptionService: EncryptionService,
+    private loggedUserService: LoggedUserService,
+    private uzytkownikService: UzytkownikServiceService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   login() {
@@ -41,7 +49,6 @@ export class LogInComponent implements OnInit {
 
           this.getUserData();
 
-          
           this.router.navigate(['/home']);
         } else {
           this.openModal('loginErrorModal');
@@ -70,8 +77,24 @@ export class LogInComponent implements OnInit {
         sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
         console.log(sessionStorage.getItem('userId'));
 
+        this.setLoggedUser();
+
         this.appComponent.refreshUser();
       },
+        error => console.log(error));
+  }
+
+  setLoggedUser() {
+    this.uzytkownikService.loggedUserById(this.encryptionService.decryptData(sessionStorage.getItem("userId")))
+      .subscribe(
+        data => {
+          this.loggedUserService.setLoggedUser(data['uzytkownik_id'],
+            data['imie'],
+            data['nazwisko'],
+            data['email'],
+            data['czy_pracownik']);
+          console.log(this.loggedUserService.getLoggedUser());
+        },
         error => console.log(error));
   }
 

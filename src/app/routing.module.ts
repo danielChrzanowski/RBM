@@ -7,13 +7,19 @@ import { ShowOrdersComponent } from './pages/show-orders/show-orders.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { AuthGuard } from './authentication/auth.guard';
+import { ClientOrdersComponent } from './pages/client-orders/client-orders.component';
+import { ClientMakeOrderComponent } from './pages/client-make-order/client-make-order.component';
+import { RestauramtMenuComponent } from './pages/restauramt-menu/restauramt-menu.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'log-in', component: LogInComponent },
-  { path: 'showOrders',canActivate:[AuthGuard], component: ShowOrdersComponent },
-  { path: 'createUser', component: CreateUserComponent }
+  { path: 'showOrders', canActivate: [AuthGuard], component: ShowOrdersComponent },
+  { path: 'createUser', component: CreateUserComponent },
+  { path: 'menu', component: RestauramtMenuComponent },
+  { path: 'clientOrders',canActivate: [AuthGuard], component: ClientOrdersComponent },
+  { path: 'makeOrder',canActivate: [AuthGuard], component: ClientMakeOrderComponent }
 ];
 
 @NgModule({
@@ -27,6 +33,7 @@ const routes: Routes = [
 
 export class RoutingModule { }
 
-export const routingComponents = [HomeComponent, LogInComponent, ShowOrdersComponent, CreateUserComponent]
+export const routingComponents = [HomeComponent, LogInComponent, ShowOrdersComponent, CreateUserComponent,
+  RestauramtMenuComponent, ClientOrdersComponent, ClientMakeOrderComponent]
 
 //--module app

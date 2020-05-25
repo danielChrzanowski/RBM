@@ -31,7 +31,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 //import { MatSortModule } from '@angular/material/sort';
-//import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
   BrowserAnimationsModule,
@@ -64,7 +64,7 @@ const materialModules = [
   //MatSnackBarModule,
   MatTableModule,
   //MatSortModule,
-  //MatPaginatorModule,
+  MatPaginatorModule,
   ReactiveFormsModule
 ];
 

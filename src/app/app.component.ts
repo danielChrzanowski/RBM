@@ -1,9 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Uzytkownik } from './models/user/uzytkownik/uzytkownik';
-import { HttpClient } from '@angular/common/http';
-import { UzytkownikServiceService } from './models/user/uzytkownik-service/uzytkownik-service.service';
-import { EncryptionService } from './encryption/encryption.service';
+import { LoggedUserService } from './models/logged-user/logged-user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,20 +10,18 @@ import { EncryptionService } from './encryption/encryption.service';
 export class AppComponent {
   title = 'Paw';
 
-  uzytkownik: Uzytkownik;
+  uzytkownik: LoggedUserService;
 
-  constructor(private http: HttpClient,
-    private router: Router,
-    private uzytkownikService: UzytkownikServiceService,
-    private encryptionService: EncryptionService) {
+  constructor(private router: Router,
+    private loggedUserService: LoggedUserService) {
+
+    this.uzytkownik = loggedUserService.getLoggedUser();
 
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
     this.uzytkownik = null;
 
-    // if (this.uzytkownik != null) {
     this.refreshUser();
-    //}
 
   }
 
@@ -36,6 +31,12 @@ export class AppComponent {
     this.uzytkownik = null;
 
     this.home();
+  }
+
+  refreshUser() {
+    if (sessionStorage.length > 0) {
+      this.uzytkownik = this.loggedUserService.getLoggedUser();
+    }
   }
 
   home() {
@@ -54,31 +55,22 @@ export class AppComponent {
     this.router.navigate(["/createUser"]);
   }
 
-  refreshUser() {
-    if (sessionStorage.length > 0) {
+  menu() {
+    this.router.navigate(["/menu"]);
+  }
 
-      let value = this.encryptionService.decryptData(sessionStorage.getItem("userId"));
-      console.log("wartosc: " + value);
+  clientOrders() {
+    this.router.navigate(["/clientOrders"]);
+  }
 
-      this.uzytkownikService.loggedUserById(value)
-        .subscribe(
-          data => {
-            console.log(data);
-            this.uzytkownik = data;
-          },
-          error => console.log(error));
-    }
+  clientMakeOrder() {
+    this.router.navigate(["/makeOrder"]);
   }
 
 }
 
+/*
 window.onload = function () {
-  //sessionStorage.removeItem('token');
-  //sessionStorage.removeItem('userId');
-  //this.uzytkownik = null;
-
-  //window.location.href  = "https://localhost:4200";
-
   console.log("RELOADED");
 }
-
+*/

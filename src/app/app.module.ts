@@ -8,11 +8,17 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './authentication/auth.guard';
 import { AuthService } from './authentication/auth.service';
 import { ModalModule } from './_modal';
+import { ClientOrdersComponent } from './pages/client-orders/client-orders.component';
+import { ClientMakeOrderComponent } from './pages/client-make-order/client-make-order.component';
+import { RestauramtMenuComponent } from './pages/restauramt-menu/restauramt-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    ClientOrdersComponent,
+    ClientMakeOrderComponent,
+    RestauramtMenuComponent,
   ],
   imports: [
     RoutingModule,

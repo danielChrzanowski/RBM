@@ -31,12 +31,25 @@
 
   <div class="navbar">
     <button mat-button (click)="home()">Home</button>
-    
-    <button mat-button [matMenuTriggerFor]="menu2">Pracownik</button>
-    <mat-menu #menu2="matMenu">
-      <button mat-menu-item (click)="showOrders()">Wyświetl zamówienia</button>
-    </mat-menu>
+    <button mat-button (click)="menu()">Menu</button>
+
+    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarUserInfo'>
+      <button mat-button [matMenuTriggerFor]="menu2">Pracownik</button>
+      <mat-menu #menu2="matMenu">
+        <button mat-menu-item (click)="showOrders()">Wyświetl zamówienia</button>
+      </mat-menu>
+    </div>
+
+    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik==false" id='loginBarUserInfo'>
+      <button mat-button [matMenuTriggerFor]="menu2">Zamówienia</button>
+      <mat-menu #menu2="matMenu">
+        <button mat-menu-item (click)="clientOrders()">Moje zamówienia</button>
+        <button mat-menu-item (click)="clientMakeOrder()">Złóż zamówienie</button>
+      </mat-menu>
+
+    </div>
   </div>
+
 </div>
 
 <router-outlet></router-outlet>
