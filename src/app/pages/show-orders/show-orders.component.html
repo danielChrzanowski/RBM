@@ -1,5 +1,5 @@
 <div class="content">
-    <h1>Zamówienia:</h1>
+    <h1>Dzisiejsze zamówienia</h1>
 
     <table mat-table [dataSource]="orders" multiTemplateDataRows class="mat-elevation-z8">
         <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
@@ -13,8 +13,9 @@
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="example-element-diagram">
                         <div class="example-element-symbol">
+                            ID klienta: {{element.uzytkownik_id}} <br>
                             Cena: {{element.suma_cen}} <br>
-                            Stan: {{element.stan}} <br>
+                            Data: {{element.data}} <br>
                         </div>
                     </div>
                 </div>

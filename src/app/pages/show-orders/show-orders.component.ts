@@ -22,21 +22,21 @@ import { Zamowienie } from 'src/app/models/order/order-model/order-model';
 export class ShowOrdersComponent {
   orders: Array<Zamowienie>;
 
-  columnsToDisplay = ['zamowienie_id', 'data'];
+  columnsToDisplay = ['zamowienie_id', 'stan'];
   expandedElement: Zamowienie | null;
 
   constructor(private orderService: OrderService, private router: Router) {
     this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd) {
-          this.getAllOrders();
+          this.getTodayOrders();
         }
       }
     );
   }
 
-  getAllOrders() {
-    this.orderService.getAllOrders()
+  getTodayOrders() {
+    this.orderService.getTodayOrders()
       .subscribe(
         data => {
           console.log(data);

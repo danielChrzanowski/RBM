@@ -28,9 +28,10 @@ export class LoggedUserService {
 
   }
 
-  setCzy_pracownik(value: boolean) {
-    this.czy_pracownik = value;
+  getId() {
+    return this.uzytkownik_id;
   }
+
 
   getCzy_pracownik() {
     return this.czy_pracownik;
