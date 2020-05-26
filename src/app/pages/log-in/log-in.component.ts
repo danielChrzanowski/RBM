@@ -16,6 +16,9 @@ import { UzytkownikServiceService } from 'src/app/models/user/uzytkownik-service
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
+
+  //loggedUserID = null;
+
   loginFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -74,10 +77,13 @@ export class LogInComponent implements OnInit {
     this.http.get(`${this.baseUrl}/user`, options)
       .subscribe(data => {
         console.log(data);
-        sessionStorage.setItem('czy_pracownik', this.encryptionService.encryptData(data['czy_pracownik']));
-        sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
-        console.log("CZY: "+this.encryptionService.decryptData(sessionStorage.getItem('czy_pracownik')));
-        console.log(sessionStorage.getItem('userId'));
+        // this.loggedUserID = data['uzytkownik_id'];
+        this.loggedUserService.setUserId(data['uzytkownik_id']);
+        //sessionStorage.setItem('czy_pracownik', this.encryptionService.encryptData(data['czy_pracownik']));
+
+        //sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
+      //  console.log("CZY: " + this.encryptionService.decryptData(sessionStorage.getItem('czy_pracownik')));
+        // console.log(sessionStorage.getItem('userId'));
 
         this.setLoggedUser();
 
@@ -87,7 +93,7 @@ export class LogInComponent implements OnInit {
   }
 
   setLoggedUser() {
-    this.uzytkownikService.loggedUserById(this.encryptionService.decryptData(sessionStorage.getItem("userId")))
+    this.uzytkownikService.loggedUserById(this.loggedUserService.getId())
       .subscribe(
         data => {
           this.loggedUserService.setLoggedUser(data['uzytkownik_id'],

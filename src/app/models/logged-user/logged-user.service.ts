@@ -32,6 +32,9 @@ export class LoggedUserService {
     return this.uzytkownik_id;
   }
 
+  setUserId(id: number) {
+    this.uzytkownik_id = id;
+  }
 
   getCzy_pracownik() {
     return this.czy_pracownik;
