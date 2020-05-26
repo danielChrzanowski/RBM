@@ -25,6 +25,11 @@ export class ClientOrdersComponent implements OnInit {
         }
       }
     );
+
+    //do usuniecia
+    setInterval(() => {
+      this.getClientOrders();
+    }, 200);
   }
 
   ngOnInit(): void {
