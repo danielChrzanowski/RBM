@@ -34,10 +34,30 @@ export class CreateUserComponent implements OnInit {
       this.registerForm.password == null ||
       this.registerForm.imie == null ||
       this.registerForm.nazwisko == null ||
-      this.registerForm.email == null) {
+      this.registerForm.email == null ||
+      this.registerForm.login == "" ||
+      this.registerForm.password == "" ||
+      this.registerForm.imie == "" ||
+      this.registerForm.nazwisko == "" ||
+      this.registerForm.email == "") {
       this.openModal("emptyFieldErrorModal");
 
+      /*
+      console.log("login: " + this.registerForm.login);
+      console.log("haslo: " + this.registerForm.password);
+      console.log("imie: " + this.registerForm.imie);
+      console.log("nazw: " + this.registerForm.nazwisko);
+      console.log("email: " + this.registerForm.email);
+      */
     } else {
+      /*
+      console.log("login: " + this.registerForm.login);
+      console.log("haslo: " + this.registerForm.password);
+      console.log("imie: " + this.registerForm.imie);
+      console.log("nazw: " + this.registerForm.nazwisko);
+      console.log("email: " + this.registerForm.email);
+      */
+
       const getUser = this.uzytkownikService.userByLogin(this.registerForm.login).toPromise();
       getUser.then(data => {
         console.log(data);
