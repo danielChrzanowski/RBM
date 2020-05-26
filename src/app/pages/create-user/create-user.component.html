@@ -1,16 +1,46 @@
 <div class="content">
     <h1>Rejestracja:</h1>
 
-    form
+    <form class="my-form">
+        <mat-form-field class="full-width">
+            <mat-label>Login</mat-label>
+            <input matInput name="login" [(ngModel)]="registerForm.login" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Hasło</mat-label>
+            <input type="password" matInput name="password" [(ngModel)]="registerForm.password" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Powtórz hasło</mat-label>
+            <input type="password" matInput name="password2" [(ngModel)]="password2" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Imię</mat-label>
+            <input matInput name="imie" [(ngModel)]="registerForm.imie" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput name="nazwisko" [(ngModel)]="registerForm.nazwisko" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>E-mail</mat-label>
+            <input matInput name="email" [(ngModel)]="registerForm.email" required>
+        </mat-form-field>
 
-    <br><br>
+        <br>
+        <button mat-stroked-button (keyup.enter)="register()" (click)="register()">Zarejestruj</button>
+    </form>
 
-    <button mat-stroked-button>Zarejestruj</button>
+    <jw-modal id="emptyFieldErrorModal">
+        <h2>Żadne pole nie może być puste</h2>
+        <p>Uzupełnij wszystkie pola</p>
+        <button mat-stroked-button (click)="closeModal('emptyFieldErrorModal');">Zamknij</button>
+    </jw-modal>
 
-    <jw-modal id="loginErrorModal">
-        <h2>Zły login lub hasło</h2>
-        <p>Wprowadź ponownie dane</p>
-        <button mat-stroked-button (click)="closeModal('loginErrorModal');">Zamknij</button>
+    <jw-modal id="passwordErrorModal">
+        <h2>Hasła nie są identyczne</h2>
+        <p>Wprowadź ponownie hasła</p>
+        <button mat-stroked-button (click)="closeModal('passwordErrorModal');">Zamknij</button>
     </jw-modal>
 
 </div>

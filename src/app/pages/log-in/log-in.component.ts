@@ -25,14 +25,16 @@ export class LogInComponent implements OnInit {
   ]);
 
   private baseUrl = "https://localhost:8443";
-  loginForm: LoginForm = new LoginForm();
+  loginForm: LoginForm;
 
   constructor(private appComponent: AppComponent,
     private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
     private loggedUserService: LoggedUserService,
-    private uzytkownikService: UzytkownikServiceService) { }
+    private uzytkownikService: UzytkownikServiceService) {
+    this.loginForm = new LoginForm();
+  }
 
   ngOnInit(): void {
 
