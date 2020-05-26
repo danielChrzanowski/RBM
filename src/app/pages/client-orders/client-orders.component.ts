@@ -63,7 +63,7 @@ export class ClientOrdersComponent implements OnInit {
       var width = pdf.internal.pageSize.getWidth();
       var height = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height);
+      pdf.addImage(contentDataURL, 'PNG', 1.5, 0, width*0.9, height);
       pdf.save('orders.pdf');
     });
   }
