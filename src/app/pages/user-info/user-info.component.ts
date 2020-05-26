@@ -17,6 +17,7 @@ export class UserInfoComponent implements OnInit {
   loggedUser;
   changePasswordForm;
   oldPassForm;
+  passwordDelete;
 
   constructor(private loggedUserService: LoggedUserService, private modalService: ModalService,
     private uzytkownikService: UzytkownikServiceService, private router: Router,
@@ -76,11 +77,35 @@ export class UserInfoComponent implements OnInit {
     this.appComponent.logout();
   }
 
-  deleteAccount() {
-    console.log(this.loggedUser.getId());
-    const promise = this.uzytkownikService.deleteUser(this.loggedUser.getId()).toPromise();
+  checkPasswords() {
+    const getPass = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
+    getPass.then(data => {
+      console.log(data);
+      this.oldPassForm = data;
 
-    promise.then(() => { this.logout(); });
+      if (this.oldPassForm.password == this.passwordDelete) {
+        this.openModal('deleteAccountModal');
+      }else{
+        this.openModal('wrongDBPasswordErrorModal');
+      }
+
+    });
+
+
+  }
+
+  deleteAccount() {
+   // const getPass = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
+  //  getPass.then(data => {
+     // console.log(data);
+    //  this.oldPassForm = data;
+
+    //  if (this.oldPassForm.password == this.passwordDelete) {
+        const promise = this.uzytkownikService.deleteUser(this.loggedUser.getId()).toPromise();
+        promise.then(() => { this.logout(); });
+    //  }
+
+  //  });
   }
 
   openModal(id: string) {

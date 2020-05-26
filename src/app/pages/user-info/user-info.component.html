@@ -28,9 +28,17 @@
             <button mat-stroked-button (click)="changePassword()">Zmień hasło</button>
             <br>
         </div>
+
         <br>
-        <br>
-        <button mat-stroked-button (click)="openModal('deleteAccountModal')">Usuń konto</button>
+        <mat-form-field class="full-width">
+            <mat-label>Podaj hasło</mat-label>
+            <input type="password" class="form-control" matInput name="passwordDelete" [(ngModel)]="passwordDelete"
+                required>
+        </mat-form-field>
+        &nbsp;
+
+        <button mat-stroked-button (click)="checkPasswords()">Usuń konto</button>
+
     </div>
 
     <jw-modal id="emptyFieldErrorModal">
