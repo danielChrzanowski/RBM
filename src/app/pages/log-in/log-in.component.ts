@@ -74,7 +74,9 @@ export class LogInComponent implements OnInit {
     this.http.get(`${this.baseUrl}/user`, options)
       .subscribe(data => {
         console.log(data);
+        sessionStorage.setItem('czy_pracownik', this.encryptionService.encryptData(data['czy_pracownik']));
         sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
+        console.log("CZY: "+this.encryptionService.decryptData(sessionStorage.getItem('czy_pracownik')));
         console.log(sessionStorage.getItem('userId'));
 
         this.setLoggedUser();

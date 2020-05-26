@@ -19,6 +19,7 @@ export class AppComponent {
 
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('czy_pracownik');
     this.uzytkownik = null;
 
     this.refreshUser();
@@ -28,6 +29,7 @@ export class AppComponent {
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('czy_pracownik');
     this.uzytkownik = null;
 
     this.home();
