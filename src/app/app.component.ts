@@ -18,8 +18,8 @@ export class AppComponent {
     this.uzytkownik = loggedUserService.getLoggedUser();
 
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('userId');
-    sessionStorage.removeItem('czy_pracownik');
+    //sessionStorage.removeItem('userId');
+    //sessionStorage.removeItem('czy_pracownik');
     this.uzytkownik = null;
 
     this.refreshUser();
@@ -28,8 +28,8 @@ export class AppComponent {
 
   logout() {
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('userId');
-    sessionStorage.removeItem('czy_pracownik');
+    //sessionStorage.removeItem('userId');
+    //sessionStorage.removeItem('czy_pracownik');
     this.uzytkownik = null;
 
     this.home();
@@ -67,6 +67,10 @@ export class AppComponent {
 
   clientMakeOrder() {
     this.router.navigate(["/makeOrder"]);
+  }
+
+  userInfo() {
+    this.router.navigate(["/userInfo"]);
   }
 
 }

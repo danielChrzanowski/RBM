@@ -16,7 +16,15 @@ export class UzytkownikServiceService {
     return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id);
   }
 
+  public getPasswordById(id: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/passwordById/` + id);
+  }
+
   public createUser(user: RegisterForm): Observable<any> {
     return this.http.post(`${this.baseUrl}/addUser`, user);
+  }
+
+  public changePassword(user: RegisterForm): Observable<any> {
+    return this.http.post(`${this.baseUrl}/changePassword`, user);
   }
 }

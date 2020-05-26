@@ -11,6 +11,8 @@ import { ClientOrdersComponent } from './pages/client-orders/client-orders.compo
 import { ClientMakeOrderComponent } from './pages/client-make-order/client-make-order.component';
 import { RestauramtMenuComponent } from './pages/restauramt-menu/restauramt-menu.component';
 import { AuthGuardEmployee } from './authentication/auth-guard-employee/auth-guard-employee';
+import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { UserAuthGuard } from './authentication/user-auth-guard/user-auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,8 +21,9 @@ const routes: Routes = [
   { path: 'showOrders', canActivate: [AuthGuardEmployee], component: ShowOrdersComponent },
   { path: 'createUser', component: CreateUserComponent },
   { path: 'menu', component: RestauramtMenuComponent },
-  { path: 'clientOrders',canActivate: [AuthGuard], component: ClientOrdersComponent },
-  { path: 'makeOrder',canActivate: [AuthGuard], component: ClientMakeOrderComponent }
+  { path: 'clientOrders', canActivate: [AuthGuard], component: ClientOrdersComponent },
+  { path: 'makeOrder', canActivate: [AuthGuard], component: ClientMakeOrderComponent },
+  { path: 'userInfo', canActivate: [UserAuthGuard], component: UserInfoComponent },
 ];
 
 @NgModule({
@@ -35,6 +38,6 @@ const routes: Routes = [
 export class RoutingModule { }
 
 export const routingComponents = [HomeComponent, LogInComponent, ShowOrdersComponent, CreateUserComponent,
-  RestauramtMenuComponent, ClientOrdersComponent, ClientMakeOrderComponent]
+  RestauramtMenuComponent, ClientOrdersComponent, ClientMakeOrderComponent, UserInfoComponent]
 
 //--module app
