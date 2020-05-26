@@ -3,7 +3,7 @@ import { LoggedUserService } from 'src/app/models/logged-user/logged-user.servic
 import { ModalService } from 'src/app/_modal';
 import { ChangePasswordForm } from './change-password-form/changePasswordForm';
 import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzytkownik-service.service';
-import { OldPassForm } from './olePassForm/oldPassForm';
+import { OldPassForm } from './oldPassForm/oldPassForm';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 
@@ -69,7 +69,6 @@ export class UserInfoComponent implements OnInit {
         },
         error => console.log(error));
 
-
     }
   }
 
@@ -78,7 +77,10 @@ export class UserInfoComponent implements OnInit {
   }
 
   deleteAccount() {
+    console.log(this.loggedUser.getId());
+    const promise = this.uzytkownikService.deleteUser(this.loggedUser.getId()).toPromise();
 
+    promise.then(() => { this.logout(); });
   }
 
   openModal(id: string) {

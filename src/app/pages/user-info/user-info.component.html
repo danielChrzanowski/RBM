@@ -2,11 +2,10 @@
     <h1>Użytkownik</h1>
 
     <hr>
-   
-        <div class="setPadding"> Imię: {{loggedUser.imie}} </div><br>
-        <div class="setPadding">Nazwisko: {{loggedUser.nazwisko}}</div><br>
-        <div class="setPadding">E-mail: {{loggedUser.email}}</div><br>
- 
+    <div class="setPadding"> Imię: {{loggedUser.imie}} </div><br>
+    <div class="setPadding">Nazwisko: {{loggedUser.nazwisko}}</div><br>
+    <div class="setPadding">E-mail: {{loggedUser.email}}</div><br>
+
     <hr>
 
     <div class="setPadding">
@@ -29,40 +28,40 @@
             <button mat-stroked-button (click)="changePassword()">Zmień hasło</button>
             <br>
         </div>
-                <br>
-                <br>
-                <button mat-stroked-button (click)="openModal('deleteAccountModal')">Usuń konto</button>
-            </div>
+        <br>
+        <br>
+        <button mat-stroked-button (click)="openModal('deleteAccountModal')">Usuń konto</button>
+    </div>
 
-            <jw-modal id="emptyFieldErrorModal">
-                <h2>Żadne pole nie może być puste</h2>
-                <p>Uzupełnij wszystkie pola</p>
-                <button mat-stroked-button (click)="closeModal('emptyFieldErrorModal');">Zamknij</button>
-            </jw-modal>
+    <jw-modal id="emptyFieldErrorModal">
+        <h2>Żadne pole nie może być puste</h2>
+        <p>Uzupełnij wszystkie pola</p>
+        <button mat-stroked-button (click)="closeModal('emptyFieldErrorModal');">Zamknij</button>
+    </jw-modal>
 
-            <jw-modal id="wrongDBPasswordErrorModal">
-                <h2>Stare hasło nie zgadza się z bazą</h2>
-                <p>Wprowadź ponownie stare hasło</p>
-                <button mat-stroked-button (click)="closeModal('wrongDBPasswordErrorModal');">Zamknij</button>
-            </jw-modal>
+    <jw-modal id="wrongDBPasswordErrorModal">
+        <h2>Stare hasło nie zgadza się z bazą</h2>
+        <p>Wprowadź ponownie stare hasło</p>
+        <button mat-stroked-button (click)="closeModal('wrongDBPasswordErrorModal');">Zamknij</button>
+    </jw-modal>
 
-            <jw-modal id="passwordErrorModal">
-                <h2>Nowe hasła nie są identyczne</h2>
-                <p>Wprowadź ponownie hasła</p>
-                <button mat-stroked-button (click)="closeModal('passwordErrorModal');">Zamknij</button>
-            </jw-modal>
+    <jw-modal id="passwordErrorModal">
+        <h2>Nowe hasła nie są identyczne</h2>
+        <p>Wprowadź ponownie hasła</p>
+        <button mat-stroked-button (click)="closeModal('passwordErrorModal');">Zamknij</button>
+    </jw-modal>
 
-            <jw-modal id="passwordChangedModal">
-                <h2>Hasło zostało zmienione</h2>
-                <p>Zaloguj się ponownie</p>
-                <button mat-stroked-button (click)="logout()">Zamknij</button>
-            </jw-modal>
+    <jw-modal id="passwordChangedModal">
+        <h2>Hasło zostało zmienione</h2>
+        <p>Zaloguj się ponownie</p>
+        <button mat-stroked-button (click)="logout()">Zamknij</button>
+    </jw-modal>
 
-            <jw-modal id="deleteAccountModal">
-                <h2>Czy na pewno chcesz skasować konto?</h2>
-                <p>Tej operacji nie można cofnąć</p>
-                <button mat-stroked-button (click)="closeModal('deleteAccountModal');">Zamknij</button>
-                <button mat-stroked-button (click)="deleteAccount();" style="float:right">Skasuj</button>
-            </jw-modal>
+    <jw-modal id="deleteAccountModal">
+        <h2>Czy na pewno chcesz skasować konto?</h2>
+        <p>Tej operacji nie można cofnąć</p>
+        <button mat-stroked-button (click)="closeModal('deleteAccountModal');">Zamknij</button>
+        <button mat-stroked-button (click)="deleteAccount();" style="float:right">Skasuj</button>
+    </jw-modal>
 
-        </div>
+</div>

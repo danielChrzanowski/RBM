@@ -27,4 +27,8 @@ export class UzytkownikServiceService {
   public changePassword(user: RegisterForm): Observable<any> {
     return this.http.post(`${this.baseUrl}/changePassword`, user);
   }
+
+  public deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/deleteUser/` + id);
+  }
 }
