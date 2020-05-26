@@ -6,7 +6,7 @@ import { LoginForm } from './loginForm/loginForm';
 import { AppComponent } from 'src/app/app.component';
 import { ModalService } from 'src/app/_modal';
 import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
-import { UzytkownikServiceService } from 'src/app/models/user/uzytkownik-service/uzytkownik-service.service';
+import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzytkownik-service.service';
 
 
 @Component({
