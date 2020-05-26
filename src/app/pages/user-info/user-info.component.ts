@@ -91,7 +91,6 @@ export class UserInfoComponent implements OnInit {
 
     });
 
-
   }
 
   deleteAccount() {

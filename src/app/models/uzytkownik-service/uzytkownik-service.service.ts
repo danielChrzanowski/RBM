@@ -31,4 +31,8 @@ export class UzytkownikServiceService {
   public deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/deleteUser/` + id);
   }
+
+  public userByLogin(login: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/userByLogin/` + login);
+  }
 }
