@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { LoginForm } from './loginForm/loginForm';
 import { AppComponent } from 'src/app/app.component';
 import { ModalService } from 'src/app/_modal';
-import { EncryptionService } from 'src/app/encryption/encryption.service';
 import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
 import { UzytkownikServiceService } from 'src/app/models/user/uzytkownik-service/uzytkownik-service.service';
 
@@ -16,8 +15,6 @@ import { UzytkownikServiceService } from 'src/app/models/user/uzytkownik-service
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-
-  //loggedUserID = null;
 
   loginFormControl = new FormControl('', [
     Validators.required
@@ -34,7 +31,6 @@ export class LogInComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
-    private encryptionService: EncryptionService,
     private loggedUserService: LoggedUserService,
     private uzytkownikService: UzytkownikServiceService) { }
 
@@ -77,12 +73,11 @@ export class LogInComponent implements OnInit {
     this.http.get(`${this.baseUrl}/user`, options)
       .subscribe(data => {
         console.log(data);
-        // this.loggedUserID = data['uzytkownik_id'];
         this.loggedUserService.setUserId(data['uzytkownik_id']);
         //sessionStorage.setItem('czy_pracownik', this.encryptionService.encryptData(data['czy_pracownik']));
 
         //sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
-      //  console.log("CZY: " + this.encryptionService.decryptData(sessionStorage.getItem('czy_pracownik')));
+        //  console.log("CZY: " + this.encryptionService.decryptData(sessionStorage.getItem('czy_pracownik')));
         // console.log(sessionStorage.getItem('userId'));
 
         this.setLoggedUser();
