@@ -23,7 +23,7 @@ import { UserAuthGuardService } from './authentication/user-auth-guard/user-auth
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ModalModule
+    ModalModule,
   ],
   providers: [UserAuthGuard, UserAuthGuardService, AuthGuard, AuthService, AuthGuardEmployee, AuthGuardEmployeeService],
   bootstrap: [AppComponent]
