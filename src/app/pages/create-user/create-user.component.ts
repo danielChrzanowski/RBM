@@ -19,6 +19,36 @@ export class CreateUserComponent implements OnInit {
   password2: string;
   tempUser;
 
+  loginFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(10)
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20),
+  ]);
+
+  password2FormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20),
+  ]);
+
+  imieFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20),
+  ]);
+
+  nazwiskoFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(30),
+  ]);
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+
   constructor(private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
@@ -30,62 +60,34 @@ export class CreateUserComponent implements OnInit {
   }
 
   register() {
-    if (this.registerForm.login == null ||
-      this.registerForm.password == null ||
-      this.registerForm.imie == null ||
-      this.registerForm.nazwisko == null ||
-      this.registerForm.email == null ||
-      this.registerForm.login == "" ||
-      this.registerForm.password == "" ||
-      this.registerForm.imie == "" ||
-      this.registerForm.nazwisko == "" ||
-      this.registerForm.email == "") {
-      this.openModal("emptyFieldErrorModal");
+    const getUser = this.uzytkownikService.userByLogin(this.registerForm.login).toPromise();
+    getUser.then(data => {
+      console.log(data);
+      this.tempUser = data;
 
-      /*
-      console.log("login: " + this.registerForm.login);
-      console.log("haslo: " + this.registerForm.password);
-      console.log("imie: " + this.registerForm.imie);
-      console.log("nazw: " + this.registerForm.nazwisko);
-      console.log("email: " + this.registerForm.email);
-      */
-    } else {
-      /*
-      console.log("login: " + this.registerForm.login);
-      console.log("haslo: " + this.registerForm.password);
-      console.log("imie: " + this.registerForm.imie);
-      console.log("nazw: " + this.registerForm.nazwisko);
-      console.log("email: " + this.registerForm.email);
-      */
+      if (this.tempUser != null && this.tempUser.login == this.registerForm.login) {
+        this.registerForm.login = null;
+        this.openModal('loginErrorModal');
+      } else {
 
-      const getUser = this.uzytkownikService.userByLogin(this.registerForm.login).toPromise();
-      getUser.then(data => {
-        console.log(data);
-        this.tempUser = data;
+        if (this.registerForm.password != this.password2) {
+          this.registerForm.password = null;
+          this.openModal("passwordErrorModal");
 
-        if (this.tempUser != null && this.tempUser.login == this.registerForm.login) {
-          this.registerForm.login = null;
-          this.openModal('loginErrorModal');
         } else {
+          this.uzytkownikService.createUser(this.registerForm)
+            .subscribe(data => {
+              console.log(data);
 
-          if (this.registerForm.password != this.password2) {
-            this.registerForm.password = null;
-            this.openModal("passwordErrorModal");
-
-          } else {
-            this.uzytkownikService.createUser(this.registerForm)
-              .subscribe(data => {
-                console.log(data);
-
-              }, error => console.log(error));
-            this.registerForm = new RegisterForm();
-            this.router.navigate(["/log-in"]);
-          }
+            }, error => console.log(error));
+          this.registerForm = new RegisterForm();
+          this.router.navigate(["/log-in"]);
         }
-      });
+      }
+    });
 
-    }
   }
+
   openModal(id: string) {
     this.modalService.open(id);
   }
