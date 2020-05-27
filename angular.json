@@ -41,8 +41,8 @@
                 "inject": false
               },
               {
-                "input": "src/assets/styles/redTheme.scss",
-                "bundleName": "redTheme",
+                "input": "src/assets/styles/orangeTheme.scss",
+                "bundleName": "orangeTheme",
                 "inject": false
               }
             ],

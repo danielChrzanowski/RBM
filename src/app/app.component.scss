@@ -1,6 +1,6 @@
 .banner {
+    padding-bottom: 2px;
     padding-top: 5px;
-    padding-bottom: 5px;
 
     position: relative;
     text-align: center;
@@ -8,6 +8,8 @@
 
 .bannerImage {
     border-radius: 20px;
+   // border-top-left-radius: 0px;
+   // border-top-right-radius: 0px;
     width: 50%;
 
     max-width: 600px;
@@ -26,7 +28,6 @@
 
 .loginBarLeft {
     display: inline-block;
-    margin-top: 8px;
     margin-left: 8px;
 }
 
@@ -34,6 +35,11 @@
     float: right;
     margin-top: 8px;
     margin-right: 8px;
+    
+}
+
+.topBar{
+    background-color: rgb(38, 38, 38);
 }
 
 #loginBarInline {
@@ -61,6 +67,6 @@
     color: #42a5f5;
 }
 
-.redIcon {
-    color: #ef5350;
+.orangeIcon {
+    color: #f57c00;
 }

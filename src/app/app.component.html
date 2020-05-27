@@ -1,38 +1,40 @@
 <div class="colorBar">
 
-  <div class="loginBarLeft">
-    <button mat-button (click)="loadTheme('purpleTheme.css')">
-      <mat-icon class="purpleIcon">color_lens</mat-icon>
-    </button>
-    <button mat-button (click)="loadTheme('blueTheme.css')">
-      <mat-icon class="blueIcon">color_lens</mat-icon>
-    </button>
-    <button mat-button (click)="loadTheme('redTheme.css')">
-      <mat-icon class="redIcon">color_lens</mat-icon>
-    </button>
-  </div>
-
-  <div class="loginBarRight">
-    <div *ngIf="uzytkownik!=null; else brakUzytkownika" id='loginBarInline'>
-      {{uzytkownik.imie}} {{uzytkownik.nazwisko}}
+  <div class="topBar">
+    <div class="loginBarLeft">
+      <button mat-button (click)="loadTheme('purpleTheme.css')">
+        <mat-icon class="purpleIcon">color_lens</mat-icon>
+      </button>
+      <button mat-button (click)="loadTheme('blueTheme.css')">
+        <mat-icon class="blueIcon">color_lens</mat-icon>
+      </button>
+      <button mat-button (click)="loadTheme('orangeTheme.css')">
+        <mat-icon class="orangeIcon">color_lens</mat-icon>
+      </button>
     </div>
 
-    <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="logIn()" id="loginBarText">zaloguj</div>
-    <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="createUser()" id="loginBarInline">
-      &nbsp;|
-      <div id="loginBarText">utwórz konto</div>
-    </div>
-    <div *ngIf="uzytkownik!=null; else brakUzytkownika" id="loginBarInline">
-      &nbsp;|
-      <div (click)="userInfo()" id="loginBarText">konto</div>
-    </div>
+    <div class="loginBarRight">
+      <div *ngIf="uzytkownik!=null; else brakUzytkownika" id='loginBarInline'>
+        {{uzytkownik.imie}} {{uzytkownik.nazwisko}}
+      </div>
 
-    <div *ngIf="uzytkownik!=null; else brakUzytkownika" (click)="logout()" id="loginBarInline">
-      &nbsp;|
-      <div id="loginBarText">wyloguj</div>
-    </div>
+      <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="logIn()" id="loginBarText">zaloguj</div>
+      <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="createUser()" id="loginBarInline">
+        &nbsp;|
+        <div id="loginBarText">utwórz konto</div>
+      </div>
+      <div *ngIf="uzytkownik!=null; else brakUzytkownika" id="loginBarInline">
+        &nbsp;|
+        <div (click)="userInfo()" id="loginBarText">konto</div>
+      </div>
 
-    <ng-template #brakUzytkownika></ng-template>
+      <div *ngIf="uzytkownik!=null; else brakUzytkownika" (click)="logout()" id="loginBarInline">
+        &nbsp;|
+        <div id="loginBarText">wyloguj</div>
+      </div>
+
+      <ng-template #brakUzytkownika></ng-template>
+    </div>
   </div>
 
   <div class="banner">
