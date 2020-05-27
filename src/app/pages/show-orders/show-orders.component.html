@@ -1,6 +1,8 @@
 <div class="content">
     <h1>Dzisiejsze zamówienia</h1>
 
+    <hr>
+
     <table mat-table [dataSource]="orders" multiTemplateDataRows class="mat-elevation-z8">
         <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
             <th mat-header-cell *matHeaderCellDef> {{column}} </th>

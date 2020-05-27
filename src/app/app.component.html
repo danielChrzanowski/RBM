@@ -35,21 +35,26 @@
   </div>
 
   <div class="navbar">
-    <button mat-button (click)="home()">Home</button>
-    <button mat-button (click)="menu()">Menu</button>
+    <button mat-button (click)="home()"> <span class="material-icons"> home </span> Home
+    </button>
+    <button mat-button (click)="menu()"> <span class="material-icons"> restaurant_menu </span> Menu</button>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
-      <button mat-button [matMenuTriggerFor]="menu2">Pracownik</button>
+      <button mat-button [matMenuTriggerFor]="menu2"> <span class="material-icons"> person </span> Pracownik</button>
       <mat-menu #menu2="matMenu">
-        <button mat-menu-item (click)="showOrders()">Wyświetl zamówienia</button>
+        <button mat-menu-item (click)="showOrders()"> <span class="material-icons"> library_books </span> Wyświetl
+          zamówienia</button>
       </mat-menu>
     </div>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik==false" id='loginBarInline'>
-      <button mat-button [matMenuTriggerFor]="menu2">Zamówienia</button>
+      <button mat-button [matMenuTriggerFor]="menu2"> <span class="material-icons"> library_books
+        </span> Zamówienia</button>
       <mat-menu #menu2="matMenu">
-        <button mat-menu-item (click)="clientOrders()">Moje zamówienia</button>
-        <button mat-menu-item (click)="clientMakeOrder()">Złóż zamówienie</button>
+        <button mat-menu-item (click)="clientOrders()"> <span class="material-icons"> menu_book </span> Moje
+          zamówienia</button>
+        <button mat-menu-item (click)="clientMakeOrder()"> <span class="material-icons"> add_box </span> Złóż
+          zamówienie</button>
       </mat-menu>
 
     </div>
