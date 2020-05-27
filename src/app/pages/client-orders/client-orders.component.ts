@@ -16,6 +16,7 @@ export class ClientOrdersComponent implements OnInit {
 
   clientOrders: Array<Zamowienie>;
   displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'stan'];
+  interval;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('pdfDiv') pdfDiv: ElementRef;
@@ -30,7 +31,7 @@ export class ClientOrdersComponent implements OnInit {
     );
 
     //do usuniecia
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.getClientOrders();
     }, 400);
   }
@@ -63,7 +64,7 @@ export class ClientOrdersComponent implements OnInit {
       var width = pdf.internal.pageSize.getWidth();
       var height = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(contentDataURL, 'PNG', 1.5, 0, width*0.9, height);
+      pdf.addImage(contentDataURL, 'PNG', 1.5, 0, width * 0.9, height);
       pdf.save('orders.pdf');
     });
   }
@@ -86,5 +87,9 @@ export class ClientOrdersComponent implements OnInit {
     });
 
     doc.save('orders.pdf');
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 }
