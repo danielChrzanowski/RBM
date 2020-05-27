@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoggedUserService } from './models/logged-user/logged-user.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   uzytkownik: LoggedUserService;
 
   constructor(private router: Router,
-    private loggedUserService: LoggedUserService) {
+    private loggedUserService: LoggedUserService,
+    @Inject(DOCUMENT) private document: Document) {
 
     this.uzytkownik = loggedUserService.getLoggedUser();
 
@@ -24,6 +26,15 @@ export class AppComponent {
 
     this.refreshUser();
 
+  }
+
+  loadTheme(cssFile: string) {
+    const headEl = this.document.getElementsByTagName('head')[0];
+    const newLinkEl = this.document.createElement('link');
+    newLinkEl.rel = 'stylesheet';
+    newLinkEl.href = cssFile;
+
+    headEl.appendChild(newLinkEl);
   }
 
   logout() {

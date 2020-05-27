@@ -1,7 +1,15 @@
 <div class="colorBar">
 
   <div class="loginBarLeft">
-    Bieruń, ul. Krakowska 98
+    <button mat-button (click)="loadTheme('purpleTheme.css')">
+      <mat-icon class="purpleIcon">color_lens</mat-icon>
+    </button>
+    <button mat-button (click)="loadTheme('blueTheme.css')">
+      <mat-icon class="blueIcon">color_lens</mat-icon>
+    </button>
+    <button mat-button (click)="loadTheme('redTheme.css')">
+      <mat-icon class="redIcon">color_lens</mat-icon>
+    </button>
   </div>
 
   <div class="loginBarRight">

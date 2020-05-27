@@ -22,7 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 //import { MatExpansionModule } from '@angular/material/expansion';
 //import { MatButtonToggleModule } from '@angular/material/button-toggle';
 //import { MatChipsModule } from '@angular/material/chips';
-//import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 //import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 //import { MatProgressBarModule } from '@angular/material/progress-bar';
 //import { MatDialogModule } from '@angular/material/dialog';
@@ -56,7 +56,7 @@ const materialModules = [
   //MatExpansionModule,
   //MatButtonToggleModule,
   //MatChipsModule,
-  //MatIconModule,
+  MatIconModule,
   //MatProgressSpinnerModule,
   //MatProgressBarModule,
   //MatDialogModule,

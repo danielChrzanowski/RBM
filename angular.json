@@ -27,10 +27,24 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "extractCss": true,
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/myTheme.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/assets/styles/purpleTheme.scss",
+                "bundleName": "purpleTheme",
+                "inject": false
+              },
+              {
+                "input": "src/assets/styles/blueTheme.scss",
+                "bundleName": "blueTheme",
+                "inject": false
+              },
+              {
+                "input": "src/assets/styles/redTheme.scss",
+                "bundleName": "redTheme",
+                "inject": false
+              }
             ],
             "scripts": []
           },
