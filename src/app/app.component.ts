@@ -17,6 +17,11 @@ export class AppComponent {
     private loggedUserService: LoggedUserService,
     @Inject(DOCUMENT) private document: Document) {
 
+    let theme = localStorage.getItem('theme');
+    if (theme != null) {
+      this.loadTheme(theme);
+    }
+
     this.uzytkownik = loggedUserService.getLoggedUser();
 
     sessionStorage.removeItem('token');
@@ -34,6 +39,7 @@ export class AppComponent {
     newLinkEl.rel = 'stylesheet';
     newLinkEl.href = cssFile;
 
+    localStorage.setItem('theme', cssFile);
     headEl.appendChild(newLinkEl);
   }
 
