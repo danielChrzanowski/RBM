@@ -49,7 +49,7 @@ export class ClientOrdersComponent implements OnInit {
   exportAsPDF() {
     let data = this.pdfDiv.nativeElement;
     html2canvas(data).then(canvas => {
-      const contentDataURL = canvas.toDataURL('image/png')
+      const contentDataURL = canvas.toDataURL('image/jpeg')
 
       //Generates PDF in landscape mode
       //let pdf = new jsPDF('l', 'cm', 'a4');
