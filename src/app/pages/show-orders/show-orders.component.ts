@@ -29,13 +29,7 @@ export class ShowOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.subscribe(
-      (event) => {
-        if (event instanceof NavigationEnd) {
-          this.getTodayOrders();
-        }
-      }
-    );
+    this.getTodayOrders();
   }
 
   getTodayOrders() {

@@ -27,13 +27,7 @@ export class ClientOrdersComponent implements OnInit {
     private loggedUserService: UserSingleton) { }
 
   ngOnInit(): void {
-    this.router.events.subscribe(
-      (event) => {
-        if (event instanceof NavigationEnd) {
-          this.getClientOrders();
-        }
-      }
-    );
+    this.getClientOrders();
 
     //do usuniecia
     this.interval = setInterval(() => {
@@ -58,15 +52,15 @@ export class ClientOrdersComponent implements OnInit {
       const contentDataURL = canvas.toDataURL('image/png')
 
       //Generates PDF in landscape mode
-      let pdf = new jsPDF('l', 'cm', 'a4');
+      //let pdf = new jsPDF('l', 'cm', 'a4');
 
       //Generates PDF in portrait mode
-      //let pdf = new jsPDF('p', 'cm', 'a4');
+      let pdf = new jsPDF('p', 'cm', 'a4');
 
-      var width = pdf.internal.pageSize.getWidth();
-      var height = pdf.internal.pageSize.getHeight();
+      //var width = pdf.internal.pageSize.getWidth();
+      //var height = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(contentDataURL, 'PNG', 1.5, 0, width * 0.9, height);
+      pdf.addImage(contentDataURL, 'PNG', -0.6, 0);
       pdf.save('orders.pdf');
     });
   }
