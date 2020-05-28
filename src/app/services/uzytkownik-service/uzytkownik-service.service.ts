@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RegisterForm } from 'src/app/pages/create-user/register-form/registerForm';
+import { RegisterModel } from 'src/app/models/register-model/register-model';
 import { PasswordModel } from '../../models/password-model/password-model';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class UzytkownikServiceService {
     return this.http.get(`${this.baseUrl}/passwordById/` + id);
   }
 
-  public createUser(user: RegisterForm): Observable<any> {
+  public createUser(user: RegisterModel): Observable<any> {
     return this.http.post(`${this.baseUrl}/addUser`, user);
   }
 

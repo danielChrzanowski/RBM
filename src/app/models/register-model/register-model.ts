@@ -1,4 +1,4 @@
-export class RegisterForm {
+export class RegisterModel {
     login: string;
     password: string;
     imie: string;

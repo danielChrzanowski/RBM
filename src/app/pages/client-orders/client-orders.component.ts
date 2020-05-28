@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Order } from 'src/app/models/order-model/order-model';
-import { OrderService } from 'src/app/services/order-service/order.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Router, NavigationEnd } from '@angular/router';
-import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
-import * as jsPDF from 'jspdf';
+import { NavigationEnd, Router } from '@angular/router';
 import html2canvas from 'html2canvas';
+import * as jsPDF from 'jspdf';
+import { Order } from 'src/app/models/order-model/order-model';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
+import { OrderService } from 'src/app/services/order-service/order.service';
 
 @Component({
   selector: 'app-client-orders',

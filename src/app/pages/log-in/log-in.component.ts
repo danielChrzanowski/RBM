@@ -1,12 +1,12 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginModel } from '../../models/login-model/login-model';
 import { AppComponent } from 'src/app/app.component';
-import { ModalService } from 'src/app/_modal';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
+import { ModalService } from 'src/app/_modal';
+import { LoginModel } from '../../models/login-model/login-model';
 
 
 @Component({
@@ -81,8 +81,6 @@ export class LogInComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.loggedUserService.setUserId(data['uzytkownik_id']);
-        //sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
-        // console.log(sessionStorage.getItem('userId'));
 
         this.setLoggedUser();
         this.appComponent.refreshUser();

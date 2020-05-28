@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
-import { ModalService } from 'src/app/_modal';
-import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
-import { AppComponent } from 'src/app/app.component';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 import { PasswordModel } from 'src/app/models/password-model/password-model';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
+import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-user-info',

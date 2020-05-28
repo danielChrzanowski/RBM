@@ -7,7 +7,10 @@ import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.serv
 })
 export class AuthService {
 
-  constructor(private router: Router, private loggedUserService: UserSingleton) { }
+  constructor(
+    private router: Router,
+    private loggedUserService: UserSingleton
+  ) { }
 
   isLoggedIn() {
     if (sessionStorage.getItem('token') != null && this.loggedUserService.getCzy_pracownik() != true) {

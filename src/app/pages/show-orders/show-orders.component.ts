@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Router, NavigationEnd } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { OrderService } from 'src/app/services/order-service/order.service';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Order } from 'src/app/models/order-model/order-model';
-
+import { OrderService } from 'src/app/services/order-service/order.service';
 
 @Component({
   selector: 'app-show-orders',
