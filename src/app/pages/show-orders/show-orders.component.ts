@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, NavigationEnd } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { OrderService } from 'src/app/models/order/order-service/order.service';
-import { Zamowienie } from 'src/app/models/order/order-model/order-model';
+import { OrderService } from 'src/app/services/order-service/order.service';
+import { Order } from 'src/app/models/order-model/order-model';
 
 
 @Component({
@@ -20,10 +20,10 @@ import { Zamowienie } from 'src/app/models/order/order-model/order-model';
 })
 
 export class ShowOrdersComponent implements OnInit {
-  orders: Array<Zamowienie>;
+  orders: Array<Order>;
 
   columnsToDisplay = ['zamowienie_id', 'stan'];
-  expandedElement: Zamowienie | null;
+  expandedElement: Order | null;
 
   constructor(
     private orderService: OrderService,

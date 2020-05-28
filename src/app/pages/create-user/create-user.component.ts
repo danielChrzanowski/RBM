@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalService } from 'src/app/_modal';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzytkownik-service.service';
+import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
 import { RegisterForm } from './register-form/registerForm';
 import { FormControl, Validators } from '@angular/forms';
 

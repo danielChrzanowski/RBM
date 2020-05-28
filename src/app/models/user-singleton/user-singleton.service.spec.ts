@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LoggedUserService } from './logged-user.service';
+import { UserSingleton } from './user-singleton.service';
 
 describe('LoggedUserService', () => {
-  let service: LoggedUserService;
+  let service: UserSingleton;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LoggedUserService);
+    service = TestBed.inject(UserSingleton);
   });
 
   it('should be created', () => {

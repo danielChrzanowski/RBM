@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Zamowienie } from 'src/app/models/order/order-model/order-model';
-import { OrderService } from 'src/app/models/order/order-service/order.service';
+import { Order } from 'src/app/models/order-model/order-model';
+import { OrderService } from 'src/app/services/order-service/order.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router, NavigationEnd } from '@angular/router';
-import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -14,7 +14,7 @@ import html2canvas from 'html2canvas';
 })
 export class ClientOrdersComponent implements OnInit {
 
-  clientOrders: Array<Zamowienie>;
+  clientOrders: Array<Order>;
   displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'stan'];
   interval;
 
@@ -24,7 +24,7 @@ export class ClientOrdersComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private router: Router,
-    private loggedUserService: LoggedUserService) { }
+    private loggedUserService: UserSingleton) { }
 
   ngOnInit(): void {
     this.router.events.subscribe(

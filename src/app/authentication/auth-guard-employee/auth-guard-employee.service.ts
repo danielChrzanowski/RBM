@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardEmployeeService {
 
-  constructor(private router: Router, private loggedUserService: LoggedUserService) { }
+  constructor(private router: Router, private loggedUserService: UserSingleton) { }
 
   isLoggedIn() {
     if (sessionStorage.getItem('token') != null && this.loggedUserService.getCzy_pracownik() == true) {

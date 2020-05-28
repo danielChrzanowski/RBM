@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterForm } from 'src/app/pages/create-user/register-form/registerForm';
-import { PasswordModel } from '../password-model/password-model';
+import { PasswordModel } from '../../models/password-model/password-model';
 
 @Injectable({
   providedIn: 'root'

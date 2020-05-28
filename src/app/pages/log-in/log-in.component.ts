@@ -2,11 +2,11 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { LoginForm } from './loginForm/loginForm';
+import { LoginModel } from '../../models/login-model/login-model';
 import { AppComponent } from 'src/app/app.component';
 import { ModalService } from 'src/app/_modal';
-import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
-import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzytkownik-service.service';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
+import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
 
 
 @Component({
@@ -35,14 +35,14 @@ export class LogInComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
-    private loggedUserService: LoggedUserService,
+    private loggedUserService: UserSingleton,
     private uzytkownikService: UzytkownikServiceService) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    let loginForm = new LoginForm();
+    let loginForm = new LoginModel();
     loginForm.username = this.loginInput.nativeElement.value;
     loginForm.password = this.passwordInput.nativeElement.value;
 

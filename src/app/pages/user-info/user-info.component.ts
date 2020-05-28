@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { ModalService } from 'src/app/_modal';
-import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzytkownik-service.service';
-import { OldPassForm } from './oldPassForm/oldPassForm';
+import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
 import { AppComponent } from 'src/app/app.component';
 import { FormControl, Validators } from '@angular/forms';
 import { PasswordModel } from 'src/app/models/password-model/password-model';
@@ -41,7 +40,7 @@ export class UserInfoComponent implements OnInit {
   ]);
 
   constructor(
-    private loggedUserService: LoggedUserService,
+    private loggedUserService: UserSingleton,
     private modalService: ModalService,
     private uzytkownikService: UzytkownikServiceService,
     private appComponent: AppComponent) { }
@@ -58,12 +57,12 @@ export class UserInfoComponent implements OnInit {
       data => {
         console.log(data);
 
-        let oldPassForm = new OldPassForm();
-        oldPassForm = data;
+        let passwordModel = new PasswordModel();
+        passwordModel = data;
 
-        console.log("stare: " + oldPassForm.password);
+        console.log("stare: " + passwordModel.password);
 
-        if (oldPassForm.password != this.oldPasswordInput.nativeElement.value) {
+        if (passwordModel.password != this.oldPasswordInput.nativeElement.value) {
           this.openModal("wrongDBPasswordErrorModal");
 
         } else {
@@ -71,7 +70,7 @@ export class UserInfoComponent implements OnInit {
             this.openModal("passwordErrorModal");
 
           } else {
-            let passwordModel = new PasswordModel();
+            // let passwordModel = new PasswordModel();
             passwordModel.uzytkownik_id = this.loggedUser.getId();
             passwordModel.password = this.newPasswordInput.nativeElement.value;
 
@@ -100,10 +99,10 @@ export class UserInfoComponent implements OnInit {
     const getPass = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
     getPass.then(data => {
       console.log(data);
-      let oldPassForm = new OldPassForm();
-      oldPassForm = data;
+      let passwordModel = new PasswordModel();
+      passwordModel = data;
 
-      if (oldPassForm.password == this.passwordDeleteInput.nativeElement.value) {
+      if (passwordModel.password == this.passwordDeleteInput.nativeElement.value) {
         this.openModal('deleteAccountModal');
       } else {
         this.openModal('wrongDBPasswordErrorModal');

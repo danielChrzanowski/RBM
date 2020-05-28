@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoggedUserService } from './models/logged-user/logged-user.service';
+import { UserSingleton } from './models/user-singleton/user-singleton.service';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -11,10 +11,10 @@ import { DOCUMENT } from '@angular/common';
 export class AppComponent {
   title = 'Paw';
 
-  uzytkownik: LoggedUserService;
+  uzytkownik: UserSingleton;
 
   constructor(private router: Router,
-    private loggedUserService: LoggedUserService,
+    private loggedUserService: UserSingleton,
     @Inject(DOCUMENT) private document: Document) {
 
     let theme = localStorage.getItem('theme');

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedUserService {
+export class UserSingleton {
   uzytkownik_id: number;
   imie: string;
   nazwisko: string;
