@@ -1,36 +1,34 @@
-import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserSingleton } from './models/user-singleton/user-singleton.service';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Paw';
 
   uzytkownik: UserSingleton;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private loggedUserService: UserSingleton,
-    @Inject(DOCUMENT) private document: Document) {
+    @Inject(DOCUMENT) private document: Document
+  ) { }
 
+  ngOnInit() {
     let theme = localStorage.getItem('theme');
     if (theme != null) {
       this.loadTheme(theme);
     }
 
-    this.uzytkownik = loggedUserService.getLoggedUser();
-
+    this.uzytkownik = this.loggedUserService.getLoggedUser();
     sessionStorage.removeItem('token');
-    //sessionStorage.removeItem('userId');
-    //sessionStorage.removeItem('czy_pracownik');
     this.uzytkownik = null;
-
     this.refreshUser();
-
   }
 
   loadTheme(cssFile: string) {
@@ -45,10 +43,7 @@ export class AppComponent {
 
   logout() {
     sessionStorage.removeItem('token');
-    //sessionStorage.removeItem('userId');
-    //sessionStorage.removeItem('czy_pracownik');
     this.uzytkownik = null;
-
     this.home();
   }
 
@@ -92,8 +87,3 @@ export class AppComponent {
 
 }
 
-/*
-window.onload = function () {
-  console.log("RELOADED");
-}
-*/
