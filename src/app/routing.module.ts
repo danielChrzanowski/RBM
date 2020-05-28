@@ -10,7 +10,7 @@ import { ShowOrdersComponent } from './pages/show-orders/show-orders.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { ClientAuthGuard } from './_authentication/client-auth-guard/client-auth.guard';
 import { EmployeeAuthGuard } from './_authentication/employee-auth-guard/employee-auth-guard';
-import { UserAuthGuardService } from './_authentication/user-auth-guard/user-auth-guard.service';
+import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'menu', component: RestauramtMenuComponent },
   { path: 'clientOrders', canActivate: [ClientAuthGuard], component: ClientOrdersComponent },
   { path: 'makeOrder', canActivate: [ClientAuthGuard], component: ClientMakeOrderComponent },
-  { path: 'userInfo', canActivate: [UserAuthGuardService], component: UserInfoComponent },
+  { path: 'userInfo', canActivate: [UserAuthGuard], component: UserInfoComponent },
 ];
 
 @NgModule({
