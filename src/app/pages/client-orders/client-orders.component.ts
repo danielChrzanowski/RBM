@@ -21,7 +21,12 @@ export class ClientOrdersComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('pdfDiv') pdfDiv: ElementRef;
 
-  constructor(private orderService: OrderService, private router: Router, private loggedUserService: LoggedUserService) {
+  constructor(
+    private orderService: OrderService,
+    private router: Router,
+    private loggedUserService: LoggedUserService) { }
+
+  ngOnInit(): void {
     this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd) {
@@ -34,9 +39,6 @@ export class ClientOrdersComponent implements OnInit {
     this.interval = setInterval(() => {
       this.getClientOrders();
     }, 400);
-  }
-
-  ngOnInit(): void {
   }
 
   getClientOrders() {
@@ -92,4 +94,5 @@ export class ClientOrdersComponent implements OnInit {
   ngOnDestroy() {
     clearInterval(this.interval);
   }
+
 }

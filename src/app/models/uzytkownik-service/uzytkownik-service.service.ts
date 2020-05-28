@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterForm } from 'src/app/pages/create-user/register-form/registerForm';
+import { PasswordModel } from '../password-model/password-model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class UzytkownikServiceService {
     return this.http.post(`${this.baseUrl}/addUser`, user);
   }
 
-  public changePassword(user: RegisterForm): Observable<any> {
-    return this.http.post(`${this.baseUrl}/changePassword`, user);
+  public changePassword(passwordModel: PasswordModel): Observable<any> {
+    return this.http.post(`${this.baseUrl}/changePassword`, passwordModel);
   }
 
   public deleteUser(id: number): Observable<any> {
@@ -34,5 +35,9 @@ export class UzytkownikServiceService {
 
   public userByLogin(login: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/userByLogin/` + login);
+  }
+
+  public login(loginForm: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, loginForm);
   }
 }

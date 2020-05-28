@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoggedUserService } from 'src/app/models/logged-user/logged-user.service';
 import { ModalService } from 'src/app/_modal';
-import { ChangePasswordForm } from './change-password-form/changePasswordForm';
 import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzytkownik-service.service';
 import { OldPassForm } from './oldPassForm/oldPassForm';
-import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { FormControl, Validators } from '@angular/forms';
+import { PasswordModel } from 'src/app/models/password-model/password-model';
 
 @Component({
   selector: 'app-user-info',
@@ -14,63 +14,82 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class UserInfoComponent implements OnInit {
 
+  @ViewChild('oldPasswordInput') oldPasswordInput: ElementRef;
+  @ViewChild('newPasswordInput') newPasswordInput: ElementRef;
+  @ViewChild('newPassword2Input') newPassword2Input: ElementRef;
+  @ViewChild('passwordDeleteInput') passwordDeleteInput: ElementRef;
   loggedUser;
-  changePasswordForm;
-  oldPassForm;
-  passwordDelete;
 
-  constructor(private loggedUserService: LoggedUserService, private modalService: ModalService,
-    private uzytkownikService: UzytkownikServiceService, private router: Router,
+  oldPasswordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20)
+  ]);
+
+  newPasswordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20),
+  ]);
+
+  newPassword2FormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20),
+  ]);
+
+  passwordDeleteFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(20),
+  ]);
+
+  constructor(
+    private loggedUserService: LoggedUserService,
+    private modalService: ModalService,
+    private uzytkownikService: UzytkownikServiceService,
     private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    this.oldPassForm = new OldPassForm();
-    this.changePasswordForm = new ChangePasswordForm();
     this.loggedUser = this.loggedUserService.getLoggedUser();
   }
 
   changePassword() {
-    if (this.changePasswordForm.oldPassword == null ||
-      this.changePasswordForm.password == null ||
-      this.changePasswordForm.password2 == null
-    ) {
-      this.openModal("emptyFieldErrorModal");
+    //promise await
+    const promise = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
 
-    } else {
-      //promise await
-      const promise = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
-      promise.then(
-        data => {
-          console.log(data);
-          this.oldPassForm = data;
+    promise.then(
+      data => {
+        console.log(data);
 
-          console.log("stare: " + this.oldPassForm.password);
+        let oldPassForm = new OldPassForm();
+        oldPassForm = data;
 
-          if (this.oldPassForm.password != this.changePasswordForm.oldPassword) {
-            this.openModal("wrongDBPasswordErrorModal");
+        console.log("stare: " + oldPassForm.password);
+
+        if (oldPassForm.password != this.oldPasswordInput.nativeElement.value) {
+          this.openModal("wrongDBPasswordErrorModal");
+
+        } else {
+          if (this.newPasswordInput.nativeElement.value != this.newPassword2Input.nativeElement.value) {
+            this.openModal("passwordErrorModal");
 
           } else {
-            if (this.changePasswordForm.password != this.changePasswordForm.password2) {
-              this.openModal("passwordErrorModal");
+            let passwordModel = new PasswordModel();
+            passwordModel.uzytkownik_id = this.loggedUser.getId();
+            passwordModel.password = this.newPasswordInput.nativeElement.value;
 
-            } else {
-              this.changePasswordForm.uzytkownik_id = this.loggedUser.getId();
-              this.uzytkownikService.changePassword(this.changePasswordForm)
-                .subscribe(data => {
-                  console.log(data);
+            this.uzytkownikService.changePassword(passwordModel)
+              .subscribe(data => {
+                console.log(data);
 
-                  this.openModal("passwordChangedModal");
+                this.openModal("passwordChangedModal");
 
-                  setTimeout(() => this.logout(), 1000);
+                setTimeout(() => this.logout(), 1000);
 
-                }, error => console.log(error));
-              this.changePasswordForm = new ChangePasswordForm();
-            }
+              }, error => console.log(error));
+
           }
-        },
-        error => console.log(error));
+        }
+      },
+      error => console.log(error));
 
-    }
   }
 
   logout() {
@@ -81,11 +100,12 @@ export class UserInfoComponent implements OnInit {
     const getPass = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
     getPass.then(data => {
       console.log(data);
-      this.oldPassForm = data;
+      let oldPassForm = new OldPassForm();
+      oldPassForm = data;
 
-      if (this.oldPassForm.password == this.passwordDelete) {
+      if (oldPassForm.password == this.passwordDeleteInput.nativeElement.value) {
         this.openModal('deleteAccountModal');
-      }else{
+      } else {
         this.openModal('wrongDBPasswordErrorModal');
       }
 
@@ -94,17 +114,8 @@ export class UserInfoComponent implements OnInit {
   }
 
   deleteAccount() {
-   // const getPass = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
-  //  getPass.then(data => {
-     // console.log(data);
-    //  this.oldPassForm = data;
-
-    //  if (this.oldPassForm.password == this.passwordDelete) {
-        const promise = this.uzytkownikService.deleteUser(this.loggedUser.getId()).toPromise();
-        promise.then(() => { this.logout(); });
-    //  }
-
-  //  });
+    const promise = this.uzytkownikService.deleteUser(this.loggedUser.getId()).toPromise();
+    promise.then(() => { this.logout(); });
   }
 
   openModal(id: string) {

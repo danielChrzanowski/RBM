@@ -4,7 +4,7 @@
   <form>
     <mat-form-field class="full-width">
       <mat-label>Login</mat-label>
-      <input matInput name="login" [formControl]="loginFormControl" [(ngModel)]="loginForm.username">
+      <input matInput name="login" [formControl]="loginFormControl" #loginInput>
       <mat-error *ngIf="loginFormControl.hasError('maxlength') && !loginFormControl.hasError('required')">
         Max 10 znaków
       </mat-error>
@@ -16,8 +16,7 @@
     <br><br>
     <mat-form-field class="full-width">
       <mat-label>Hasło</mat-label>
-      <input type="password" matInput [formControl]="passwordFormControl" name="password"
-        [(ngModel)]="loginForm.password">
+      <input type="password" matInput [formControl]="passwordFormControl" name="password" #passwordInput>
       <mat-error *ngIf="passwordFormControl.hasError('maxlength') && !passwordFormControl.hasError('required')">
         Max 20 znaków
       </mat-error>

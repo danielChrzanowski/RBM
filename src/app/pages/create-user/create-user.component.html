@@ -4,7 +4,7 @@
     <form>
         <mat-form-field class="full-width">
             <mat-label>Login *</mat-label>
-            <input type="text" matInput [formControl]="loginFormControl" [(ngModel)]="registerForm.login">
+            <input type="text" matInput [formControl]="loginFormControl" #loginInput>
             <mat-error *ngIf="loginFormControl.hasError('maxlength') && !loginFormControl.hasError('required')">
                 Max 10 znaków
             </mat-error>
@@ -15,7 +15,7 @@
         <br> <br>
         <mat-form-field class="full-width">
             <mat-label>Hasło *</mat-label>
-            <input type="password" matInput [formControl]="passwordFormControl" [(ngModel)]="registerForm.password">
+            <input type="password" matInput [formControl]="passwordFormControl" #passwordInput>
             <mat-error *ngIf="passwordFormControl.hasError('maxlength') && !passwordFormControl.hasError('required')">
                 Max 20 znaków
             </mat-error>
@@ -26,7 +26,7 @@
         <br> <br>
         <mat-form-field class="full-width">
             <mat-label>Powtórz hasło *</mat-label>
-            <input type="password" matInput [formControl]="password2FormControl" [(ngModel)]="password2">
+            <input type="password" matInput [formControl]="password2FormControl" #password2Input>
             <mat-error *ngIf="password2FormControl.hasError('maxlength') && !password2FormControl.hasError('required')">
                 Max 20 znaków
             </mat-error>
@@ -37,7 +37,7 @@
         <br> <br>
         <mat-form-field class="full-width">
             <mat-label>Imię *</mat-label>
-            <input type="text" matInput [formControl]="imieFormControl" [(ngModel)]="registerForm.imie">
+            <input type="text" matInput [formControl]="imieFormControl" #imieInput>
             <mat-error *ngIf="imieFormControl.hasError('maxlength') && !imieFormControl.hasError('required')">
                 Max 20 znaków
             </mat-error>
@@ -48,7 +48,7 @@
         <br> <br>
         <mat-form-field class="full-width">
             <mat-label>Nazwisko *</mat-label>
-            <input type="text" matInput [formControl]="nazwiskoFormControl" [(ngModel)]="registerForm.nazwisko">
+            <input type="text" matInput [formControl]="nazwiskoFormControl" #nazwiskoInput>
             <mat-error *ngIf="nazwiskoFormControl.hasError('maxlength') && !nazwiskoFormControl.hasError('required')">
                 Max 30 znaków
             </mat-error>
@@ -59,8 +59,7 @@
         <br> <br>
         <mat-form-field class="full-width">
             <mat-label>E-mail *</mat-label>
-            <input type="text" matInput [formControl]="emailFormControl" [(ngModel)]="registerForm.email"
-                placeholder="np. email@wp.pl">
+            <input type="text" matInput [formControl]="emailFormControl" placeholder="np. email@wp.pl" #emailInput>
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                 Wprowadź poprawny adres e-mail
             </mat-error>

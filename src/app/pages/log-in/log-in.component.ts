@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -16,6 +16,10 @@ import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzyt
 })
 export class LogInComponent implements OnInit {
 
+  @ViewChild('loginInput') loginInput: ElementRef;
+  @ViewChild('passwordInput') passwordInput: ElementRef;
+  private baseUrl = "https://localhost:8443";
+
   loginFormControl = new FormControl('', [
     Validators.required,
     Validators.maxLength(10)
@@ -26,43 +30,42 @@ export class LogInComponent implements OnInit {
     Validators.maxLength(20),
   ]);
 
-  private baseUrl = "https://localhost:8443";
-  loginForm: LoginForm;
-
-  constructor(private appComponent: AppComponent,
+  constructor(
+    private appComponent: AppComponent,
     private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
     private loggedUserService: LoggedUserService,
-    private uzytkownikService: UzytkownikServiceService) {
-    this.loginForm = new LoginForm();
-  }
+    private uzytkownikService: UzytkownikServiceService) { }
 
   ngOnInit(): void {
-
   }
 
   login() {
-    this.http.post(`${this.baseUrl}/login`, this.loginForm)
+    let loginForm = new LoginForm();
+    loginForm.username = this.loginInput.nativeElement.value;
+    loginForm.password = this.passwordInput.nativeElement.value;
+
+    this.uzytkownikService.login(loginForm)
       .subscribe(data => {
         console.log(data);
         if (data) {
-          sessionStorage.setItem('token', btoa(this.loginForm.username + ':' + this.loginForm.password))
+          sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
           console.log(sessionStorage.getItem('token'));
 
           this.getUserData();
 
           this.router.navigate(['/home']);
         } else {
-          this.openModal('loginErrorModal');
           //alert("Błąd autentykacji.");
+          this.openModal('loginErrorModal');
         }
       },
         error => {
           console.log(error);
           if (error.status == 401) {
-            this.openModal('loginErrorModal');
             //alert("Odmowa dostępu");
+            this.openModal('loginErrorModal');
           }
         });
   }
@@ -78,14 +81,10 @@ export class LogInComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.loggedUserService.setUserId(data['uzytkownik_id']);
-        //sessionStorage.setItem('czy_pracownik', this.encryptionService.encryptData(data['czy_pracownik']));
-
         //sessionStorage.setItem('userId', this.encryptionService.encryptData(data['uzytkownik_id']));
-        //  console.log("CZY: " + this.encryptionService.decryptData(sessionStorage.getItem('czy_pracownik')));
         // console.log(sessionStorage.getItem('userId'));
 
         this.setLoggedUser();
-
         this.appComponent.refreshUser();
       },
         error => console.log(error));

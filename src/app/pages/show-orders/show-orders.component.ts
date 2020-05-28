@@ -19,13 +19,18 @@ import { Zamowienie } from 'src/app/models/order/order-model/order-model';
   ],
 })
 
-export class ShowOrdersComponent {
+export class ShowOrdersComponent implements OnInit {
   orders: Array<Zamowienie>;
 
   columnsToDisplay = ['zamowienie_id', 'stan'];
   expandedElement: Zamowienie | null;
 
-  constructor(private orderService: OrderService, private router: Router) {
+  constructor(
+    private orderService: OrderService,
+    private router: Router) {
+  }
+
+  ngOnInit() {
     this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd) {
