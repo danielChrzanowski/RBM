@@ -17,11 +17,13 @@ import { UzytkownikServiceService } from 'src/app/models/uzytkownik-service/uzyt
 export class LogInComponent implements OnInit {
 
   loginFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    Validators.maxLength(10)
   ]);
 
   passwordFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    Validators.maxLength(20),
   ]);
 
   private baseUrl = "https://localhost:8443";
