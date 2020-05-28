@@ -13,8 +13,16 @@ export class UzytkownikServiceService {
 
   constructor(private http: HttpClient) { }
 
+  public login(loginForm: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, loginForm);
+  }
+
   public loggedUserById(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id);
+  }
+
+  public userByLogin(login: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/userByLogin/` + login);
   }
 
   public getPasswordById(id: any): Observable<any> {
@@ -33,11 +41,4 @@ export class UzytkownikServiceService {
     return this.http.delete(`${this.baseUrl}/deleteUser/` + id);
   }
 
-  public userByLogin(login: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/userByLogin/` + login);
-  }
-
-  public login(loginForm: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, loginForm);
-  }
 }

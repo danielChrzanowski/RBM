@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthGuardEmployeeService } from './auth-guard-employee.service';
+import { EmployeeAuthGuardService } from './employee-auth-guard.service';
 
 @Injectable()
-export class AuthGuardEmployee implements CanActivate {
+export class EmployeeAuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private authService: AuthGuardEmployeeService
+        private authService: EmployeeAuthGuardService
     ) { }
 
     canActivate() {

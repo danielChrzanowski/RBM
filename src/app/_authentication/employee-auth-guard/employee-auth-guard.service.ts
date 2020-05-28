@@ -5,7 +5,7 @@ import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.serv
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class EmployeeAuthGuardService {
 
   constructor(
     private router: Router,
@@ -13,12 +13,11 @@ export class AuthService {
   ) { }
 
   isLoggedIn() {
-    if (sessionStorage.getItem('token') != null && this.loggedUserService.getCzy_pracownik() != true) {
+    if (sessionStorage.getItem('token') != null && this.loggedUserService.getCzy_pracownik() == true) {
       return true;
     } else {
       this.router.navigate(['/log-in']);
       return false;
     }
   }
-
 }
