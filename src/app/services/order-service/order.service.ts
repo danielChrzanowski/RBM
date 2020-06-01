@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,11 +12,15 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   public getTodayOrders(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getTodayOrders`);
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
+    //console.log(headers);
+    return this.http.get(`${this.baseUrl}/getTodayOrders`, { headers: headers });
   }
 
   public getClientOrders(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getClientOrders/` + id);
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
+    //console.log(headers);
+    return this.http.get(`${this.baseUrl}/getClientOrders/` + id, { headers: headers });
   }
 
 }

@@ -68,7 +68,7 @@ export class CreateUserComponent implements OnInit {
     registerForm.nazwisko = this.nazwiskoInput.nativeElement.value;
     registerForm.email = this.emailInput.nativeElement.value;
 
-    const getUser = this.uzytkownikService.userByLogin(registerForm.login).toPromise();
+    const getUser = this.uzytkownikService.checkLogin(registerForm.login).toPromise();
 
     getUser.then(data => {
       console.log(data);
