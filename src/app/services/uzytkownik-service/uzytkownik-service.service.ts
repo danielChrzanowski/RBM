@@ -34,9 +34,7 @@ export class UzytkownikServiceService {
   }
 
   public createUser(user: RegisterModel): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
-    return this.http.post(`${this.baseUrl}/addUser`, user, { headers: headers });
+    return this.http.post(`${this.baseUrl}/addUser`, user);
   }
 
   public changePassword(passwordModel: PasswordModel): Observable<any> {
