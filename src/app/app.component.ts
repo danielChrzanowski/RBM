@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loggedUserService: UserSingleton,
+    private userSingleton: UserSingleton,
     @Inject(DOCUMENT) private document: Document
   ) { }
 
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       this.loadTheme(theme);
     }
 
-    this.uzytkownik = this.loggedUserService.getLoggedUser();
+    this.uzytkownik = this.userSingleton.getLoggedUser();
     sessionStorage.removeItem('token');
     this.uzytkownik = null;
     this.refreshUser();
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
 
   refreshUser() {
     if (sessionStorage.length > 0) {
-      this.uzytkownik = this.loggedUserService.getLoggedUser();
+      this.uzytkownik = this.userSingleton.getLoggedUser();
     }
   }
 

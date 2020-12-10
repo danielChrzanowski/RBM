@@ -4,9 +4,9 @@
     <hr>
 
     <table mat-table [dataSource]="orders" multiTemplateDataRows class="mat-elevation-z8">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        <ng-container matColumnDef="{{def.key}}" *ngFor="let def of tableDef">
+            <th mat-header-cell *matHeaderCellDef> {{def.header}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[def.key]}} </td>
         </ng-container>
 
         <ng-container matColumnDef="expandedDetail">

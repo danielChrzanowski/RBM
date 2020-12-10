@@ -14,7 +14,8 @@ export class UserSingleton {
     return this;
   }
 
-  setLoggedUser(uzytkownik_id: number,
+  setLoggedUser(
+    uzytkownik_id: number,
     imie: string,
     nazwisko: string,
     email: string,
@@ -25,15 +26,10 @@ export class UserSingleton {
     this.nazwisko = nazwisko;
     this.email = email;
     this.czy_pracownik = czy_pracownik;
-
   }
 
   getId() {
     return this.uzytkownik_id;
-  }
-
-  setUserId(id: number) {
-    this.uzytkownik_id = id;
   }
 
   getCzy_pracownik() {

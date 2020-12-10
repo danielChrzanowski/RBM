@@ -35,7 +35,7 @@ export class LogInComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
-    private loggedUserService: UserSingleton,
+    private userSingleton: UserSingleton,
     private uzytkownikService: UzytkownikServiceService) { }
 
   ngOnInit(): void {
@@ -48,13 +48,11 @@ export class LogInComponent implements OnInit {
 
     this.uzytkownikService.login(loginForm)
       .subscribe(data => {
-        console.log(data);
         if (data) {
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
-          console.log(sessionStorage.getItem('token'));
+          console.log("Token: " + sessionStorage.getItem('token'));
 
           this.getUserData();
-
           this.router.navigate(['/home']);
         } else {
           //alert("Błąd autentykacji.");
@@ -79,26 +77,15 @@ export class LogInComponent implements OnInit {
 
     this.http.get(`${this.baseUrl}/user`, options)
       .subscribe(data => {
-        console.log(data);
-        this.loggedUserService.setUserId(data['uzytkownik_id']);
+        this.userSingleton.setLoggedUser(data['uzytkownik_id'],
+          data['imie'],
+          data['nazwisko'],
+          data['email'],
+          data['czy_pracownik']);
+        console.log("Zalogowano: " + this.userSingleton.getLoggedUser());
 
-        this.setLoggedUser();
         this.appComponent.refreshUser();
       },
-        error => console.log(error));
-  }
-
-  setLoggedUser() {
-    this.uzytkownikService.loggedUserById(this.loggedUserService.getId())
-      .subscribe(
-        data => {
-          this.loggedUserService.setLoggedUser(data['uzytkownik_id'],
-            data['imie'],
-            data['nazwisko'],
-            data['email'],
-            data['czy_pracownik']);
-          console.log(this.loggedUserService.getLoggedUser());
-        },
         error => console.log(error));
   }
 

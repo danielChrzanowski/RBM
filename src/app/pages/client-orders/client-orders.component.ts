@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
 import { Order } from 'src/app/models/order-model/order-model';
@@ -16,7 +16,6 @@ export class ClientOrdersComponent implements OnInit {
 
   clientOrders: Array<Order>;
   displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'stan'];
-  interval;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('pdfDiv') pdfDiv: ElementRef;
@@ -29,10 +28,10 @@ export class ClientOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.getClientOrders();
 
-    //do usuniecia
-    this.interval = setInterval(() => {
-      this.getClientOrders();
-    }, 400);
+    //interval
+    // this.interval = setInterval(() => {
+    //  this.getClientOrders();
+    // }, 400);
   }
 
   getClientOrders() {
@@ -83,10 +82,6 @@ export class ClientOrdersComponent implements OnInit {
     });
 
     doc.save('orders.pdf');
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.interval);
   }
 
 }

@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Order } from 'src/app/models/order-model/order-model';
 import { OrderService } from 'src/app/services/order-service/order.service';
 
@@ -20,6 +20,15 @@ import { OrderService } from 'src/app/services/order-service/order.service';
 export class ShowOrdersComponent implements OnInit {
   orders: Array<Order>;
 
+  tableDef: Array<any> = [
+    {
+      key: 'zamowienie_id',
+      header: 'ID'
+    }, {
+      key: 'stan',
+      header: 'Stan'
+    }
+  ];
   columnsToDisplay = ['zamowienie_id', 'stan'];
   expandedElement: Order | null;
 
