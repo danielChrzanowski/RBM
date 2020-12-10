@@ -17,12 +17,6 @@ export class UzytkownikServiceService {
     return this.http.post(`${this.baseUrl}/login`, loginForm);
   }
 
-  public loggedUserById(id: any): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
-    return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id, { headers: headers });
-  }
-
   public checkLogin(login: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/checkLogin/` + login);
   }

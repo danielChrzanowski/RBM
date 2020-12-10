@@ -52,7 +52,7 @@ export class LogInComponent implements OnInit {
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
           console.log("Token: " + sessionStorage.getItem('token'));
 
-          this.getUserData();
+          this.setUserSingletonFromDB();
           this.router.navigate(['/home']);
         } else {
           //alert("Błąd autentykacji.");
@@ -68,7 +68,7 @@ export class LogInComponent implements OnInit {
         });
   }
 
-  getUserData() {
+  setUserSingletonFromDB() {
     let headers: HttpHeaders = new HttpHeaders(
       { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
     );
