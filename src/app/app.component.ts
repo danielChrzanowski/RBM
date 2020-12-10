@@ -9,7 +9,7 @@ import { UserSingleton } from './models/user-singleton/user-singleton.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Paw';
+  title = 'RBM';
 
   uzytkownik: UserSingleton;
 
