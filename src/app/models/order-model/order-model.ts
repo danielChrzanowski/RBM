@@ -1,3 +1,5 @@
+import { MatPaginator } from '@angular/material/paginator';
+
 export class Order {
     zamowienie_id: number;
     data: string;

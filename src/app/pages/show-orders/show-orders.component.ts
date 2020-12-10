@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Order } from 'src/app/models/order-model/order-model';
 import { OrderService } from 'src/app/services/order-service/order.service';
 
@@ -18,7 +19,8 @@ import { OrderService } from 'src/app/services/order-service/order.service';
 })
 
 export class ShowOrdersComponent implements OnInit {
-  orders: Array<Order>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource: MatTableDataSource<Order>;
 
   tableDef: Array<any> = [
     {
@@ -33,8 +35,7 @@ export class ShowOrdersComponent implements OnInit {
   expandedElement: Order | null;
 
   constructor(
-    private orderService: OrderService,
-    private router: Router) {
+    private orderService: OrderService) {
   }
 
   ngOnInit() {
@@ -46,7 +47,8 @@ export class ShowOrdersComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.orders = data;
+          this.dataSource = new MatTableDataSource<Order>(data);
+          this.dataSource.paginator = this.paginator;
         },
         error => console.log(error));
   }
