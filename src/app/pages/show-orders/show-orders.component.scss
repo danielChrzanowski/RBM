@@ -19,7 +19,28 @@ table {
     text-align: left;
 }
 
-.orderPaginator  {
+.row {
+    display: flex;
+}
+
+.columnLeft {
+    width: 210px;
+}
+
+.columnRight {
+    width: auto;
+}
+
+.saveBtn{
+    margin-top: 22px;
+    margin-left: 10px;
+}
+
+.changeState {
+    margin-top: 10px;
+}
+
+.orderPaginator {
     margin: 0px auto 20px auto;
     width: 80%;
 }

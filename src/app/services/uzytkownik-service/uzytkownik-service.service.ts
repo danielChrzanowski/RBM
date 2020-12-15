@@ -34,7 +34,7 @@ export class UzytkownikServiceService {
   public changePassword(passwordModel: PasswordModel): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
     //console.log(headers);
-    return this.http.post(`${this.baseUrl}/changePassword`, passwordModel, { headers: headers });
+    return this.http.put(`${this.baseUrl}/changePassword`, passwordModel, { headers: headers });
   }
 
   public deleteUser(id: number): Observable<any> {
