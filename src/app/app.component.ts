@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
     private router: Router,
     private userSingleton: UserSingleton,
     @Inject(DOCUMENT) private document: Document
-  ) { }
-
-  ngOnInit() {
+  ) {
     let theme = localStorage.getItem('theme');
     if (theme != null) {
       this.loadTheme(theme);
     }
+  }
 
+  ngOnInit() {
     this.uzytkownik = this.userSingleton.getLoggedUser();
     sessionStorage.removeItem('token');
     this.uzytkownik = null;
