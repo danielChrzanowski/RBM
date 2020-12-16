@@ -3,16 +3,24 @@
 
     <hr>
 
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+    <div class="filter">
+        <mat-form-field>
+            <mat-label>Filtruj</mat-label>
+            <input type="text" matInput (keyup)="applyFilter($event)" placeholder="Np. Stan" #input>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="{{def.key}}" *ngFor="let def of tableDef">
-            <th mat-header-cell *matHeaderCellDef> {{def.header}} </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{def.header}} </th>
             <td mat-cell *matCellDef="let element"> {{element[def.key]}} </td>
         </ng-container>
 
         <ng-container matColumnDef="expandedDetail">
             <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
                 <div class="example-element-detail"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+                    [style.height]="element.expanded ? 'unset' : '0 !important'">
                     <div class="example-element-diagram">
                         <div class="example-element-symbol">
                             <div class="row">
@@ -48,7 +56,8 @@
                                 </div>
                                 <div class="columnRight">
                                     <div class="saveBtn">
-                                        <button mat-stroked-button color="accent" (click)="saveState(element)">Zapisz</button>
+                                        <button mat-stroked-button color="accent"
+                                            (click)="saveState(element)">Zapisz</button>
                                     </div>
                                 </div>
                             </div>

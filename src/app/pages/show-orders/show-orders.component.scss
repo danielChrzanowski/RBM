@@ -14,7 +14,7 @@ h1 {
 }
 
 table {
-    margin: 20px auto 0px auto;
+    margin: 0px auto 0px auto;
     width: 80%;
     text-align: left;
 }
@@ -31,13 +31,18 @@ table {
     width: auto;
 }
 
-.saveBtn{
+.saveBtn {
     margin-top: 22px;
     margin-left: 10px;
 }
 
 .changeState {
     margin-top: 10px;
+}
+
+.filter {
+    margin: 0px auto 0px auto;
+    width: 80%;
 }
 
 .orderPaginator {

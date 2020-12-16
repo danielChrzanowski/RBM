@@ -30,7 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 //import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { MatSortModule } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
@@ -63,7 +63,7 @@ const materialModules = [
   //MatTooltipModule,
   //MatSnackBarModule,
   MatTableModule,
-  //MatSortModule,
+  MatSortModule,
   MatPaginatorModule,
   ReactiveFormsModule
 ];
