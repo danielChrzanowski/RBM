@@ -3,10 +3,44 @@
 
     <hr>
 
-    <div class="tekst">
-        1. Zupa
-        <br>
-        2. Nie zupa
+    <div class="filter">
+        <mat-form-field>
+            <mat-label>Filtruj</mat-label>
+            <input type="text" matInput (keyup)="applyFilter($event)" placeholder="Np. Kategoria" #input>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort>
+        <ng-container matColumnDef="{{def.key}}" *ngFor="let def of tableDef">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{def.header}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[def.key]}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+                    [style.height]="element.expanded ? 'unset' : '0 !important'">
+                    <div class="example-element-diagram">
+                        <div class="example-element-symbol">
+                            <b>Składniki:</b><br>
+                            {{element.skladniki}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
+    <div class="paginator mat-elevation-z8">
+        <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
     </div>
 
 </div>

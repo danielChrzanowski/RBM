@@ -61,6 +61,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(["/log-in"]);
   }
 
+  contact() {
+    this.router.navigate(["/contact"]);
+  }
+
   showOrders() {
     this.router.navigate(["/showOrders"]);
   }

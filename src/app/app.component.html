@@ -51,6 +51,9 @@
     <button mat-button (click)="menu()">
       <mat-icon> restaurant_menu</mat-icon> Menu
     </button>
+    <button mat-button (click)="contact()">
+      <mat-icon> phone</mat-icon> Kontakt
+    </button>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
       <button mat-button [matMenuTriggerFor]="menu2">
@@ -58,7 +61,7 @@
       </button>
       <mat-menu #menu2="matMenu">
         <button mat-menu-item (click)="showOrders()">
-          <mat-icon>library_books</mat-icon>Wyświetl zamówienia
+          <mat-icon>library_books</mat-icon>Zamówienia
         </button>
       </mat-menu>
     </div>

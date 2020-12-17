@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -85,7 +85,7 @@ export class ShowOrdersComponent implements OnInit {
         order.dania
       );
 
-      console.log(this.selectedState + " ID: " + order.zamowienie_id);
+     // console.log(this.selectedState + " ID: " + order.zamowienie_id);
 
       this.orderService.changeOrderState(newOrder)
         .subscribe(data => {

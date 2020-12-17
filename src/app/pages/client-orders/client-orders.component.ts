@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
@@ -13,11 +15,11 @@ import { OrderService } from 'src/app/services/order-service/order.service';
   styleUrls: ['./client-orders.component.scss']
 })
 export class ClientOrdersComponent implements OnInit {
-
-  clientOrders: Array<Order>;
-  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'stan'];
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  clientOrders;
+  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'dania', 'stan'];
+ 
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('pdfDiv') pdfDiv: ElementRef;
 
   constructor(
@@ -38,8 +40,10 @@ export class ClientOrdersComponent implements OnInit {
     this.orderService.getClientOrders(this.loggedUserService.getId())
       .subscribe(
         data => {
-          console.log(data);
-          this.clientOrders = data;
+          //console.log(data);
+          this.clientOrders = new MatTableDataSource<Order>(data);
+          this.clientOrders.sort = this.sort;
+          this.clientOrders.paginator = this.paginator;
         },
         error => console.log(error));
   }
@@ -60,28 +64,8 @@ export class ClientOrdersComponent implements OnInit {
       //var height = pdf.internal.pageSize.getHeight();
 
       pdf.addImage(contentDataURL, 'PNG', -0.6, 0);
-      pdf.save('orders.pdf');
+      pdf.save('Orders.pdf');
     });
-  }
-
-  //pobierz pdf bez polskich znakow
-  exportAsPDF2() {
-    let doc = new jsPDF('1', 'pt', 'a4');
-
-    let specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
-
-    let pdfDiv = this.pdfDiv.nativeElement;
-
-    doc.fromHTML(pdfDiv.innerHTML, 15, 15, {
-      width: 1900,
-      'elementHandlers': specialElementHandlers
-    });
-
-    doc.save('orders.pdf');
   }
 
 }

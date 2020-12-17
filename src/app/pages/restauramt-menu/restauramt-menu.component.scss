@@ -1,3 +1,61 @@
-.tekst{
-    padding-top: 10px;
+.content {
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+table {
+    margin: 0px auto 0px auto;
+    width: 80%;
+    text-align: left;
+}
+
+.filter {
+    margin: 0px auto 0px auto;
+    width: 80%;
+}
+
+.paginator {
+    margin: 0px auto 20px auto;
+    width: 80%;
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: rgb(100, 99, 99);
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #3a3939;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+.example-element-diagram {
+    min-width: 80px;
+    // border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    // height: 104px;
+}
+
+.example-element-symbol {
+    // font-weight: bold;
+    font-size: 16px;
+    line-height: normal;
 }
