@@ -24,24 +24,34 @@
                     <div class="example-element-diagram">
                         <div class="example-element-symbol">
                             <div class="row">
-                                <div class="columnLeft">
-                                    <b>Zamówienie:</b><br>
-                                    ID klienta: {{element.uzytkownik_id}} <br>
-                                    Cena: {{element.suma_cen}}<br>
-                                    Data: {{element.data}}
-                                </div>
-                                <div class="columnRight">
+
+                                <div class="columnleft">
                                     <b>Dania:</b><br>
                                     <div *ngFor="let danie of element.dania">
-                                        ID dania: {{danie.danie_id}}<br>
-                                        Składniki: {{danie.skladniki}}<br>
-                                        Cena: {{danie.cena}}<br><br>
+                                        <hr>
+                                        Nazwa:
+                                        <div style="font-style: italic; display: inline;">
+                                            {{danie.nazwa}}
+                                        </div>
+                                        <div class="marginBot"></div>
+                                        Składniki: {{danie.skladniki}}
+                                        <div class="marginBot"></div>
+                                        <div class="price">
+                                            Cena: {{danie.cena}}<br><br>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="columnLeft">
+                                <div class="columnRight">
+                                    <b>Zamówienie:</b><br>
+                                    <hr>
+                                    Klient: {{element.uzytkownik.imie}}
+                                    {{element.uzytkownik.nazwisko}}
+                                    <div class="marginBot"></div>
+                                    <div class="price">
+                                        Cena: {{element.suma_cen}}
+                                    </div>
+
                                     <div class="changeState">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Stan</mat-label>
@@ -50,15 +60,10 @@
                                                     {{state.viewValue}}
                                                 </mat-option>
                                             </mat-select>
-                                        </mat-form-field><br>
+                                        </mat-form-field>
                                     </div>
-
-                                </div>
-                                <div class="columnRight">
-                                    <div class="saveBtn">
-                                        <button mat-stroked-button color="accent"
-                                            (click)="saveState(element)">Zapisz</button>
-                                    </div>
+                                    <button mat-stroked-button color="accent"
+                                        (click)="saveState(element)">Zapisz</button>
                                 </div>
                             </div>
 

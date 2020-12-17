@@ -45,9 +45,13 @@ export class ShowOrdersComponent implements OnInit {
     }, {
       key: 'stan',
       header: 'Stan'
+    },
+    {
+      key: 'data',
+      header: 'Data'
     }
   ];
-  columnsToDisplay = ['zamowienie_id', 'stan'];
+  columnsToDisplay = ['zamowienie_id', 'data', 'stan'];
   expandedElement: Order | null;
 
   constructor(
@@ -55,14 +59,14 @@ export class ShowOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTodayOrders();
+    this.findAllOrders();
   }
 
-  getTodayOrders() {
-    this.orderService.getTodayOrders()
+  findAllOrders() {
+    this.orderService.findAllOrders()
       .subscribe(
         data => {
-          console.log(data);
+         // console.log(data);
           this.dataSource = new MatTableDataSource<Order>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -85,9 +89,9 @@ export class ShowOrdersComponent implements OnInit {
 
       this.orderService.changeOrderState(newOrder)
         .subscribe(data => {
-          console.log(data);
+        //  console.log(data);
           this.selectedState = null;
-          this.getTodayOrders();
+          this.findAllOrders();
         }, error => console.log(error));
 
     }

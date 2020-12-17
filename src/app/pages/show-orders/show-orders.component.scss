@@ -28,12 +28,12 @@ table {
 }
 
 .columnRight {
+    margin-left: 25px;
     width: auto;
 }
 
-.saveBtn {
-    margin-top: 22px;
-    margin-left: 10px;
+.price {
+    font-weight: 550;
 }
 
 .changeState {
@@ -48,6 +48,10 @@ table {
 .orderPaginator {
     margin: 0px auto 20px auto;
     width: 80%;
+}
+
+.marginBot {
+    margin-bottom: 5px;
 }
 
 tr.example-detail-row {

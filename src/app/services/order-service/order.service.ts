@@ -12,7 +12,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  public getTodayOrders(): Observable<any> {
+  public findAllOrders(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
     //console.log(headers);
     return this.http.get(`${this.baseUrl}/findAllOrders`, { headers: headers });
@@ -20,7 +20,7 @@ export class OrderService {
 
   public changeOrderState(order: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    console.log(order);
+    //console.log(order);
     return this.http.put(`${this.baseUrl}/changeOrderState`, order, { headers: headers });
   }
 

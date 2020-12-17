@@ -50,7 +50,7 @@ export class LogInComponent implements OnInit {
       .subscribe(data => {
         if (data) {
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
-          console.log("Token: " + sessionStorage.getItem('token'));
+          //console.log("Token: " + sessionStorage.getItem('token'));
 
           this.setUserSingletonFromDB();
           this.router.navigate(['/home']);
@@ -82,7 +82,7 @@ export class LogInComponent implements OnInit {
           data['nazwisko'],
           data['email'],
           data['czy_pracownik']);
-        console.log("Zalogowano: " + this.userSingleton.getLoggedUser());
+        //  console.log("Zalogowano: " + this.userSingleton.getLoggedUser());
 
         this.appComponent.refreshUser();
       },
