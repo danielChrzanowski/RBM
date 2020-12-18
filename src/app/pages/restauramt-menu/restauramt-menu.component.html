@@ -1,6 +1,5 @@
 <div class="content">
     <h1>Menu</h1>
-
     <hr>
 
     <div class="filter">
@@ -42,5 +41,17 @@
     <div class="paginator mat-elevation-z8">
         <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
     </div>
+
+    <br>
+    <h2>Średnia kaloryczność (kcal na 100g)</h2>
+    <hr>
+
+    <div style="display: block; margin-top: 30px;">
+        <canvas baseChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+            [colors]="chartColors" [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+
 
 </div>

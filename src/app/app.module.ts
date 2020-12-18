@@ -12,6 +12,8 @@ import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard
 import { UserAuthGuardService } from './_authentication/user-auth-guard/user-auth-guard.service';
 import { ModalModule } from './_modal';
 import { ContactComponent } from './pages/contact/contact.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { ContactComponent } from './pages/contact/contact.component';
     HttpClientModule,
     FormsModule,
     ModalModule,
+    ChartsModule
   ],
   providers: [
     UserAuthGuard, UserAuthGuardService,
