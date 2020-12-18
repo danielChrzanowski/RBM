@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "jspdf",
+               "chart.js"
+           ],
             "outputPath": "dist/rbm",
             "index": "src/index.html",
             "main": "src/main.ts",

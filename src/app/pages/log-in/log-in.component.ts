@@ -8,7 +8,6 @@ import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uz
 import { ModalService } from 'src/app/_modal';
 import { LoginModel } from '../../models/login-model/login-model';
 
-
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -44,11 +43,12 @@ export class LogInComponent implements OnInit {
   login() {
     let loginForm = new LoginModel();
     loginForm.username = this.loginInput.nativeElement.value;
-    loginForm.password = this.passwordInput.nativeElement.value;
+    loginForm.password = btoa(this.passwordInput.nativeElement.value);
 
     this.uzytkownikService.login(loginForm)
       .subscribe(data => {
         if (data) {
+          loginForm.password = atob(loginForm.password);
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
           //console.log("Token: " + sessionStorage.getItem('token'));
 

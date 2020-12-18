@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RegisterModel } from 'src/app/models/register-model/register-model';
 import { PasswordModel } from '../../models/password-model/password-model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,13 @@ export class UzytkownikServiceService {
   public login(loginForm: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, loginForm);
   }
+
+
+
+  public getEncryptionKey(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getKey`);
+  }
+
 
   public checkLogin(login: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/checkLogin/` + login);
