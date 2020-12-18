@@ -46,7 +46,7 @@
     <h2>Średnia kaloryczność (kcal na 100g)</h2>
     <hr>
 
-    <div style="display: block; margin-top: 30px;">
+    <div class="canvasChart">
         <canvas baseChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
             [colors]="chartColors" [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">
