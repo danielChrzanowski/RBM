@@ -51,18 +51,15 @@ export class UserInfoComponent implements OnInit {
 
   changePassword() {
     //promise await
-    const promise = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
+    const promise = this.uzytkownikService.
+      checkPasswordInDB(this.loggedUser.getId(), this.oldPasswordInput.nativeElement.value).toPromise();
 
     promise.then(
       data => {
-        console.log(data);
-
         let passwordModel = new PasswordModel();
-        passwordModel = data;
+        let checkOldPassword = data;
 
-        console.log("stare: " + passwordModel.password);
-
-        if (passwordModel.password != this.oldPasswordInput.nativeElement.value) {
+        if (!checkOldPassword) {
           this.openModal("wrongDBPasswordErrorModal");
 
         } else {
@@ -70,18 +67,13 @@ export class UserInfoComponent implements OnInit {
             this.openModal("passwordErrorModal");
 
           } else {
-            // let passwordModel = new PasswordModel();
             passwordModel.uzytkownik_id = this.loggedUser.getId();
             passwordModel.password = this.newPasswordInput.nativeElement.value;
 
             this.uzytkownikService.changePassword(passwordModel)
               .subscribe(data => {
-                console.log(data);
-
                 this.openModal("passwordChangedModal");
-
                 setTimeout(() => this.logout(), 1000);
-
               }, error => console.log(error));
 
           }
@@ -96,13 +88,11 @@ export class UserInfoComponent implements OnInit {
   }
 
   checkPasswords() {
-    const getPass = this.uzytkownikService.getPasswordById(this.loggedUser.getId()).toPromise();
+    const getPass = this.uzytkownikService.checkPasswordInDB(this.loggedUser.getId(), this.passwordDeleteInput.nativeElement.value).toPromise();
     getPass.then(data => {
-      console.log(data);
-      let passwordModel = new PasswordModel();
-      passwordModel = data;
-
-      if (passwordModel.password == this.passwordDeleteInput.nativeElement.value) {
+     let passwordCorrect = data;
+     
+      if (passwordCorrect) {
         this.openModal('deleteAccountModal');
       } else {
         this.openModal('wrongDBPasswordErrorModal');

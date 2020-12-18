@@ -75,9 +75,9 @@ export class RestauramtMenuComponent implements OnInit {
 
   public chartType: string = 'bar';
   public chartDatasets: Array<any> = [
-    { data: [121, 184, 218, 91, 48, 55, 116, 78], label: 'Nazwa labelki' }
+    { data: [121, 184, 218, 48, 55, 116, 78], label: 'Kaloryczność' }
   ];
-  public chartLabels: Array<any> = ['Mięso drobiowe', 'Mięso wołowe', 'Mięso wieprzowe', 'Wege', 'Zupa', 'Owoce', 'Warzywa'];
+  public chartLabels: Array<any> = ['Mięso drobiowe', 'Mięso wołowe', 'Mięso wieprzowe', 'Wege', 'Zupy', 'Owoce', 'Warzywa'];
   public chartColors: Array<any> = [
     {
       backgroundColor: [
@@ -96,7 +96,7 @@ export class RestauramtMenuComponent implements OnInit {
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)',
-        ' rgba(101, 186, 105, 1)'
+        'rgba(101, 186, 105, 1)'
       ],
       borderWidth: 2,
     }

@@ -43,14 +43,12 @@ export class LogInComponent implements OnInit {
   login() {
     let loginForm = new LoginModel();
     loginForm.username = this.loginInput.nativeElement.value;
-    loginForm.password = btoa(this.passwordInput.nativeElement.value);
+    loginForm.password = this.passwordInput.nativeElement.value;
 
     this.uzytkownikService.login(loginForm)
       .subscribe(data => {
         if (data) {
-          loginForm.password = atob(loginForm.password);
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
-          //console.log("Token: " + sessionStorage.getItem('token'));
 
           this.setUserSingletonFromDB();
           this.router.navigate(['/home']);
@@ -82,8 +80,6 @@ export class LogInComponent implements OnInit {
           data['nazwisko'],
           data['email'],
           data['czy_pracownik']);
-        //  console.log("Zalogowano: " + this.userSingleton.getLoggedUser());
-
         this.appComponent.refreshUser();
       },
         error => console.log(error));

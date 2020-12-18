@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RegisterModel } from 'src/app/models/register-model/register-model';
@@ -18,21 +18,14 @@ export class UzytkownikServiceService {
     return this.http.post(`${this.baseUrl}/login`, loginForm);
   }
 
-
-
-  public getEncryptionKey(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getKey`);
-  }
-
-
   public checkLogin(login: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/checkLogin/` + login);
   }
 
-  public getPasswordById(id: any): Observable<any> {
+  public checkPasswordInDB(id: any, password: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
-    return this.http.get(`${this.baseUrl}/passwordById/` + id, { headers: headers });
+    let params = new HttpParams().set('password', password);
+    return this.http.get(`${this.baseUrl}/checkPasswordInDB/` + id, { headers: headers, params: params });
   }
 
   public createUser(user: RegisterModel): Observable<any> {

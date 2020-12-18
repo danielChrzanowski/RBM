@@ -71,7 +71,6 @@ export class CreateUserComponent implements OnInit {
     const getUser = this.uzytkownikService.checkLogin(registerForm.login).toPromise();
 
     getUser.then(data => {
-      //console.log(data);
       let tempUser = data;
 
       if (tempUser != null && tempUser.login == registerForm.login) {
@@ -84,10 +83,9 @@ export class CreateUserComponent implements OnInit {
           this.openModal("passwordErrorModal");
 
         } else {
-          registerForm.password=btoa(registerForm.password);
+          registerForm.password=registerForm.password;
           this.uzytkownikService.createUser(registerForm)
             .subscribe(data => {
-             // console.log(data);
             }, error => console.log(error));
 
           this.router.navigate(["/log-in"]);
