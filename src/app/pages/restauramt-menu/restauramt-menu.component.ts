@@ -47,6 +47,7 @@ export class RestauramtMenuComponent implements OnInit {
 
   chartCategories: Array<string> = [];
   chartCaloriesData: Array<number> = [];
+  chartCategoriesCount: Array<number> = [];
   chartCaloriesDataFilled: Array<number> = [];
 
   constructor(
@@ -97,19 +98,30 @@ export class RestauramtMenuComponent implements OnInit {
     let sameItemIndex = new Array;
     let unique = new Array;
     data.forEach(element => {
+      console.log(this.chartCategoriesCount);
       if (!unique.includes(element)) {
         unique.push(element);
         this.chartCaloriesDataFilled.push(calories[i]);
         sameItemIndex.push(i);
+        this.chartCategoriesCount.push(1);
       } else {
         //dodaj kalorie do tej samej kategorii
         var index = data.indexOf(element);
         if (index !== -1) {
+          this.chartCategoriesCount[index]++;
           this.chartCaloriesDataFilled[index] = this.chartCaloriesDataFilled[index] + calories[i];
         }
       }
+
       i++;
     });
+
+    console.log("count array: " + this.chartCategoriesCount);
+    for (let j = 0; j < this.chartCaloriesDataFilled.length; j++) {
+      console.log(this.chartCaloriesDataFilled[j] + " /" + this.chartCategoriesCount[j]);
+      this.chartCaloriesDataFilled[j] = this.chartCaloriesDataFilled[j] / this.chartCategoriesCount[j];
+    }
+
     return unique;
   }
 
