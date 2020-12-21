@@ -98,7 +98,6 @@ export class RestauramtMenuComponent implements OnInit {
     let sameItemIndex = new Array;
     let unique = new Array;
     data.forEach(element => {
-      console.log(this.chartCategoriesCount);
       if (!unique.includes(element)) {
         unique.push(element);
         this.chartCaloriesDataFilled.push(calories[i]);
@@ -116,9 +115,7 @@ export class RestauramtMenuComponent implements OnInit {
       i++;
     });
 
-    console.log("count array: " + this.chartCategoriesCount);
     for (let j = 0; j < this.chartCaloriesDataFilled.length; j++) {
-      console.log(this.chartCaloriesDataFilled[j] + " /" + this.chartCategoriesCount[j]);
       this.chartCaloriesDataFilled[j] = this.chartCaloriesDataFilled[j] / this.chartCategoriesCount[j];
     }
 
