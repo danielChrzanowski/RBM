@@ -86,13 +86,6 @@ export class RestauramtMenuComponent implements OnInit {
         error => console.log(error));
   }
 
-  deleteCategory(category: string) {
-    const index: number = this.chartCategories.indexOf(category);
-    if (index !== -1) {
-      this.chartCategories.splice(index, 1);
-    }
-  }
-
   removeDuplicates(data, calories) {
     let i = 0;
     let sameItemIndex = new Array;
@@ -169,6 +162,7 @@ export class RestauramtMenuComponent implements OnInit {
       yAxes: [{
         ticks: {
           fontColor: "white",
+          min: 50
         }
       }]
     }
