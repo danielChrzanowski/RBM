@@ -5,7 +5,7 @@
     <div class="filter">
         <mat-form-field>
             <mat-label>Filtruj</mat-label>
-            <input type="text" matInput (keyup)="applyFilter($event)" placeholder="Np. Kategoria" #input>
+            <input type="text" matInput (keyup)="applyFilter($event)" placeholder="Np. Nazwa" #input>
         </mat-form-field>
     </div>
 
@@ -22,8 +22,19 @@
                     [style.height]="element.expanded ? 'unset' : '0 !important'">
                     <div class="example-element-diagram">
                         <div class="example-element-symbol">
-                            <b>Składniki:</b><br>
-                            {{element.skladniki}}
+                            <div class="row">
+                                <div class="columnLeft">
+                                    <img [src]="element.zdjecie" width="300" height="200" />
+                                </div>
+                                <div class="columnRight">
+                                    <b>Składniki:</b>
+                                    <hr>
+                                    {{element.skladniki}} <br><br><br>
+                                    <b>Kalorie:</b>
+                                    <hr>
+                                    {{element.kalorie}}kcal na 100g
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -39,11 +50,11 @@
     </table>
 
     <div class="paginator mat-elevation-z8">
-        <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 
     <br>
-    <h2>Średnia kaloryczność (kcal na 100g)</h2>
+    <h2>Średnia kaloryczność dań z kategorii (kcal na 100g)</h2>
     <hr>
 
     <div class="canvasChart">

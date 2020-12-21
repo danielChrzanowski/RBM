@@ -53,8 +53,20 @@ h2 {
     transform: translate(-50%, 0%);
 
     background-color: #3a3939;
-    max-width: 1000px;
+    width: 1000px;
     padding: 20px;
     padding-bottom: 30px;
     border-radius: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.columnLeft {
+}
+
+.columnRight {
+    margin-left: 25px;
+    width: auto;
 }

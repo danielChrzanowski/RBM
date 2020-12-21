@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Order } from 'src/app/models/order-model/order-model';
 import { DishService } from 'src/app/services/dish-service/dish.service';
 
@@ -27,7 +28,7 @@ export class RestauramtMenuComponent implements OnInit {
   tableDef: Array<any> = [
     {
       key: 'danie_id',
-      header: 'ID'
+      header: 'Nr'
     }, {
       key: 'nazwa',
       header: 'Nazwa'
@@ -38,14 +39,19 @@ export class RestauramtMenuComponent implements OnInit {
     },
     {
       key: 'cena',
-      header: 'Cena'
+      header: 'Cena (zł)'
     }
   ];
   columnsToDisplay = ['danie_id', 'nazwa', 'kategoria', 'cena'];
   expandedElement: Order | null;
 
+  chartCategories: Array<string> = [];
+  chartCaloriesData: Array<number> = [];
+  chartCaloriesDataFilled: Array<number> = [];
+
   constructor(
-    private dishService: DishService) {
+    private dishService: DishService,
+    private domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -56,12 +62,55 @@ export class RestauramtMenuComponent implements OnInit {
     this.dishService.findAllDishes()
       .subscribe(
         data => {
-          // console.log(data);
+          data.forEach((element) => {
+            let objectURL = 'data:image/jpeg;base64,' + element.zdjecie;
+            element.zdjecie = this.domSanitizer.bypassSecurityTrustUrl(objectURL);
+          });
+
+          for (let dish of data) {
+            this.chartCategories.push(dish.kategoria);
+            this.chartCaloriesData.push(dish.kalorie);
+          }
+          this.chartCategories = this.removeDuplicates(this.chartCategories, this.chartCaloriesData);
+
+          this.chartDatasets = [
+            { data: this.chartCaloriesDataFilled, label: 'Kaloryczność' }
+          ];
+          this.chartLabels = this.chartCategories;
+
           this.dataSource = new MatTableDataSource<Order>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
         error => console.log(error));
+  }
+
+  deleteCategory(category: string) {
+    const index: number = this.chartCategories.indexOf(category);
+    if (index !== -1) {
+      this.chartCategories.splice(index, 1);
+    }
+  }
+
+  removeDuplicates(data, calories) {
+    let i = 0;
+    let sameItemIndex = new Array;
+    let unique = new Array;
+    data.forEach(element => {
+      if (!unique.includes(element)) {
+        unique.push(element);
+        this.chartCaloriesDataFilled.push(calories[i]);
+        sameItemIndex.push(i);
+      } else {
+        //dodaj kalorie do tej samej kategorii
+        var index = data.indexOf(element);
+        if (index !== -1) {
+          this.chartCaloriesDataFilled[index] = this.chartCaloriesDataFilled[index] + calories[i];
+        }
+      }
+      i++;
+    });
+    return unique;
   }
 
   applyFilter(event: Event) {
@@ -74,10 +123,8 @@ export class RestauramtMenuComponent implements OnInit {
   }
 
   public chartType: string = 'bar';
-  public chartDatasets: Array<any> = [
-    { data: [121, 184, 218, 48, 55, 116, 78], label: 'Kaloryczność' }
-  ];
-  public chartLabels: Array<any> = ['Mięso drobiowe', 'Mięso wołowe', 'Mięso wieprzowe', 'Wege', 'Zupy', 'Owoce', 'Warzywa'];
+  public chartDatasets: Array<any> = [];
+  public chartLabels: Array<any> = [];
   public chartColors: Array<any> = [
     {
       backgroundColor: [

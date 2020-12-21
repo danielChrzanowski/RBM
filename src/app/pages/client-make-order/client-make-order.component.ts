@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client-make-order.component.scss']
 })
 export class ClientMakeOrderComponent implements OnInit {
+  tab: string[] = ["q", "2", "3"];
+
 
   constructor() { }
 
