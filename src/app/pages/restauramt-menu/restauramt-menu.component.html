@@ -114,8 +114,8 @@
             <div *ngFor="let element of currentOrder">
                 <mat-list-item role="listitem">
                     - {{element.nazwa}}
-                    <button mat-icon-button (click)="deleteDishFromOrder(element)">
-                        <mat-icon>delete</mat-icon>
+                    <button style="margin-left: auto;" mat-icon-button (click)="deleteDishFromOrder(element)">
+                        <span class="material-icons"> delete </span>
                     </button>
                 </mat-list-item>
             </div>

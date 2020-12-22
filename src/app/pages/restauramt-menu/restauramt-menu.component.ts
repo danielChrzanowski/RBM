@@ -28,7 +28,7 @@ export class RestauramtMenuComponent implements OnInit {
   dataSource: MatTableDataSource<Order>;
   tab: string[] = ["q", "2", "3"];
   loggedUser: UserSingleton;
-  currentOrder: Array<CurrentOrderDish>;
+  currentOrder: Array<CurrentOrderDish> = [];
   nextId: number = 0;
 
   tableDef: Array<any> = [
@@ -66,17 +66,17 @@ export class RestauramtMenuComponent implements OnInit {
     this.loggedUser = null;
     this.refreshUser();
     this.findAllDishes();
+    this.currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
 
     if (this.currentOrder) {
-      this.currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
       this.nextId = this.currentOrder.length;
-    } else {
-      this.currentOrder = [];
     }
   }
 
   addDishToOrder(element) {
     let currentOrderDish = new CurrentOrderDish(this.nextId, element.danie_id, element.nazwa);
+    if (!this.currentOrder)
+      this.currentOrder = new Array<CurrentOrderDish>();
     this.currentOrder.push(currentOrderDish);
     localStorage.setItem("currentOrder", JSON.stringify(this.currentOrder));
     this.nextId++;
