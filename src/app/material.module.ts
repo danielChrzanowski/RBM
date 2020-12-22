@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 //import { MatSidenavModule } from '@angular/material/sidenav';
 //import { MatToolbarModule } from '@angular/material/toolbar';
-//import { MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 //import { MatStepperModule } from '@angular/material/stepper';
@@ -48,7 +48,7 @@ const materialModules = [
   MatMenuModule,
   //MatSidenavModule,
   //MatToolbarModule,
-  //MatListModule,
+  MatListModule,
   MatGridListModule,
   MatCardModule,
   //MatStepperModule,

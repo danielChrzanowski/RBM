@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Order } from 'src/app/models/order-model/order-model';
+import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { DishService } from 'src/app/services/dish-service/dish.service';
 
 @Component({
@@ -24,6 +25,9 @@ export class RestauramtMenuComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<Order>;
+  tab: string[] = ["q", "2", "3"];
+  loggedUser:UserSingleton;
+  order;
 
   tableDef: Array<any> = [
     {
@@ -39,7 +43,7 @@ export class RestauramtMenuComponent implements OnInit {
     },
     {
       key: 'cena',
-      header: 'Cena (zł)'
+      header: 'Cena'
     }
   ];
   columnsToDisplay = ['danie_id', 'nazwa', 'kategoria', 'cena'];
@@ -52,11 +56,20 @@ export class RestauramtMenuComponent implements OnInit {
 
   constructor(
     private dishService: DishService,
-    private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer,
+    private userSingleton: UserSingleton) {
   }
 
   ngOnInit() {
+    this.loggedUser = null;
+    this.refreshUser();
     this.findAllDishes();
+  }
+
+  refreshUser() {
+    if (sessionStorage.length > 0) {
+      this.loggedUser = this.userSingleton.getLoggedUser();
+    }
   }
 
   findAllDishes() {

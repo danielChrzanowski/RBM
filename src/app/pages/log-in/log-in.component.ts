@@ -51,7 +51,7 @@ export class LogInComponent implements OnInit {
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
 
           this.setUserSingletonFromDB();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/menu']);
         } else {
           //alert("Błąd autentykacji.");
           this.openModal('loginErrorModal');
