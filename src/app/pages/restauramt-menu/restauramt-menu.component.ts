@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CurrentOrderDish } from 'src/app/models/currentOrderDish-model/currentOrderDish-model';
 import { Order } from 'src/app/models/order-model/order-model';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { DishService } from 'src/app/services/dish-service/dish.service';
@@ -26,8 +27,9 @@ export class RestauramtMenuComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<Order>;
   tab: string[] = ["q", "2", "3"];
-  loggedUser:UserSingleton;
-  order;
+  loggedUser: UserSingleton;
+  currentOrder: Array<CurrentOrderDish>;
+  nextId: number = 0;
 
   tableDef: Array<any> = [
     {
@@ -64,6 +66,28 @@ export class RestauramtMenuComponent implements OnInit {
     this.loggedUser = null;
     this.refreshUser();
     this.findAllDishes();
+
+    if (this.currentOrder) {
+      this.currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
+      this.nextId = this.currentOrder.length;
+    } else {
+      this.currentOrder = [];
+    }
+  }
+
+  addDishToOrder(element) {
+    let currentOrderDish = new CurrentOrderDish(this.nextId, element.danie_id, element.nazwa);
+    this.currentOrder.push(currentOrderDish);
+    localStorage.setItem("currentOrder", JSON.stringify(this.currentOrder));
+    this.nextId++;
+  }
+
+  deleteDishFromOrder(dish) {
+    const index = this.currentOrder.indexOf(dish, 0);
+    if (index > -1) {
+      this.currentOrder.splice(index, 1);
+      localStorage.setItem("currentOrder", JSON.stringify(this.currentOrder));
+    }
   }
 
   refreshUser() {

@@ -61,7 +61,7 @@
                             <div class="example-element-diagram">
                                 <div class="example-element-symbol">
                                     <div class="row">
-                                        <div class="columnLeft">
+                                        <div class="menuColumnLeft">
                                             <img [src]="element.zdjecie" width="300" height="200" />
                                         </div>
                                         <div class="columnRight">
@@ -71,6 +71,9 @@
                                             <b>Kalorie:</b>
                                             <hr>
                                             {{element.kalorie}}kcal na 100g
+                                            <br><br>
+                                            <button mat-stroked-button color="accent"
+                                                (click)="addDishToOrder(element)">Dodaj do zamówienia</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,9 +111,14 @@
         <h2>Zamówienie</h2>
         <hr>
         <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+            <div *ngFor="let element of currentOrder">
+                <mat-list-item role="listitem">
+                    - {{element.nazwa}}
+                    <button mat-icon-button (click)="deleteDishFromOrder(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+            </div>
         </mat-list>
 
     </div>

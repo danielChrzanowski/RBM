@@ -28,17 +28,20 @@ img {
     border-radius: 10%;
 }
 
-.columnLeft {
-    flex: 80%;
+.menuColumnLeft {
 }
 
-.mat-list .mat-list-item {
-    height: 25px;
+.columnLeft {
+    flex: 80%;
 }
 
 .columnRight {
     margin-left: 25px;
     width: auto;
+}
+
+.mat-list .mat-list-item {
+    height: 30px;
 }
 
 .orderList {
