@@ -2,12 +2,10 @@
 @import "~@angular/material/theming";
 @include mat-core();
 
-$myTheme-primary: mat-palette($mat-purple, 400);
-$myTheme-accent: mat-palette($mat-purple);
+$myTheme-primary: mat-palette($mat-orange, 500);
+$myTheme-accent: mat-palette($mat-orange, 500);
 $myTheme-warn: mat-palette($mat-red);
-
 $myTheme: mat-dark-theme($myTheme-primary, $myTheme-accent, $myTheme-warn);
-
 @include angular-material-theme($myTheme);
 
 html,
