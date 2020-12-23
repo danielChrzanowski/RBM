@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   logout() {
     sessionStorage.removeItem('token');
     this.uzytkownik = null;
-    this.home();
+    this.logIn();
   }
 
   refreshUser() {

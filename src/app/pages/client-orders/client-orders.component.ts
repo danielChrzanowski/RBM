@@ -16,7 +16,7 @@ import { OrderService } from 'src/app/services/order-service/order.service';
 })
 export class ClientOrdersComponent implements OnInit {
   clientOrders;
-  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'dania', 'stan'];
+  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'dania', 'stan', 'adres', 'telefon'];
  
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -58,7 +58,7 @@ export class ClientOrdersComponent implements OnInit {
       //let pdf = new jsPDF('l', 'cm', 'a4');
 
       //Generates PDF in portrait mode
-      let pdf = new jsPDF('p', 'cm', 'a4');
+      let pdf = new jsPDF('l', 'cm', 'a4');
 
       //var width = pdf.internal.pageSize.getWidth();
       //var height = pdf.internal.pageSize.getHeight();

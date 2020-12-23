@@ -5,14 +5,18 @@ export class Order {
     data: string;
     suma_cen: number;
     stan: string;
+    adres: string;
+    telefon: number;
     uzytkownik_id: number;
     dania: Array<Dish>;
 
-    constructor(zamowienie_id, data, suma_cen, stan, uzytkownik_id, dania) {
+    constructor(zamowienie_id, data, suma_cen, stan, adres, telefon, uzytkownik_id, dania) {
         this.zamowienie_id = zamowienie_id;
         this.data = data;
         this.suma_cen = suma_cen;
         this.stan = stan;
+        this.adres = adres;
+        this.telefon = telefon;
         this.uzytkownik_id = uzytkownik_id;
         this.dania = dania;
     }

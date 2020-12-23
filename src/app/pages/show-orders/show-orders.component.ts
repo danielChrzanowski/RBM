@@ -33,8 +33,8 @@ export class ShowOrdersComponent implements OnInit {
 
   states: State[] = [
     { value: 'Nowe', viewValue: 'Nowe' },
-    { value: 'W trakcie', viewValue: 'W trakcie' },
-    { value: 'Do wydania', viewValue: 'Do wydania' },
+    { value: 'Przygotowywane', viewValue: 'Przygotowywane' },
+    { value: 'W drodze', viewValue: 'W drodze' },
     { value: 'Zakończone', viewValue: 'Zakończone' }
   ];
 
@@ -66,7 +66,7 @@ export class ShowOrdersComponent implements OnInit {
     this.orderService.findAllOrders()
       .subscribe(
         data => {
-         // console.log(data);
+          // console.log(data);
           this.dataSource = new MatTableDataSource<Order>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -81,15 +81,17 @@ export class ShowOrdersComponent implements OnInit {
         order.data,
         order.suma_cen,
         this.selectedState,
+        order.adres,
+        order.telefon,
         order.uzytkownik_id,
         order.dania
       );
 
-     // console.log(this.selectedState + " ID: " + order.zamowienie_id);
+      // console.log(this.selectedState + " ID: " + order.zamowienie_id);
 
       this.orderService.changeOrderState(newOrder)
         .subscribe(data => {
-        //  console.log(data);
+          //  console.log(data);
           this.selectedState = null;
           this.findAllOrders();
         }, error => console.log(error));

@@ -28,12 +28,13 @@
                                 <div class="columnLeft">
                                     <b>Zamówienie:</b><br>
                                     <hr>
-                                    Klient: {{element.uzytkownik.imie}}
-                                    {{element.uzytkownik.nazwisko}}
-                                    <div class="marginBot"></div>
-                                    <div class="price">
-                                        Cena: {{element.suma_cen}}zł
+                                    <div class="marginBot">
+                                        Klient: {{element.uzytkownik.imie}}
+                                        {{element.uzytkownik.nazwisko}}
                                     </div>
+                                    <div class="marginBot"> Adres: {{element.adres}}</div>
+                                    <div class="marginBot"> Telefon: {{element.telefon}}</div>
+                                    <div class="marginBot"> <b>Cena: {{element.suma_cen}}zł</b></div>
 
                                     <div class="changeState">
                                         <mat-form-field appearance="fill">
@@ -57,11 +58,8 @@
                                         <div style="font-style: italic; display: inline;">
                                             {{danie.nazwa}}
                                         </div>
-                                        <div class="marginBot"></div>
-                                        Składniki: {{danie.skladniki}}
-                                        <div class="marginBot"></div>
-                                        <div class="price">
-                                            Cena: {{danie.cena}}zł<br><br>
+                                        <div class="marginBot"> Składniki: {{danie.skladniki}}</div>
+                                        <div class="marginBot"> <b>Cena: {{danie.cena}}zł</b><br><br>
                                         </div>
                                     </div>
                                 </div>
