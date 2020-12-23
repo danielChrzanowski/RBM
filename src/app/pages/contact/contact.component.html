@@ -2,5 +2,32 @@
     <h1>Kontakt</h1>
     <hr>
 
-    jakies dane kontaktowe, może mapka google z adresem
+    <div class="row">
+        <div class="columnLeft">
+            <agm-map [zoom]="16" [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+        </div>
+        <div class="columnRight">
+            <b>Siedziba:</b>
+            <br>
+            Sosnowiec, ul. Będzińska 39<br>
+            41-205<br><br>
+
+            <hr>
+            <br>
+            <b>Telefon:</b>
+            <br>
+            +48 985 345 345<br><br>
+
+            <hr>
+            <br>
+            <b>Godziny pracy: </b><br>
+            Poniedziałek - Środa 10 - 20<br>
+            Czwartek - Piątek 8 - 21<br>
+            Sobota 8 - 23<br>
+            Niedziela nieczynne
+        </div>
+    </div>
+
 </div>

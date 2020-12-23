@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { CurrentOrderDish } from 'src/app/models/currentOrderDish-model/currentOrderDish-model';
 import { Order } from 'src/app/models/order-model/order-model';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
@@ -59,7 +60,8 @@ export class RestauramtMenuComponent implements OnInit {
   constructor(
     private dishService: DishService,
     private domSanitizer: DomSanitizer,
-    private userSingleton: UserSingleton) {
+    private userSingleton: UserSingleton,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -87,6 +89,14 @@ export class RestauramtMenuComponent implements OnInit {
     if (index > -1) {
       this.currentOrder.splice(index, 1);
       localStorage.setItem("currentOrder", JSON.stringify(this.currentOrder));
+    }
+  }
+
+  submitOrder() {
+    if (this.loggedUser != null) {
+      this.router.navigate(["/makeOrder"]);
+    } else {
+      this.router.navigate(["/log-in"]);
     }
   }
 

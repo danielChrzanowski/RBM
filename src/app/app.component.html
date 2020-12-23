@@ -67,18 +67,9 @@
     </div>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik==false" id='loginBarInline'>
-      <button mat-button [matMenuTriggerFor]="menu2">
-        <mat-icon>library_books</mat-icon> Zamówienia
+      <button mat-button (click)="clientOrders()">
+        <mat-icon> menu_book </mat-icon> Moje zamówienia
       </button>
-      <mat-menu #menu2="matMenu">
-        <button mat-menu-item (click)="clientOrders()">
-          <mat-icon> menu_book </mat-icon>Moje zamówienia
-        </button>
-        <button mat-menu-item (click)="clientMakeOrder()">
-          <mat-icon>library_add</mat-icon>Złóż zamówienie
-        </button>
-      </mat-menu>
-
     </div>
   </div>
 

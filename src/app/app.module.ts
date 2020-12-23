@@ -12,6 +12,7 @@ import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard
 import { UserAuthGuardService } from './_authentication/user-auth-guard/user-auth-guard.service';
 import { ModalModule } from './_modal';
 import { ChartsModule } from 'ng2-charts';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,16 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     FormsModule,
     ModalModule,
-    ChartsModule
+    ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDM_vco7FXvj4GI0SXDYxVQY6jZLqkgMwM'
+    })
   ],
   providers: [
     UserAuthGuard, UserAuthGuardService,
     ClientAuthGuard, ClientAuthGuardService,
     EmployeeAuthGuard, EmployeeAuthGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

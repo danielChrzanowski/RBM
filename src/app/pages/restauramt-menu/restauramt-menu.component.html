@@ -3,7 +3,7 @@
         <div *ngIf="loggedUser!=null;">
             <h1>Rekomendacje</h1>
             <hr>
-            <mat-grid-list cols="3" rowHeight="1:2">
+            <mat-grid-list cols="3" rowHeight="1:1.7">
                 <div *ngFor="let element of tab">
                     <mat-grid-tile>
                         <mat-card class="example-card">
@@ -119,6 +119,7 @@
                     </button>
                 </mat-list-item>
             </div>
+            <button style="margin-top: 12px; float: right; width: 100%;" mat-stroked-button color="accent" (click)="submitOrder()">Zamów</button>
         </mat-list>
 
     </div>
