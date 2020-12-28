@@ -19,8 +19,8 @@
           "options": {
             "allowedCommonJsDependencies": [
               "jspdf",
-               "chart.js"
-           ],
+              "chart.js"
+            ],
             "outputPath": "dist/rbm",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,23 +31,22 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "extractCss": true,
             "styles": [
               "src/styles.scss",
               {
                 "input": "src/assets/styles/purpleTheme.scss",
                 "bundleName": "purpleTheme",
-                "inject": false
+                "inject": true
               },
               {
                 "input": "src/assets/styles/blueTheme.scss",
                 "bundleName": "blueTheme",
-                "inject": false
+                "inject": true
               },
               {
                 "input": "src/assets/styles/orangeTheme.scss",
                 "bundleName": "orangeTheme",
-                "inject": false
+                "inject": true
               }
             ],
             "scripts": []
@@ -62,8 +61,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
