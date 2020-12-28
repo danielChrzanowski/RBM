@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CurrentOrderDish } from 'src/app/models/currentOrderDish-model/currentOrderDish-model';
+import { Menu } from 'src/app/models/menu-model/menu-model';
+
 import { Order } from 'src/app/models/order-model/order-model';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { DishService } from 'src/app/services/dish-service/dish.service';
@@ -27,7 +29,7 @@ export class RestauramtMenuComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<Order>;
-  tab: string[] = ["q", "2", "3"];
+  tab: string[] = ["1", "2", "3", "4"];
   loggedUser: UserSingleton;
   currentOrder: Array<CurrentOrderDish> = [];
   nextId: number = 0;
@@ -76,7 +78,7 @@ export class RestauramtMenuComponent implements OnInit {
   }
 
   addDishToOrder(element) {
-    let currentOrderDish = new CurrentOrderDish(this.nextId, element.danie_id, element.nazwa);
+    let currentOrderDish = new CurrentOrderDish(this.nextId, element.danie_id, element.nazwa, element.cena);
     if (!this.currentOrder)
       this.currentOrder = new Array<CurrentOrderDish>();
     this.currentOrder.push(currentOrderDish);
@@ -93,7 +95,7 @@ export class RestauramtMenuComponent implements OnInit {
   }
 
   submitOrder() {
-    if (this.loggedUser != null) {
+    if (this.loggedUser) {
       this.router.navigate(["/makeOrder"]);
     } else {
       this.router.navigate(["/log-in"]);
@@ -127,6 +129,7 @@ export class RestauramtMenuComponent implements OnInit {
           this.chartLabels = this.chartCategories;
 
           this.dataSource = new MatTableDataSource<Order>(data);
+          localStorage.setItem("menu", JSON.stringify(data));
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },

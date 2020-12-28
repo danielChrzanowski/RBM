@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'createUser', component: CreateUserComponent },
   { path: 'menu', component: RestauramtMenuComponent },
   { path: 'clientOrders', canActivate: [ClientAuthGuard], component: ClientOrdersComponent },
-  { path: 'makeOrder', canActivate: [ClientAuthGuard], component: ClientMakeOrderComponent },
+  { path: 'makeOrder', canActivate: [UserAuthGuard], component: ClientMakeOrderComponent },
   { path: 'userInfo', canActivate: [UserAuthGuard], component: UserInfoComponent },
 ];
 

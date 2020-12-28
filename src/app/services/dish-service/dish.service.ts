@@ -16,4 +16,10 @@ export class DishService {
     return this.http.get(`${this.baseUrl}/findAllDishes`);
   }
 
+  public findDish(id): Observable<any> {
+    //const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
+    //console.log(headers);
+    return this.http.get(`${this.baseUrl}/findDish` + id);
+  }
+
 }
