@@ -1,5 +1,62 @@
 <div class="content">
     <h1>Zamówienie</h1>
-    <button style="margin-top: 12px; float: right;" mat-stroked-button color="accent"
-        (click)="submitOrder()">Potwierdź zamówienie</button>
+    <hr>
+    <div class="row">
+        <div class="columnLeft">
+            <h2>Dania:</h2>
+            <hr>
+            <div class="dishList" *ngFor="let element of currentOrder">
+                <mat-list-item role="listitem">
+                    - {{element.nazwa}} ({{element.cena}}zł)
+                </mat-list-item>
+            </div>
+
+            <br>
+            <b>Do zapłaty: {{totalPrice}}zł</b>
+        </div>
+
+        <div class="columnRight">
+            <h2>Adres dostawy:</h2>
+            <hr>
+
+            <div class="padding">
+                <mat-form-field class="full-width">
+                    <mat-label>Dokładny adres *</mat-label>
+                    <input type="text" matInput [formControl]="adressFormControl" #adressInput>
+                    <mat-error *ngIf="adressFormControl.hasError('required')">
+                        Podaj adres dostawy
+                    </mat-error>
+                </mat-form-field>
+
+                <br><br>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Numer telefonu *</mat-label>
+                    <input type="tel" matInput [formControl]="phoneFormControl"
+                        onkeypress='return event.charCode >= 48 && event.charCode <= 57' #phoneInput>
+                    <mat-error *ngIf="phoneFormControl.hasError('required')">
+                        Podaj numer kontaktowy
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="floatRight">
+                <b>Klient: {{loggedUser.imie}} {{loggedUser.nazwisko}}</b>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <button style="margin-top: 12px; float: left;" mat-stroked-button color="accent"
+        (click)="backToMenu()">Wróć</button>
+    <button [disabled]="!adressFormControl.valid || !phoneFormControl.valid" style="margin-top: 12px; float: right;"
+        mat-stroked-button color="accent" (click)="submitOrder()">Potwierdź
+        zamówienie</button>
 </div>
+
+<jw-modal id="orderSubmittedModal">
+    <h2>Potwierdzenie</h2>
+    <p>Zamówienie zostało złożone</p>
+    <button mat-stroked-button (click)="navigateMenu(); closeModal('orderSubmittedModal');">Zamknij</button>
+  </jw-modal>

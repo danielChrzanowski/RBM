@@ -1,13 +1,33 @@
-.content{
+.content {
   //  width: 1200px;
-  min-height: 400px;
+  padding-bottom: 80px;
 }
 
-.example-card {
-    width: 400px;
+.columnLeft {
+  width: 45%;
 }
 
-.example-header-image {
-   // background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-    background-size: cover;
+.columnRight {
+  margin-left: auto;
+  width: 45%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dishList {
+  padding: 3px;
+}
+
+.columnDane {
+  width: 200px;
+}
+
+.padding {
+  padding: 3px;
+}
+
+.floatRight {
+  float: right;
 }

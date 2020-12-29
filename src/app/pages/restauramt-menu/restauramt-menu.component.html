@@ -120,8 +120,8 @@
                         </button>
                     </mat-list-item>
                 </div>
-                <button style="margin-top: 12px; float: right; width: 100%;" mat-stroked-button color="accent"
-                    (click)="submitOrder()">Zamów</button>
+                <button [disabled]="!isCurrentOrder()" style="margin-top: 12px; float: right; width: 100%;"
+                    mat-stroked-button color="accent" (click)="submitOrder()">Zamów</button>
             </mat-list>
 
         </div>

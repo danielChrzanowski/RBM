@@ -102,6 +102,18 @@ export class RestauramtMenuComponent implements OnInit {
     }
   }
 
+  isCurrentOrder() {
+    if (this.currentOrder) {
+      if (this.currentOrder.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
   refreshUser() {
     if (sessionStorage.length > 0) {
       this.loggedUser = this.userSingleton.getLoggedUser();
