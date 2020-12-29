@@ -16,7 +16,6 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "disableHostCheck": true,
           "options": {
             "allowedCommonJsDependencies": [
               "jspdf",
@@ -84,6 +83,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "disableHostCheck": true,
             "browserTarget": "rbm:build",
             "ssl": true,
             "sslKey": "src/assets/ssl/key.pem",
