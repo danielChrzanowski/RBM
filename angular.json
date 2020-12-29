@@ -16,6 +16,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "disableHostCheck": true,
           "options": {
             "allowedCommonJsDependencies": [
               "jspdf",

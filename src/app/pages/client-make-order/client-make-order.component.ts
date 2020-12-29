@@ -24,10 +24,7 @@ export class ClientMakeOrderComponent implements OnInit {
     this.refreshUser();
 
     let LSOrder = JSON.parse(localStorage.getItem("currentOrder"));
-    console.log(LSOrder);
-
     this.menu = JSON.parse(localStorage.getItem("menu"));
-    console.log(this.menu);
 
     let dishes = [];
     let totalPrice = 0;
