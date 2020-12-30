@@ -65,7 +65,7 @@ export class ClientMakeOrderComponent implements OnInit {
   }
 
   refreshUser() {
-    if (sessionStorage.length > 0) {
+    if (sessionStorage.getItem("token") !== null) {
       this.loggedUser = this.userSingleton.getLoggedUser();
     }
   }

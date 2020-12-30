@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uzytkownik = this.userSingleton.getLoggedUser();
-    sessionStorage.removeItem('token');
     this.uzytkownik = null;
+    sessionStorage.removeItem('token');
+    // this.uzytkownik = null;
     this.refreshUser();
   }
 
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   refreshUser() {
-    if (sessionStorage.length > 0) {
+    if (sessionStorage.getItem("token") !== null) {
       this.uzytkownik = this.userSingleton.getLoggedUser();
     }
   }

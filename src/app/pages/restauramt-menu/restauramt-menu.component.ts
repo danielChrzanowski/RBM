@@ -115,7 +115,7 @@ export class RestauramtMenuComponent implements OnInit {
   }
 
   refreshUser() {
-    if (sessionStorage.length > 0) {
+    if (sessionStorage.getItem("token") !== null) {
       this.loggedUser = this.userSingleton.getLoggedUser();
     }
   }
@@ -141,7 +141,7 @@ export class RestauramtMenuComponent implements OnInit {
           this.chartLabels = this.chartCategories;
 
           this.dataSource = new MatTableDataSource<Order>(data);
-          localStorage.setItem("menu", JSON.stringify(data));
+          sessionStorage.setItem("menu", JSON.stringify(data));
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
