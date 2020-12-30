@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -74,7 +73,7 @@ export class CreateUserComponent implements OnInit {
 
       if (tempUser != null && tempUser.login == registerForm.login) {
         registerForm.login = null;
-        this.openModal('loginErrorModal');
+        this.openModal("loginErrorModal");
       } else {
 
         if (registerForm.password != password2) {
@@ -82,12 +81,11 @@ export class CreateUserComponent implements OnInit {
           this.openModal("passwordErrorModal");
 
         } else {
-          registerForm.password=registerForm.password;
+          registerForm.password = registerForm.password;
           this.uzytkownikService.createUser(registerForm)
             .subscribe(data => {
+              this.openModal("successModal");
             }, error => console.log(error));
-
-          this.router.navigate(["/log-in"]);
         }
       }
     });
@@ -102,5 +100,8 @@ export class CreateUserComponent implements OnInit {
     this.modalService.close(id);
   }
 
+  navigateLogIn() {
+    this.router.navigate(["/log-in"]);
+  }
 
 }

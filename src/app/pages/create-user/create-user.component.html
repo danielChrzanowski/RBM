@@ -73,16 +73,22 @@
          || !emailFormControl.valid" (keyup.enter)="register()" (click)="register()">Zarejestruj</button>
     </form>
 
-    <jw-modal id="passwordErrorModal">
-        <h2>Hasła nie są identyczne</h2>
-        <p>Wprowadź ponownie hasła</p>
-        <button mat-stroked-button (click)="closeModal('passwordErrorModal');">Zamknij</button>
-    </jw-modal>
-
-    <jw-modal id="loginErrorModal">
-        <h2>Login zajęty</h2>
-        <p>Wybierz inny login</p>
-        <button mat-stroked-button (click)="closeModal('loginErrorModal');">Zamknij</button>
-    </jw-modal>
-
 </div>
+
+<jw-modal id="passwordErrorModal">
+    <h2>Hasła nie są identyczne</h2>
+    <p>Wprowadź ponownie hasła</p>
+    <button mat-stroked-button (click)="closeModal('passwordErrorModal');">Zamknij</button>
+</jw-modal>
+
+<jw-modal id="loginErrorModal">
+    <h2>Login zajęty</h2>
+    <p>Wybierz inny login</p>
+    <button mat-stroked-button (click)="closeModal('loginErrorModal');">Zamknij</button>
+</jw-modal>
+
+<jw-modal id="successModal">
+    <h2>Pomyślnie utworzono konto</h2>
+    <p>Możesz się zalogować</p>
+    <button mat-stroked-button (click)="closeModal('successModal'); navigateLogIn();">Zamknij</button>
+</jw-modal>
