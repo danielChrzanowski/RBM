@@ -51,7 +51,6 @@ export class LogInComponent implements OnInit {
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
 
           this.setUserSingletonFromDB();
-          this.router.navigate(['/menu']);
         } else {
           //alert("Błąd autentykacji.");
           this.openModal('loginErrorModal');
@@ -75,12 +74,14 @@ export class LogInComponent implements OnInit {
 
     this.http.get(`${this.baseUrl}/user`, options)
       .subscribe(data => {
-        this.userSingleton.setLoggedUser(data['uzytkownik_id'],
+        this.userSingleton.setLoggedUser(
+          data['uzytkownik_id'],
           data['imie'],
           data['nazwisko'],
           data['email'],
           data['czy_pracownik']);
         this.appComponent.refreshUser();
+        this.router.navigate(['/menu']);
       },
         error => console.log(error));
   }

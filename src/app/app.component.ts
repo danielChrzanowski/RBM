@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.uzytkownik = null;
     sessionStorage.removeItem('token');
-    // this.uzytkownik = null;
     this.refreshUser();
   }
 

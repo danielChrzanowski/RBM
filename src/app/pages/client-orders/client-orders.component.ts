@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
 import { Order } from 'src/app/models/order-model/order-model';
@@ -24,8 +23,7 @@ export class ClientOrdersComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private router: Router,
-    private loggedUserService: UserSingleton) { }
+    private userSingleton: UserSingleton) { }
 
   ngOnInit(): void {
     this.getClientOrders();
@@ -37,7 +35,7 @@ export class ClientOrdersComponent implements OnInit {
   }
 
   getClientOrders() {
-    this.orderService.getClientOrders(this.loggedUserService.getId())
+    this.orderService.getClientOrders(this.userSingleton.getId())
       .subscribe(
         data => {
           //console.log(data);

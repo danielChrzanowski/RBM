@@ -6,8 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CurrentOrderDish } from 'src/app/models/currentOrderDish-model/currentOrderDish-model';
-import { Menu } from 'src/app/models/menu-model/menu-model';
-
+import { Dish } from 'src/app/models/dish-model/dish-model';
 import { Order } from 'src/app/models/order-model/order-model';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { DishService } from 'src/app/services/dish-service/dish.service';
@@ -29,10 +28,11 @@ export class RestauramtMenuComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<Order>;
-  tab: string[] = ["1", "2", "3", "4"];
   loggedUser: UserSingleton;
   currentOrder: Array<CurrentOrderDish> = [];
   nextId: number = 0;
+  recommendations: Array<Dish> = [];
+  tilesColumnNumber;
 
   tableDef: Array<any> = [
     {
@@ -67,7 +67,6 @@ export class RestauramtMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loggedUser = null;
     this.refreshUser();
     this.findAllDishes();
     this.currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
@@ -75,6 +74,8 @@ export class RestauramtMenuComponent implements OnInit {
     if (this.currentOrder) {
       this.nextId = this.currentOrder.length;
     }
+
+    this.getRecommendations();
   }
 
   addDishToOrder(element) {
@@ -111,6 +112,20 @@ export class RestauramtMenuComponent implements OnInit {
       }
     } else {
       return false;
+    }
+  }
+
+  getRecommendations() {
+    if (this.loggedUser) {
+      this.dishService.recommendDishes(this.loggedUser.getId())
+        .subscribe(data => {
+          data.forEach((element) => {
+            let objectURL = 'data:image/jpeg;base64,' + element.zdjecie;
+            element.zdjecie = this.domSanitizer.bypassSecurityTrustUrl(objectURL);
+          });
+          this.recommendations = data;
+          this.tilesColumnNumber = this.recommendations.length;
+        }, error => console.log(error));
     }
   }
 

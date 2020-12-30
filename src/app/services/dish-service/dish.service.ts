@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,11 +15,11 @@ export class DishService {
     //console.log(headers);
     return this.http.get(`${this.baseUrl}/findAllDishes`);
   }
-
-  public findDish(id): Observable<any> {
-    //const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
+  
+  public recommendDishes(id): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
     //console.log(headers);
-    return this.http.get(`${this.baseUrl}/findDish` + id);
+    return this.http.get(`${this.baseUrl}/recommendDishes/` + id, { headers: headers });
   }
 
 }

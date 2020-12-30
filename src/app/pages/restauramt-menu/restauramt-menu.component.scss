@@ -62,10 +62,10 @@ img {
 
 .example-card {
     width: 290px;
+    min-height: 410px;
 }
 
 .example-header-image {
-    // background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
     background-size: cover;
 }
 
@@ -118,4 +118,18 @@ tr.example-element-row:not(.example-expanded-row):active {
     // font-weight: bold;
     font-size: 16px;
     line-height: normal;
+}
+
+.alignBot {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.dishIngredients{
+    padding-bottom: 25px;
+}
+.center{
+    width: 100%;
+    margin: auto;
 }

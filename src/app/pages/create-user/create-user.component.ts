@@ -51,7 +51,6 @@ export class CreateUserComponent implements OnInit {
   ]);
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private modalService: ModalService,
     private uzytkownikService: UzytkownikServiceService) { }

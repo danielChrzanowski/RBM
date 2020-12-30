@@ -40,13 +40,13 @@ export class UserInfoComponent implements OnInit {
   ]);
 
   constructor(
-    private loggedUserService: UserSingleton,
+    private userSingleton: UserSingleton,
     private modalService: ModalService,
     private uzytkownikService: UzytkownikServiceService,
     private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    this.loggedUser = this.loggedUserService.getLoggedUser();
+    this.loggedUser = this.userSingleton.getLoggedUser();
   }
 
   changePassword() {
