@@ -14,39 +14,33 @@ import { OrderService } from 'src/app/services/order-service/order.service';
   styleUrls: ['./client-orders.component.scss']
 })
 export class ClientOrdersComponent implements OnInit {
-  clientOrders;
-  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'dania', 'stan', 'adres', 'telefon'];
- 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('pdfDiv') pdfDiv: ElementRef;
 
+  clientOrders;
+  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'dania', 'stan', 'adres', 'telefon'];
+
   constructor(
     private orderService: OrderService,
-    private userSingleton: UserSingleton) { }
+    private userSingleton: UserSingleton) {
+  }
 
   ngOnInit(): void {
     this.getClientOrders();
-
-    //interval
-    // this.interval = setInterval(() => {
-    //  this.getClientOrders();
-    // }, 400);
   }
 
   getClientOrders() {
     this.orderService.getClientOrders(this.userSingleton.getId())
       .subscribe(
         data => {
-          //console.log(data);
           this.clientOrders = new MatTableDataSource<Order>(data);
           this.clientOrders.sort = this.sort;
           this.clientOrders.paginator = this.paginator;
-        },
-        error => console.log(error));
+        }, error => console.log(error));
   }
 
-  //pobierz widok jako pdf
+  //Save view as pdf
   exportAsPDF() {
     let data = this.pdfDiv.nativeElement;
     html2canvas(data).then(canvas => {

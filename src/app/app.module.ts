@@ -1,6 +1,9 @@
+import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
+import { GoogleMapsAPI as GoogleMapsAPIKey } from 'src/assets/googleMapsAPIKey';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { routingComponents, RoutingModule } from './routing.module';
@@ -11,8 +14,8 @@ import { EmployeeAuthGuardService } from './_authentication/employee-auth-guard/
 import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard';
 import { UserAuthGuardService } from './_authentication/user-auth-guard/user-auth-guard.service';
 import { ModalModule } from './_modal';
-import { ChartsModule } from 'ng2-charts';
-import { AgmCoreModule } from '@agm/core';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { AgmCoreModule } from '@agm/core';
     ModalModule,
     ChartsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDM_vco7FXvj4GI0SXDYxVQY6jZLqkgMwM'
+      apiKey: GoogleMapsAPIKey.googleMapsAPIKey
     })
   ],
   providers: [
@@ -37,4 +40,6 @@ import { AgmCoreModule } from '@agm/core';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+
+}

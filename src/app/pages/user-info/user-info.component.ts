@@ -12,7 +12,6 @@ import { ModalService } from 'src/app/_modal';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-
   @ViewChild('oldPasswordInput') oldPasswordInput: ElementRef;
   @ViewChild('newPasswordInput') newPasswordInput: ElementRef;
   @ViewChild('newPassword2Input') newPassword2Input: ElementRef;
@@ -43,7 +42,8 @@ export class UserInfoComponent implements OnInit {
     private userSingleton: UserSingleton,
     private modalService: ModalService,
     private uzytkownikService: UzytkownikServiceService,
-    private appComponent: AppComponent) { }
+    private appComponent: AppComponent) {
+  }
 
   ngOnInit(): void {
     this.loggedUser = this.userSingleton.getLoggedUser();
@@ -75,12 +75,9 @@ export class UserInfoComponent implements OnInit {
                 this.openModal("passwordChangedModal");
                 setTimeout(() => this.logout(), 1000);
               }, error => console.log(error));
-
           }
         }
-      },
-      error => console.log(error));
-
+      }, error => console.log(error));
   }
 
   logout() {
@@ -90,16 +87,14 @@ export class UserInfoComponent implements OnInit {
   checkPasswords() {
     const getPass = this.uzytkownikService.checkPasswordInDB(this.loggedUser.getId(), this.passwordDeleteInput.nativeElement.value).toPromise();
     getPass.then(data => {
-     let passwordCorrect = data;
-     
+      let passwordCorrect = data;
+
       if (passwordCorrect) {
         this.openModal('deleteAccountModal');
       } else {
         this.openModal('wrongDBPasswordErrorModal');
       }
-
     });
-
   }
 
   deleteAccount() {

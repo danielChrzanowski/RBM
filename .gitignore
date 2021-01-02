@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 src/assets/ssl/key.pem
 src/assets/ssl/certificate.pem
+src/assets/googleMapsAPIKey.ts

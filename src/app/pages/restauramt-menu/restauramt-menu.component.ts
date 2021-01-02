@@ -27,13 +27,11 @@ import { DishService } from 'src/app/services/dish-service/dish.service';
 export class RestauramtMenuComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<Order>;
-  loggedUser: UserSingleton;
-  currentOrder: Array<CurrentOrderDish> = [];
-  nextId: number = 0;
+
   recommendations: Array<Dish> = [];
   tilesColumnNumber;
 
+  dataSource: MatTableDataSource<Order>;
   tableDef: Array<any> = [
     {
       key: 'danie_id',
@@ -53,6 +51,10 @@ export class RestauramtMenuComponent implements OnInit {
   ];
   columnsToDisplay = ['danie_id', 'nazwa', 'kategoria', 'cena'];
   expandedElement: Order | null;
+
+  loggedUser: UserSingleton;
+  currentOrder: Array<CurrentOrderDish> = [];
+  nextId: number = 0;
 
   chartCategories: Array<string> = [];
   chartCaloriesData: Array<number> = [];
@@ -74,14 +76,15 @@ export class RestauramtMenuComponent implements OnInit {
     if (this.currentOrder) {
       this.nextId = this.currentOrder.length;
     }
-
     this.getRecommendations();
   }
 
   addDishToOrder(element) {
     let currentOrderDish = new CurrentOrderDish(this.nextId, element.danie_id, element.nazwa, element.cena);
-    if (!this.currentOrder)
+
+    if (!this.currentOrder) {
       this.currentOrder = new Array<CurrentOrderDish>();
+    }
     this.currentOrder.push(currentOrderDish);
     localStorage.setItem("currentOrder", JSON.stringify(this.currentOrder));
     this.nextId++;
@@ -159,8 +162,7 @@ export class RestauramtMenuComponent implements OnInit {
           sessionStorage.setItem("menu", JSON.stringify(data));
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        },
-        error => console.log(error));
+        }, error => console.log(error));
   }
 
   removeDuplicates(data, calories) {
@@ -174,7 +176,7 @@ export class RestauramtMenuComponent implements OnInit {
         sameItemIndex.push(i);
         this.chartCategoriesCount.push(1);
       } else {
-        //dodaj kalorie do tej samej kategorii
+        //add calories to category
         var index = data.indexOf(element);
         if (index !== -1) {
           this.chartCategoriesCount[index]++;

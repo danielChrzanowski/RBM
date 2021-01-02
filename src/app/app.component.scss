@@ -1,17 +1,13 @@
 .banner {
     padding-bottom: 2px;
     padding-top: 5px;
-
     position: relative;
     text-align: center;
 }
 
 .bannerImage {
     border-radius: 20px;
-   // border-top-left-radius: 0px;
-   // border-top-right-radius: 0px;
     width: 50%;
-
     max-width: 600px;
     min-width: 500px;
 }
@@ -35,10 +31,9 @@
     float: right;
     margin-top: 8px;
     margin-right: 8px;
-    
 }
 
-.topBar{
+.topBar {
     background-color: rgb(38, 38, 38);
 }
 

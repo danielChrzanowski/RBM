@@ -28,9 +28,6 @@ img {
     border-radius: 10%;
 }
 
-.menuColumnLeft {
-}
-
 .columnLeft {
     flex: 80%;
 }
@@ -60,12 +57,27 @@ img {
     display: inline;
 }
 
-.example-card {
+.alignBot {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.dishIngredients {
+    padding-bottom: 25px;
+}
+
+.center {
+    width: 100%;
+    margin: auto;
+}
+
+.card {
     width: 290px;
     min-height: 410px;
 }
 
-.example-header-image {
+.header-image {
     background-size: cover;
 }
 
@@ -84,52 +96,35 @@ img {
     width: 80%;
 }
 
-tr.example-detail-row {
+tr.detail-row {
     height: 0;
 }
 
-tr.example-element-row:not(.example-expanded-row):hover {
+tr.element-row:not(.expanded-row):hover {
     background: rgb(100, 99, 99);
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
+tr.element-row:not(.expanded-row):active {
     background: #3a3939;
 }
 
-.example-element-row td {
+.element-row td {
     border-bottom-width: 0;
 }
 
-.example-element-detail {
+.element-detail {
     overflow: hidden;
     display: flex;
 }
 
-.example-element-diagram {
+.element-diagram {
     min-width: 80px;
-    // border: 2px solid black;
     padding: 8px;
     font-weight: lighter;
     margin: 8px 0;
-    // height: 104px;
 }
 
-.example-element-symbol {
-    // font-weight: bold;
+.element-symbol {
     font-size: 16px;
     line-height: normal;
-}
-
-.alignBot {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-}
-
-.dishIngredients{
-    padding-bottom: 25px;
-}
-.center{
-    width: 100%;
-    margin: auto;
 }

@@ -14,7 +14,6 @@ import { LoginModel } from '../../models/login-model/login-model';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-
   @ViewChild('loginInput') loginInput: ElementRef;
   @ViewChild('passwordInput') passwordInput: ElementRef;
   private baseUrl = "https://localhost:8443";
@@ -35,7 +34,8 @@ export class LogInComponent implements OnInit {
     private router: Router,
     private modalService: ModalService,
     private userSingleton: UserSingleton,
-    private uzytkownikService: UzytkownikServiceService) { }
+    private uzytkownikService: UzytkownikServiceService) {
+  }
 
   ngOnInit(): void {
   }
@@ -49,27 +49,24 @@ export class LogInComponent implements OnInit {
       .subscribe(data => {
         if (data) {
           sessionStorage.setItem('token', btoa(loginForm.username + ':' + loginForm.password))
-
           this.setUserSingletonFromDB();
         } else {
           //alert("Błąd autentykacji.");
           this.openModal('loginErrorModal');
         }
-      },
-        error => {
-          console.log(error);
-          if (error.status == 401) {
-            //alert("Odmowa dostępu");
-            this.openModal('loginErrorModal');
-          }
-        });
+      }, error => {
+        console.log(error);
+        if (error.status == 401) {
+          //alert("Odmowa dostępu");
+          this.openModal('loginErrorModal');
+        }
+      });
   }
 
   setUserSingletonFromDB() {
     let headers: HttpHeaders = new HttpHeaders(
       { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
     );
-
     let options = { headers: headers };
 
     this.http.get(`${this.baseUrl}/user`, options)
@@ -82,8 +79,7 @@ export class LogInComponent implements OnInit {
           data['czy_pracownik']);
         this.appComponent.refreshUser();
         this.router.navigate(['/menu']);
-      },
-        error => console.log(error));
+      }, error => console.log(error));
   }
 
   openModal(id: string) {
@@ -95,4 +91,3 @@ export class LogInComponent implements OnInit {
   }
 
 }
-

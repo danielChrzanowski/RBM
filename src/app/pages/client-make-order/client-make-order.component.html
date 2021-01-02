@@ -10,7 +10,6 @@
                     - {{element.nazwa}} ({{element.cena}}zł)
                 </mat-list-item>
             </div>
-
             <br>
             <b>Do zapłaty: {{totalPrice}}zł</b>
         </div>
@@ -18,7 +17,6 @@
         <div class="columnRight">
             <h2>Adres dostawy:</h2>
             <hr>
-
             <div class="padding">
                 <mat-form-field class="full-width">
                     <mat-label>Dokładny adres *</mat-label>
@@ -46,10 +44,9 @@
         </div>
 
     </div>
-
     <br>
     <button style="margin-top: 12px; float: left;" mat-stroked-button color="accent"
-        (click)="backToMenu()">Wróć</button>
+        (click)="navigateMenu()">Wróć</button>
     <button [disabled]="!adressFormControl.valid || !phoneFormControl.valid" style="margin-top: 12px; float: right;"
         mat-stroked-button color="accent" (click)="submitOrder()">Potwierdź
         zamówienie</button>
@@ -59,4 +56,4 @@
     <h2>Potwierdzenie</h2>
     <p>Zamówienie zostało złożone</p>
     <button mat-stroked-button (click)="navigateMenu(); closeModal('orderSubmittedModal');">Zamknij</button>
-  </jw-modal>
+</jw-modal>

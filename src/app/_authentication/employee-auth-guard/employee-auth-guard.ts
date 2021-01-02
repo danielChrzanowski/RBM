@@ -4,11 +4,10 @@ import { EmployeeAuthGuardService } from './employee-auth-guard.service';
 
 @Injectable()
 export class EmployeeAuthGuard implements CanActivate {
-
     constructor(
         private router: Router,
-        private authService: EmployeeAuthGuardService
-    ) { }
+        private authService: EmployeeAuthGuardService) {
+    }
 
     canActivate() {
         if (this.authService.isLoggedIn()) {
@@ -17,6 +16,5 @@ export class EmployeeAuthGuard implements CanActivate {
         this.router.navigate(['/log-in']);
         return false;
     }
-
 
 }

@@ -6,9 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Order } from 'src/app/models/order-model/order-model';
 import { OrderService } from 'src/app/services/order-service/order.service';
 
-interface State {
+interface OrderState {
   value: string;
-  viewValue: string;
 }
 
 @Component({
@@ -24,20 +23,13 @@ interface State {
     ]),
   ],
 })
-
 export class ShowOrdersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   dataSource: MatTableDataSource<Order>;
-  selectedState;
-
-  states: State[] = [
-    { value: 'Nowe', viewValue: 'Nowe' },
-    { value: 'Przygotowywane', viewValue: 'Przygotowywane' },
-    { value: 'W drodze', viewValue: 'W drodze' },
-    { value: 'Zakończone', viewValue: 'Zakończone' }
-  ];
-
+  columnsToDisplay = ['zamowienie_id', 'data', 'stan'];
+  expandedElement: Order | null;
   tableDef: Array<any> = [
     {
       key: 'zamowienie_id',
@@ -51,8 +43,14 @@ export class ShowOrdersComponent implements OnInit {
       header: 'Data'
     }
   ];
-  columnsToDisplay = ['zamowienie_id', 'data', 'stan'];
-  expandedElement: Order | null;
+
+  states: OrderState[] = [
+    { value: 'Nowe' },
+    { value: 'Przygotowywane' },
+    { value: 'W drodze' },
+    { value: 'Zakończone' }
+  ];
+  selectedState;
 
   constructor(
     private orderService: OrderService) {

@@ -30,12 +30,10 @@
       (keyup.enter)="login()" (click)="login()">Zaloguj</button>
   </form>
 
-  <br>
-
-  <jw-modal id="loginErrorModal">
-    <h2>Zły login lub hasło</h2>
-    <p>Wprowadź ponownie dane</p>
-    <button mat-stroked-button (click)="closeModal('loginErrorModal');">Zamknij</button>
-  </jw-modal>
-
 </div>
+
+<jw-modal id="loginErrorModal">
+  <h2>Zły login lub hasło</h2>
+  <p>Wprowadź ponownie dane</p>
+  <button mat-stroked-button (click)="closeModal('loginErrorModal');">Zamknij</button>
+</jw-modal>

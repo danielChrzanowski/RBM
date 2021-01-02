@@ -4,15 +4,13 @@ import { Observable } from 'rxjs';
 import { RegisterModel } from 'src/app/models/register-model/register-model';
 import { PasswordModel } from '../../models/password-model/password-model';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class UzytkownikServiceService {
-
   private baseUrl = "https://localhost:8443";
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public login(loginForm: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, loginForm);
@@ -34,13 +32,11 @@ export class UzytkownikServiceService {
 
   public changePassword(passwordModel: PasswordModel): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
     return this.http.put(`${this.baseUrl}/changePassword`, passwordModel, { headers: headers });
   }
 
   public deleteUser(id: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
     return this.http.delete(`${this.baseUrl}/deleteUser/` + id, { headers: headers });
   }
 

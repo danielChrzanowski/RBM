@@ -39,5 +39,3 @@ export class RoutingModule { }
 
 export const routingComponents = [HomeComponent, LogInComponent, ContactComponent, ShowOrdersComponent, CreateUserComponent,
   RestauramtMenuComponent, ClientOrdersComponent, ClientMakeOrderComponent, UserInfoComponent]
-
-//--module app

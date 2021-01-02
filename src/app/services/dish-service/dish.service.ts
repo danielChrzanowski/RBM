@@ -7,18 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class DishService {
   private baseUrl = "https://localhost:8443";
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public findAllDishes(): Observable<any> {
-    //const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
     return this.http.get(`${this.baseUrl}/findAllDishes`);
   }
-  
+
   public recommendDishes(id): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem("token"));
-    //console.log(headers);
     return this.http.get(`${this.baseUrl}/recommendDishes/` + id, { headers: headers });
   }
 

@@ -4,13 +4,10 @@ import { UserAuthGuardService } from './user-auth-guard.service';
 
 @Injectable()
 export class UserAuthGuard implements CanActivate {
-
-    base_url: string;
-
     constructor(
         private router: Router,
-        private authService: UserAuthGuardService
-    ) { }
+        private authService: UserAuthGuardService) {
+    }
 
     canActivate() {
         if (this.authService.isLoggedIn()) {
@@ -19,6 +16,5 @@ export class UserAuthGuard implements CanActivate {
         this.router.navigate(['/log-in']);
         return false;
     }
-
 
 }

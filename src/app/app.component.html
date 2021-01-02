@@ -14,26 +14,26 @@
     </div>
 
     <div class="loginBarRight">
-      <div *ngIf="uzytkownik!=null; else brakUzytkownika" id='loginBarInline'>
-        {{uzytkownik.imie}} {{uzytkownik.nazwisko}}
+      <div *ngIf="user!=null; else noUser" id='loginBarInline'>
+        {{user.imie}} {{user.nazwisko}}
       </div>
 
-      <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="logIn()" id="loginBarText">zaloguj</div>
-      <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="createUser()" id="loginBarInline">
+      <div *ngIf="user==null; else noUser" (click)="logIn()" id="loginBarText">zaloguj</div>
+      <div *ngIf="user==null; else noUser" (click)="createUser()" id="loginBarInline">
         &nbsp;|
         <div id="loginBarText">utwórz konto</div>
       </div>
-      <div *ngIf="uzytkownik!=null; else brakUzytkownika" id="loginBarInline">
+      <div *ngIf="user!=null; else noUser" id="loginBarInline">
         &nbsp;|
         <div (click)="userInfo()" id="loginBarText">konto</div>
       </div>
 
-      <div *ngIf="uzytkownik!=null; else brakUzytkownika" (click)="logout()" id="loginBarInline">
+      <div *ngIf="user!=null; else noUser" (click)="logout()" id="loginBarInline">
         &nbsp;|
         <div id="loginBarText">wyloguj</div>
       </div>
 
-      <ng-template #brakUzytkownika></ng-template>
+      <ng-template #noUser></ng-template>
     </div>
   </div>
 
@@ -55,7 +55,7 @@
       <mat-icon> phone</mat-icon> Kontakt
     </button>
 
-    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
+    <div *ngIf="user!=null && user.czy_pracownik" id='loginBarInline'>
       <button mat-button [matMenuTriggerFor]="menu2">
         <mat-icon>person</mat-icon> Pracownik
       </button>
@@ -66,7 +66,7 @@
       </mat-menu>
     </div>
 
-    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik==false" id='loginBarInline'>
+    <div *ngIf="user!=null && user.czy_pracownik==false" id='loginBarInline'>
       <button mat-button (click)="clientOrders()">
         <mat-icon> menu_book </mat-icon> Moje zamówienia
       </button>

@@ -10,8 +10,7 @@ import { UserSingleton } from './models/user-singleton/user-singleton.service';
 })
 export class AppComponent implements OnInit {
   title = 'RBM';
-
-  uzytkownik: UserSingleton;
+  user: UserSingleton;
 
   constructor(
     private router: Router,
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uzytkownik = null;
+    this.user = null;
     sessionStorage.removeItem('token');
     this.refreshUser();
   }
@@ -42,13 +41,13 @@ export class AppComponent implements OnInit {
 
   logout() {
     sessionStorage.removeItem('token');
-    this.uzytkownik = null;
+    this.user = null;
     this.logIn();
   }
 
   refreshUser() {
     if (sessionStorage.getItem("token") !== null) {
-      this.uzytkownik = this.userSingleton.getLoggedUser();
+      this.user = this.userSingleton.getLoggedUser();
     }
   }
 

@@ -11,7 +11,6 @@ import { RegisterModel } from '../../models/register-model/register-model';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-
   @ViewChild('loginInput') loginInput: ElementRef;
   @ViewChild('passwordInput') passwordInput: ElementRef;
   @ViewChild('password2Input') password2Input: ElementRef;
@@ -52,7 +51,8 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private router: Router,
     private modalService: ModalService,
-    private uzytkownikService: UzytkownikServiceService) { }
+    private uzytkownikService: UzytkownikServiceService) {
+  }
 
   ngOnInit(): void {
   }
@@ -74,8 +74,8 @@ export class CreateUserComponent implements OnInit {
       if (tempUser != null && tempUser.login == registerForm.login) {
         registerForm.login = null;
         this.openModal("loginErrorModal");
-      } else {
 
+      } else {
         if (registerForm.password != password2) {
           registerForm.password = null;
           this.openModal("passwordErrorModal");
@@ -89,7 +89,6 @@ export class CreateUserComponent implements OnInit {
         }
       }
     });
-
   }
 
   openModal(id: string) {

@@ -14,6 +14,9 @@ import { ModalService } from 'src/app/_modal';
   providers: [DatePipe]
 })
 export class ClientMakeOrderComponent implements OnInit {
+  @ViewChild('adressInput') adressInput: ElementRef;
+  @ViewChild('phoneInput') phoneInput: ElementRef;
+
   order: OrderNoID;
   menu: any;
   loggedUser: UserSingleton;
@@ -24,9 +27,6 @@ export class ClientMakeOrderComponent implements OnInit {
   totalPrice;
   adress;
   phone: number;
-
-  @ViewChild('adressInput') adressInput: ElementRef;
-  @ViewChild('phoneInput') phoneInput: ElementRef;
 
   adressFormControl = new FormControl('', [
     Validators.required
@@ -40,12 +40,22 @@ export class ClientMakeOrderComponent implements OnInit {
     private userSingleton: UserSingleton,
     private orderService: OrderService,
     private router: Router,
-    private modalService: ModalService) { }
+    private modalService: ModalService) {
+  }
 
   ngOnInit(): void {
     this.loggedUser = null;
     this.refreshUser();
+    this.generateOrder();
+  }
 
+  refreshUser() {
+    if (sessionStorage.getItem("token") !== null) {
+      this.loggedUser = this.userSingleton.getLoggedUser();
+    }
+  }
+
+  generateOrder() {
     this.currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
     this.menu = JSON.parse(localStorage.getItem("menu"));
 
@@ -64,28 +74,16 @@ export class ClientMakeOrderComponent implements OnInit {
     };
   }
 
-  refreshUser() {
-    if (sessionStorage.getItem("token") !== null) {
-      this.loggedUser = this.userSingleton.getLoggedUser();
-    }
-  }
-
   submitOrder() {
     this.adress = this.adressInput.nativeElement.value;
     this.phone = this.phoneInput.nativeElement.value;
-
     this.order = new OrderNoID(this.date, this.totalPrice, "Nowe", this.adress, this.phone, this.jsonUser, this.dishes);
 
     this.orderService.addOrder(this.order)
       .subscribe(data => {
-        //  console.log(data);
         localStorage.removeItem("currentOrder");
         this.openModal("orderSubmittedModal");
       }, error => console.log(error));
-  }
-
-  backToMenu() {
-    this.router.navigate(["/menu"]);
   }
 
   openModal(id: string) {
@@ -97,7 +95,7 @@ export class ClientMakeOrderComponent implements OnInit {
   }
 
   navigateMenu() {
-    this.router.navigate(["menu"]);
+    this.router.navigate(["/menu"]);
   }
 
 }
