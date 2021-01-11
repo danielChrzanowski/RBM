@@ -1,0 +1,37 @@
+.content {
+  padding-bottom: 50px;
+}
+
+.dropzone {
+  display: table;
+  width: 600px;
+  height: 400px;
+  border: 2px black;
+}
+
+.text-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.centered {
+  font-family: sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.smallText {
+  text-align: center;
+  font-size: 1em;
+}
+
+.floatRight {
+  float: right;
+}
+
+.centerContent {
+  margin: 0px auto;
+  float: none;
+  display: table;
+}

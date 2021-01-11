@@ -67,6 +67,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(["/showOrders"]);
   }
 
+  addDish() {
+    this.router.navigate(["/addDish"]);
+  }
+
   createUser() {
     this.router.navigate(["/createUser"]);
   }

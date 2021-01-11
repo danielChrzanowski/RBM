@@ -1,0 +1,73 @@
+<div class="content">
+    <h1>Dodaj danie</h1>
+    <hr>
+
+    <div class="centerContent">
+        <div *ngIf="!files.length" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event)">
+            <div class="text-wrapper">
+                <div class="centered">Przeciągnij zdjęcie tutaj</div>
+                <div class="smallText">(JPG lub PNG, max 500kb)</div>
+            </div>
+        </div>
+        <div *ngFor="let file of files">
+            <img *ngIf="file" [src]="file.url" width="600px" height="400px">
+        </div>
+    </div>
+    <br>
+
+    <div class="centerContent">
+        <mat-form-field>
+            <mat-label>Nazwa *</mat-label>
+            <input type="text" matInput [formControl]="nameFormControl" #nameInput>
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+                Podaj nazwę dania
+            </mat-error>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field>
+            <mat-label>Cena (zł) *</mat-label>
+            <input type="text" matInput [formControl]="priceFormControl"
+                onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode==46' #priceInput>
+            <mat-error *ngIf="priceFormControl.hasError('required')">
+                Podaj cenę
+            </mat-error>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field>
+            <mat-label>Kalorie (kcal) *</mat-label>
+            <input type="text" matInput [formControl]="caloriesFormControl"
+                onkeypress='return event.charCode >= 48 && event.charCode <= 57' #caloriesInput>
+            <mat-error *ngIf="caloriesFormControl.hasError('required')">
+                Podaj ilość kalorii
+            </mat-error>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field appearance="fill">
+            <mat-label>Kategoria</mat-label>
+            <mat-select [(value)]="selectedCategory">
+                <mat-option *ngFor="let category of categories" [value]="category.value">
+                    {{category.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field style="width: 100%;">
+        <mat-label>Składniki *</mat-label>
+        <textarea matInput [formControl]="ingredientsFormControl" #ingredientsInput></textarea>
+        <mat-error *ngIf="ingredientsFormControl.hasError('required')">
+            Podaj składniki
+        </mat-error>
+    </mat-form-field>
+
+    <div class="floatRight">
+        <button [disabled]="files.length<1" mat-stroked-button color="accent" (click)="deleteFile()">Skasuj
+            zdjęcie</button>
+        &nbsp;
+        <button [disabled]="files.length<1 || !nameFormControl.valid || 
+            !priceFormControl.valid || !caloriesFormControl.valid ||
+             !selectedCategory || !ingredientsFormControl.valid" mat-stroked-button color="accent"
+            (click)="upload()">Zatwierdź</button>
+    </div>
+
+</div>

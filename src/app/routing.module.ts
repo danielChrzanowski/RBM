@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddDishComponent } from './pages/add-dish/add-dish.component';
 import { ClientMakeOrderComponent } from './pages/client-make-order/client-make-order.component';
 import { ClientOrdersComponent } from './pages/client-orders/client-orders.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'log-in', component: LogInComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'showOrders', canActivate: [EmployeeAuthGuard], component: ShowOrdersComponent },
+  { path: 'addDish', canActivate: [EmployeeAuthGuard], component: AddDishComponent },
   { path: 'createUser', component: CreateUserComponent },
   { path: 'menu', component: RestauramtMenuComponent },
   { path: 'clientOrders', canActivate: [ClientAuthGuard], component: ClientOrdersComponent },
@@ -37,5 +39,5 @@ const routes: Routes = [
 
 export class RoutingModule { }
 
-export const routingComponents = [HomeComponent, LogInComponent, ContactComponent, ShowOrdersComponent, CreateUserComponent,
+export const routingComponents = [HomeComponent, LogInComponent, ContactComponent, ShowOrdersComponent, AddDishComponent, CreateUserComponent,
   RestauramtMenuComponent, ClientOrdersComponent, ClientMakeOrderComponent, UserInfoComponent]

@@ -6,6 +6,7 @@ import { ChartsModule } from 'ng2-charts';
 import { GoogleMapsAPI as GoogleMapsAPIKey } from 'src/assets/googleMapsAPIKey';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+import { DragDirective } from './pages/add-dish/dragDrop.directive';
 import { routingComponents, RoutingModule } from './routing.module';
 import { ClientAuthGuard } from './_authentication/client-auth-guard/client-auth.guard';
 import { ClientAuthGuardService } from './_authentication/client-auth-guard/client-auth.service';
@@ -15,12 +16,11 @@ import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard
 import { UserAuthGuardService } from './_authentication/user-auth-guard/user-auth-guard.service';
 import { ModalModule } from './_modal';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    DragDirective
   ],
   imports: [
     RoutingModule,
@@ -41,5 +41,4 @@ import { ModalModule } from './_modal';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-
 }
