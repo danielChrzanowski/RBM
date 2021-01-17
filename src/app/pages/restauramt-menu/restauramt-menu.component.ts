@@ -151,7 +151,7 @@ export class RestauramtMenuComponent implements OnInit {
             this.chartCategories.push(dish.kategoria);
             this.chartCaloriesData.push(dish.kalorie);
           }
-          this.chartCategories = this.removeDuplicates(this.chartCategories, this.chartCaloriesData);
+          this.chartCategories = this.countAvgCalories(this.chartCategories, this.chartCaloriesData);
 
           this.chartDatasets = [
             { data: this.chartCaloriesDataFilled, label: 'Kaloryczność' }
@@ -165,7 +165,7 @@ export class RestauramtMenuComponent implements OnInit {
         }, error => console.log(error));
   }
 
-  removeDuplicates(data, calories) {
+  countAvgCalories(data, calories) {
     let i = 0;
     let sameItemIndex = new Array;
     let unique = new Array;
