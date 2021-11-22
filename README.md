@@ -33,13 +33,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - 10: Client's order saved to PDF
 <img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/9.png">
 
-- 11: Client's order saved to PDF
+- 11: Employee - orders view
 <img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/10.png">
 
-- 12: Employee "add dish" view
+- 12: Employee - add dish view
 <img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/11.png">
 
-- 13: Employee "add dish" view with input
+- 13: Employee - add dish view with input
 <img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/12.png">
 
 - 14: HTTPS
@@ -48,5 +48,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - 15: Table "dishes"
 <img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/db_danie.png">
 
-- 16: Table "users" - password hashed
+- 16: Table "users" - passwords hashed
 <img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/db_uzytkownik.png">
