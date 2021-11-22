@@ -2,26 +2,39 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 
-## Development server
+## Features:
+- 1: 3 theme styles saved in LocalStorage
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/0.png">
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- 2: Main view
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/1.png">
 
-## Code scaffolding
+- 3: Angular Material table and Canvas chart with data calculated based on database data
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/2.png">
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 4: GoogleMaps API
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/3.png">
 
-## Build
+- 5: Form Control
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/4.png">
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- 6: Modal
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/5.png">
 
-## Running unit tests
+- 7: Dish recommendations for specific user based on previous orders
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/6.png">
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- 8: Submit order view
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/7.png">
 
-## Running end-to-end tests
+- 9: Client's orders view
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/8.png">
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- 10: Client's order saved to PDF
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/9.png">
 
-## Further help
+- 11: Table "dishes"
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/db_danie.png">
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- 12: Table "users" - password hashed
+<img src="https://github.com/danielChrzanowski/RBM/blob/master/src/assets/screenShots/db_uzytkownik.png">
